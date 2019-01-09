@@ -1,0 +1,42 @@
+1)Tomcat is web server 
+
+- It basically make our Java Web applications to run on host and server based system and it is configured on local host port 8080.
+- There is a built in web container called Catalina in the tomcat bin directory. It loads all http related request and has privilege to instantiate the GET and POST method's object .
+
+(NGINX Plus combines multiple functions – including web serving, advanced load balancing, caching, management and monitoring, and request routing – all in one flexible, cost-effective solution for delivering static and dynamic content in a fast and reliable manner that boosts customer satisfaction and revenue.)
+
+2)Run time environment - RTE 
+I would say that Runtime environment is an environment, which supports the execution of a program/process. A program, for being able to execute, requires runtime environment. Runtime environment provides following services to the program/process :-
+
+Resident Memory
+Resources such as File, Sockets, etc.
+Environment variables
+Proper initialization
+Proper disposal.
+In short, Runtime environment is for the program, what physical environment is to us. Program/process can't sustain without runtime environment.
+
+As soon as a software program is executed, it is in a run-time state. In this state, the program can send instructions to the computer's processor and access the computer's memory (RAM) and other system resources. RTE allows the program to be run in an environment where the programmer can track the instructions being processed by the program and debug any errors that may arise. While developers use RTE software to build programs, RTE programs are available to everyday computer users as well,e.g software such as Adobe Flash Player
+
+Javascript is interpreter and not compiled language. The code runs JIT way ie Just in time on the fly.A JavaScript engine is a program or interpreter which executes JavaScript code. A JavaScript engine may be a traditional interpreter, or it may utilize just-in-time compilation to bytecode in some manner. Although there are several uses for a JavaScript engine, it is most commonly used in Web browsers.
+
+3)Now comes the comparison
+
+Node.js is a runtime engine, whereas Tomcat is a server on a runtime engine. Node is more akin to the Run time Environment (JRE=Java Runtime Environment) than Tomcat. In “Node terms”, Tomcat would be more like the Express or Restify modules for Node.
+
+Tomcat is a web server for web applications written in java.
+Node is a runtime environment for applications in javascript.
+
+Tomcat can be compared with Express js which acts like webserver. Now, perhaps the most commonly used web server on Node is Express
+
+------------------------------------------------------------------------------------------------------------------
+Node is RUN TIME ENVIRONEMENT and Express is like WEB SERVER to route or serve files
+
+4)If you come from php development, learning node is a great idea. It ll teach you in a soft way the concurrent programming pattern, and also event/stream programming, it will lead you to face problems regarding the underlying OS in a soft way.
+
+Unlike C and other compiled languages, Javascript runs in a container - a program that reads your js codes and runs them. This program must do two things
+
+parse your code and convert it to runnable commands
+provide some objects to javascript so that it can interact with the outside world.
+The first part is called Engine and the second is Runtime.
+
+For example, the Chrome Browser and node.js use the same Engine - V8, but their Runtimes are different: in Chrome you have the window, DOM objects etc, while node gives you require, Buffers and processes.

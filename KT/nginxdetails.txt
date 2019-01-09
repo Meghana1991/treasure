@@ -1,0 +1,14 @@
+prod:build -> 
+minifies files -> 
+goes into build folder of our project->
+and the entire folder contents gets copied to nginx folder
+from there, nginx triggers index html file which has path for all the minified files
+so nginx will serve the files.
+
+When we login first time -> it picks up from the folder inside nginx
+
+Whenever we make any changes to the code, we build it -> it gets converted to .war file which inturn has many minified .js files with one index.html.
+
+----------------------------------------------
+
+User logs in > minified files are picked by the nginx server which are present in the nginx folder,the minified files came to nginx when the build happens(build:prod or jenkins build) > Whenever code is changed and build, then the fresh code changes displays.

@@ -1,0 +1,1 @@
+this.sessionStorg.getDeviceTypes().match(new RegExp(searchtext1, 'g')).length > 0

@@ -1,0 +1,4 @@
+1) format code with comments
+2) change the actual names
+3) learn html to php communication
+4) learn ajax

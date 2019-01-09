@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>Staircase</title>
+</head>
+
+<body>
+    <script>
+        /**
+                #
+            #   #
+        #   #   #
+
+        02
+        11 12
+        20 21 22
+        **/
+        function stairCase() {
+            var n = 3;
+            var temp = n;
+            for (var i = 0; i < n; i++) {
+                for (var j = temp - 1; j < n; j++) {
+                    if (j !== -1) {
+                        console.log(i, j)
+                        document.write('#')
+                    }
+                    --temp;
+                }
+                document.write("<br />");
+            }
+        }
+        stairCase();
+
+        /**
+        var staircase = "",
+            n = 6,
+            space = " ",
+            hash = "#";
+        for (var i = n; i > 0; i--) {
+            staircase += space.repeat(i - 1).concat(hash.repeat(n - (i - 1))) + "\n";
+        }
+        console.log(staircase);
+        **/
+    </script>
+</body>
+
+</html>

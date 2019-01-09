@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Move Div on click</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <button>Move</button>
+    <div class="move"></div>
+    <!-- <div class="move"></div> -->
+    <!-- <div class="move"></div> -->
+    <!-- <div class="move"></div> --> 
+
+    <div class="target"></div>
+</body>
+
+</html>
+
+<style>
+    .move {
+        border: 1px solid brown;
+        height: 10px;
+        width: 10px;
+        background-color: green;
+        margin: 10px;
+        position: relative;
+    }
+
+    .target {
+        border: 1px solid brown;
+        height: 20px;
+        width: 20px;
+        /* background-color: blue; */
+        margin: 20px;
+        position: fixed;
+    }
+</style>
+
+<script type="text/javascript">
+    var target = document.getElementsByClassName('target')[0];
+    var target_x = target.offsetLeft;
+    var target_y = target.offsetTop;
+
+    var move_elements = $('.move');
+    $("button").click(function () {
+        // for (var i = 0 ; i <= move_elements.length - 1; i++) {
+            $('.move').css('left', target_x - move_elements[0].offsetLeft)
+            $('.move').css('top', target_y - move_elements[0].offsetTop)
+        // }
+    });
+
+</script>

@@ -1,0 +1,20 @@
+1)VPC - Virtual Private Clould is a space or area which is divided on based on regions. Each region would have VPC. VPC in other words is like a Data center. VPC consists of services like ec2,s3,route53,rds etc
+
+2)EC2 - Here is the place where we create hardware. I mean the raw machine which has harddisk, ram etc. 
+You can install linux or any OS. Also can install web server. 
+Usually code like java,spring boot or node runs in this platform.
+There would be an URL for this instance or machine which would be called by FE side.
+
+The flow is -> 
+
+In FE we call some service GET call which is pointing to www.some.com/contacts ---> goes to EC2 space where the java or the node code resides and from there to the DATABASE(will discuss in the coming sections).
+
+3)S3 bucket - This usually has the static code. Or may be files or documents. Usually files related things are handled here. But in our project, we have launched our FE code in the S3 bucket as it is kinda static. We could have launched in the ec2 as well but ec2 is quite costly. Every transaction from FE to BE will be more costly in ec2 compared to s3.
+
+4)Route53 - This is domain name giver. The ec2,rds and s3 will generate a very big URLs for itself so this Route53 will make it simple by giving small names for the urls.
+
+5) RDS - This is the database where the data resides here. This too will have a URL which should be hit by the ec2.
+
+The flow is ->
+
+S3's FE www.something.com/contacts --> EC2's webserver will take /contacts and does the necessary functionality and form some queries etc and then hits the respective RDS URL by querying(may be /contactsGET) --> /contactsGET will give the result(imagine POSTMAN which gives result when triggered an URL)

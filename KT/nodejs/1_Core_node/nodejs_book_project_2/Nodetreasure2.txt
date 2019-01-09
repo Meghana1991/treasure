@@ -1,0 +1,57 @@
+1)  You won’t be able to start another Node application listening at the same port: you can
+run only one Node application against one port at a time. If you’re running Apache at
+port 80, you won’t be able to run the Node application at this port, either. You must
+use a different port for each application.
+
+2)  Apache follows prefork MPM and worker MPM models.
+Prefork MPM uses multiple child processes with one thread each. Each process handles one connection at a time.
+Worker MPM uses multiple child processes with many threads each. Each thread handles one connection at a time.
+
+Regardless of the approach used, both types respond to requests in parallel. If five
+people access a web application at the exact same time, and the server is set up
+accordingly, the web server handles all five requests simultaneously
+
+Unlike with other single-threaded applications, when you make a request to a Node
+application and it must, in turn, make some request of resources (such as a database
+request or file access), Node initiates the request, but doesn’t wait around until the
+request receives a response. Instead, it attaches a callback function to the request. When
+whatever has been requested is ready (or finished), an event is emitted to that effect,
+triggering the associated callback function to do something with either the results of
+the requested action or the resources requested.
+
+3)  How these guys handle the concurrent requests from multiple machines?
+
+If five people access a Node application at the exact same time, and the application
+needs to access a resource from a file, Node attaches a callback function to a response
+event for each request. As the resource becomes available for each, the callback function
+is called, and each person’s request is satisfied in turn. In the meantime, the Node
+application can be handling other requests, either for the same applications or a different
+application.
+
+Whereas the Apache works in Prefork MPM or Worker MPM model where it handles requests parallely
+Node doesn’t process the requests in parallel, depending on how busy it is and how it’s designed, most people usually won’t perceive any delay in the response. Best of all, the application is very frugal with memory and other limited resources.
+
+4)> 3 > 2 > 1;
+false
+> 3 > 2;
+true
+> true > 1;
+false
+
+Now the result makes more sense. What’s happening is that the expression 3 > 2 is
+evaluated, returning true. But then the value of true is compared to the numeric 1.
+JavaScript provides automatic data type conversion, after which true and 1 are equivalent
+values. Hence, true is not greater than 1, and the result is false
+
+5)Modules exist in their own global namespace, which means that if you define a toplevel
+variable in one module, it is not available in other modules. More importantly, it
+means that only what is explicitly exported from the module becomes part of whatever
+application includes the module. In fact, you can’t access a top-level module variable
+in an application or other module, even if you deliberately try.
+
+6)I mentioned that global is like the windows object in a browser, but there are key differences—and
+not just the methods and properties available. The windows object in a
+browser is truly global in nature. If you define a global variable in client-side JavaScript,
+it’s accessible by the web page and by every single library. However, if you create a
+variable at the top-level scope in a Node module (a variable outside a function), it only
+becomes global to the module, not to all of the modules.

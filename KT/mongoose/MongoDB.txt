@@ -1,0 +1,74 @@
+1)Mongo DB is type sensitive - 
+
+{"age":50}
+{"age":"50"}
+
+are both unique and distinct. Also this 
+{"foo" : 3}
+{"Foo" : 3}
+
+2) MongoDB cannot contain duplicate keys. Invalid - {"greeting" : "Hello, world!", "greeting" : "Hello, MongoDB!"}
+
+3)Collection here is a table.Both of the following documents could be stored in a single collection:
+{"greeting" : "Hello, world!"}
+{"foo" : 5}
+
+4)MongoDB groups collections into databases.
+
+5)MongoDB is almost always run as a network server that clients can connect to and perform operations on. To start the server, run the mongod executable.When run with no arguments, mongod will use the default data directory,/data/db/ (or C:\data\db\ on Windows), and port 27017.If the data directory does not already exist or is not writable, the server will fail to start. It is important to create the data directory (e.g., mkdir -p /data/db/), and to make sure your user has permission to write to the directory, before starting MongoDB.
+
+6)MongoDB is NoSQL which means we dont store data as tables etc but now as objects.
+
+7)collections are tables. See image basic_1
+
+8)Schemaless - Which means assume you have a table in mySQl where there are 10 entries in which 5 have names and age but 5 others have only names. The schema would be name and age for that table irrespective of data existing or no. But in case of Mongodb there is NO schema at all. See image basic_2
+
+9)Data is stored as BSON where B for Binary.BSON is a binary encoded format for JSON data and also contains extensions that allow representation of data types that are not part of JSON. For example, BSON has a Date data type and BinData type.
+
+10)Embedded documents can be used here,
+
+{
+    "name" : "some",
+    "address" : {
+        "city" : "hippo"
+    }
+}
+Here details are embedded documents. Usually in mysql we have `users` table and the `address` table. But here in mongodb we store the data as we need it. By doing this, we can avoid the JOINS which will inturn reduce the performances. Hence we force the data that belongs together into single document as retrieving it would be easy.
+
+11)Mongodb website provides with Atlas which is cloud base storage of the data ie the data would NOT actually be in the mongodb server but will be in either aws or azure
+
+12)Mongodb is usually connected with Nodejs or Php or Python etc but not from Angular or React as we usually wont directly expose the db related to the client side or ui.
+
+13)In terms of Node.js, mongodb is the native driver for interacting with a mongodb instance and mongoose is an Object modeling tool for MongoDB.
+
+Mongoose is built upon the MongoDB driver to provide programmers with a way to model their data.
+Mongoose : object data modeling (ODM) library that provides a rigorous modeling environment for your data. Used to interact with MongoDB, it makes life easier by providing convenience in managing data.
+Mongodb: native driver in Node.js to interact with MongoDB.
+Mongoose is one of the orm's who give us functionality to access the mongo data with easily understandable queries.
+Mongoose plays as a role of abstraction over your database model.
+
+14)First download the MongoDB from official website
+https://www.youtube.com/watch?v=FwMwO8pXfq0
+
+For installation of Mongo, first install mongoDB driver
+npm install mongodb --save
+
+then install mongoose,
+npm install mongoose --save
+
+15)Everything in Mongoose starts with a Schema. Each schema maps to a MongoDB collection and defines the shape of the documents within that collection.
+
+With Mongoose, everything is derived from a Schema. Let's get a reference to it and define our kittens.
+var kittySchema = new mongoose.Schema({
+  name: String
+});
+So far so good. We've got a schema with one property, name, which will be a String. The next step is compiling our schema into a Model.
+
+var Kitten = mongoose.model('Kitten', kittySchema);
+A model is a class with which we construct documents. In this case, each document will be a kitten with properties and behaviors as declared in our schema. Let's create a kitten document representing the little guy we just met on the sidewalk outside
+
+16)Every Schema maps to the MongoDB collection and defines how the documents in the schema is.
+
+17)Schema is a collection of documents. Model is the documents.Models are fancy constructors compiled from Schema definitions. An instance of a model is called a document. Models are responsible for creating and reading documents from the underlying MongoDB database.
+
+18)PROMISES and CALLBACK differences - https://www.udemy.com/the-complete-nodejs-developer-course-2/learn/v4/t/lecture/5525296?start=0

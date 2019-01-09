@@ -1,0 +1,66 @@
+1) GIT is version control system. We need git inorder to track files so that if anything goes wrong, one needs to revert the file and also very useful to backup the work
+
+2)After installing the GIT from website, try git --version for checking the version.
+> git init - It would have created a .git directory in hidden mode
+
+3)git by default doesnot track any of our files. We need to force It by `git add`
+Before we do, lets check the status
+> git status (shows untracked files)
+> git add test.html
+
+4)If you want to ignore some files like node_modules or logs to be tracked by the git then create a new file .gitignore and include those folders or files in there
+Create a .gitignore in the root.
+
+5)our local code can be pushed to external 3rd party place which is github. When local machine crashes then we can get our code from gitHUB. We can also open source our project so that others can use the code. We can create SSH keys to communicate between local and server machines. SSH keys are designed to securely communicate between 2 computers
+
+6)Install gitbash
+open gitbash
+> ssh-keygen
+
+The key will be in the Users>username>.ssh folder
+
+Pick the public key and copy the key and take it to github.com > Settings > Add key 
+
+7) Clone the repository to your local now. By using the clone link
+
+git clone <link>
+
+8) Once its in your local, then push pull do whatever you want.
+
+---------------------------------------------------------------------------------------------------------------------
+
+1)https://git-scm.com/downloads
+>  Download git for windows
+>  Make sure you check the git bash during the download
+
+2)Generate ssh key by
+> ssh-keygen
+
+Go to C:/Users/<username>/.ssh/<public-key>
+or
+Type this command to locate the key place
+>ls ~/.ssh/*.pub
+
+Go there and copy the public key
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDafbRx2QB3vF8vWTI6eHiNEbV3pmr78nVLJ6jGqw/2Rh/7rwAfphmLExsu0U5mvXKdOpTsF14o3jBR94NR6t6GVVGQQBnol8hs+vyeDAg+v02ecj57V6Yf3Z7x4G0Rk/ZcmUkjG9ctlARSCBgsBtmbM+rRLQrNoQ9sMfi2uHKtPdf3LVVdZvhDGcDSYaXlmzXHNFRVfhGEl4Fc6QWFzduivSP/y+YK1aYdC+2Wzpb+wbNMP23t5pAYZfR85KlbQGaxYcu0guMSMlENx0LqIqeNqD2ZHk9DrDgKSILgayPuw0GIa+V8Yzrxp0DuDX7njyrKf5bPXee33nKvErv1EAep Home@DESKTOP-2UR7UVN
+
+3) Open github.com
+Go to settings - Add this key in there
+
+4)Come back to your local and try to clone the repository in the github, copy the clone url in the github
+git clone <githublink>
+
+Sometimes kaspersky will stop the clone to be successful and you can turn off for sometime or any other antivirus
+
+5)If you have multiple clients then you might have to generate multiple ssh keys. Example - my local and my local for company is different. something like this 
+https://medium.com/@pinglinh/how-to-have-2-github-accounts-on-one-machine-windows-69b5b4c5b14e
+https://www.youtube.com/watch?v=fnSRBRiQIU8
+
+---------------------------------------------------------------------------------------------------------------------
+If you have multiple accounts like 1 office and other 1 personal then multiple ssh keys should be generated
+https://medium.com/@pinglinh/how-to-have-2-github-accounts-on-one-machine-windows-69b5b4c5b14e
+
+In the above link, core.sshCommand=ssh doesnot work and throws error. So manually edit by 
+> git config -e
+INS mode
+add sshCommand thing there then enter ESC > :w

@@ -1,0 +1,4 @@
+1) npm init
+2) npm install --save express
+3) In root add server.js 
+4) Inside add listen port function and default pathway (refer server_steps.js)

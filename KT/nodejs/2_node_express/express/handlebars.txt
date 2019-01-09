@@ -1,0 +1,12 @@
+1)Express supports many different view engines that provide different levels of abstraction. Handlebar is one of the view engine
+
+2) To provide Handlebars support - Install handlebars using -
+npm install --save express3-handlebars
+--save is used to save it in the package.json (check google onc)
+
+3).
+├── app.js
+└── views
+    ├── home.handlebars
+    └── layouts
+        └── main.handlebars

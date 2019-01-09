@@ -1,0 +1,30 @@
+<html>
+<!--
+    Print a single integer denoting the number of letter a's in the first  letters of the infinite string created by repeating  infinitely many times.
+-->
+
+<head>
+    <title>Repeat String</title>
+</head>
+
+<body>
+    <script>
+        function countOccuranceInRepeatedString(s, n) {
+            var repeatStr = '';
+            for (var i = 0; i < n; i++) {
+                if (repeatStr.length < n && repeatStr.concat(s).length < n) {
+                    repeatStr = repeatStr.concat(s);
+                }
+            }
+            repeatStr = repeatStr.concat(s.slice(0, n - repeatStr.length))
+            /**
+            var some = "adsfdadswa";
+            some.split("a") // ["",dsfd,dsw,""]
+            **/
+            return (repeatStr.split("a").length - 1);
+        }
+        countOccuranceInRepeatedString('aba', 10)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+clean up local stash
+
+1) git checkout dev
+git pull
+
+2) git checkout feature_brach
+git merge dev

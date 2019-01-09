@@ -1,0 +1,414 @@
+IMPORTANT
+(https://nodejs.org/api/ has multiple options and functions, have a look before you pitch)
+
+1) Node js is completely BACKEND
+2) You deal the latter part after the FE sends the request or API call
+3) Once FE sends the API GET POST PUT then the request comes to HTTP -> Web server ie node server
+4) Node server needs to generate a safe access token, set headers, allow access origins, then routing takes place using may be expressjs then queries database
+5) NO FE IS INVOLDED. THIS PROCESS IS AFTER THE REUQEST FROM FE IS SENT
+----------------------------------------------------------------------------------------------------------
+1)compile-time is the instance where the code you entered is converted to executable. Run-time is the instance where the executable is run.
+
+An example:
+Let's say you try to store a custom data type in int variable. It is a compile time error.
+User enters a number such that program goes into infinite loop and crashes. It is runtime error. 
+
+Run-time errors are avoided by exception handling mechanism.
+----------------------------------------------------------------------------------------------------------
+Almost all computer programs written are in high level languages, which is a little closer to English than a sequence of 0's and 1's that is the machine language, so us humans have an easier time understanding and working with the code. To convert this program code into an executable file that can be read and executed by a machine, we use a Compiler.
+
+STEPS -
+
+1)HTTP is a protocol. 
+You are using this protocol right now to access Quora. It is the protocol through whcih web pages are served to the user. The internet and the web are all based fundamentally on this protocol (and also, on a deeper level, on TCP, IP, etc).
+
+2)Apache is a web server. It implements the HTTP protocol and is able to serve its clients with content (in HTML) through the protocol.
+
+3)PHP is a server-side language that outputs (usually) HTML results. When a URL is called that requests a .php file, Apache asks PHP (the runtime, responsible for running that code you wrote) to process it and expects whatever output comes of it, then sends it back (through HTTP) to the user/browser/client software that requested it.
+----------------------------------------------------------------------------------------------------------
+PHP has built-in web server but doesnot do all things apache does and not full fledged. But nodejs itself can act like webserver as well as runtime environment like PHP. A node.js web application is a full-fledged web server just like Nginx or Apache.
+
+You can indeed serve your node.js application without using any other web server.
+
+So the flow goes like
+
+User hits http://www.google.com =>  the web server accepts the call => asks the php to give the required result by compiling and running the code in run time env => returns the machine level code back to user via HTTP
+
+User hits http://www.google.com =>  node creates the web server and accepts the call =>the required result by compiling and running the code in run time env => returns the machine level code back to user via HTTP
+----------------------------------------------------------------------------------------------------------
+But still many ppl use it along with Nginx kind of web servers because -
+
+http.createServer(app).listen(3000);
+Create a server and listen for http requests on port 3000.
+
+We used nginx in one of our project, but it was more like a loadbalancer for multiple nodejs instances.
+Lets say you have two nodejs instances running on port 3000 and 3001, Now you can still use nginx as a server to listen your actual http calls on port 80, and may want to redirect your request to nodejs server or maybe some other server, more like a loadbalancer. So you can still use whatever nginx provides with nodejs.
+----------------------------------------------------------------------------------------------------------
+1)Node js acts as both client and server side scripting
+2) Javascript event loop or execution is async and is single threaded and so is node js. It doesn't wait for the result or response  to come instead it will have callbacks(same as javascript event loop stack and queue) so whats different in node then? It is server side...ehm wait lets wait and see
+3) For PHP we need to have a Web Server / Apache http server inorder to serve the pages(The primary function of a web server is to store, process and deliver web pages to clients. The communication between client and server takes place using the Hypertext Transfer Protocol (HTTP)) But in case of the node js we dont need to have a separate HTTP server like apache but node js alone has that ability, ie node acts as scripting language and http web server also
+4) PHP vs javascript(nodejs)
+
+Assume this code below
+
+var result = database.query("SELECT * FROM hugetable");
+console.log("Hello World");
+//here result comes and then console statement prints
+
+Here the result from the huge table takes 1 min and then the next Hello world will execute. Hence the user needs to wait till the response comes and then needs to print the console
+
+But in case of the nodejs we write callback changes to the same code like -
+
+database.query("SELECT * FROM hugetable", function(rows) {
+var result = rows;
+});
+console.log("Hello World");
+//here the console prints and then result
+----------------------------------------------------------------------------------------------------------
+(Extra knowledge)
+
+Apache HTTp Web Server
+/       |       \
+User1   User2   User3
+request request request
+
+In case of PHp if user1 request for the hugetable data then , in the execution model of PHP, this would not become a “global” problem: the web server starts its own PHP process for every HTTP request it receives. If one of these requests results in the execution of a slow piece of code, it results in a slow page load for this particular user, but other users requesting other pages would not be affected.
+This also explains why our HTTP server needs a function it can call upon incoming requests - if Node.js would start the server and then just pause, waiting for the next request, continuing only when it arrives, that would be highly inefficent. If a second user requests the server while it is still serving the first request, that Building the application stack 18 second request could only be answered after the first one is done - as soon as you have more than a handful of HTTP requests per second, this wouldn’t work at all.
+----------------------------------------------------------------------------------------------------------
+5) Every browser has JS engine present in it which converts the js to machine code. Some examples of js engines are Chakra,V8(fastest), spider monkey.
+Usually JS works only on Browser but node can run outside the browser also
+https://www.youtube.com/watch?v=TlB_eWDSMt4
+
+6) RUN TIME ENVIRONMENT
+To run javascript outside the BROWSER we use NODE js(it is a run time environment(and not a framework) which has js engine which makes javascript code run outside the browser)
+NODE is not framework but it is run time environment for javascript to run outside the browser. Incase of inside the browser, there is some JS engine like V8 but outside we have node js engine
+
+7)NODE JS is bad for CPU bound tasks - dont know why so check ya
+
+8) why node modules are needed ?
+
+you write a piece of code in global scope, and then with same name if you write another one, then override happens. To avoid this we need modularity
+
+9)Each module or file is wrapped in MODULE WRAPPER function when execution.
+
+10)A common task for a web server can be to open a file on the server and return the content to the client.
+PHP has a buildin web server. But it doesn't fully act like it Hence ppl use APACHE
+
+(http://www.php.net/manual/en/features.commandline.webserver.php)
+Here is how PHP or ASP handles a file request:
+
+Sends the task to the computer's file system.
+Waits while the file system opens and reads the file.
+Returns the content to the client.
+Ready to handle the next request.
+
+Here is how Node.js handles a file request:
+
+Sends the task to the computer's file system.
+Ready to handle the next request.
+When the file system has opened and read the file, the server returns the content to the client.
+Node.js eliminates the waiting, and simply continues with the next request.
+
+Node.js runs single-threaded, non-blocking, asynchronously programming, which is very memory efficient.
+----------------------------------------------------------------------------------------------------------
+11) So now you create a webserver by nodejs which listens to certain port say 8081 and Save the file on your computer: C:\Users\Your Name\myfirst.js
+
+Someone from Germany uses your IP:port/myfirst.js then they see whats in the file. My machine acts like server now.
+----------------------------------------------------------------------------------------------------------
+npm run serve => ng serve => This acts like local webserver which navigates to your localhost:8080 ie you have to navigate to localhost:PORT yourself
+
+Grunt gulp bower - are JavaScript task runner, a tool used to automatically perform frequent tasks such as minification, compilation, unit testing, and linting. It uses a command-line interface to run custom tasks defined in a file (known as a Gruntfile). 
+
+NPM is also similar to these
+
+12) Nodemon is a npm package used to monitor continuous changes and acts like watch while running the application
+node main.js (x)
+nodemon main.js (v)
+
+13)Node modules and npm packages are related but different concepts.
+Node modules, as the name implies, offer a mechanism for modularization and
+encapsulation. npm packages provide a standardized scheme for storing, versioning,
+and referencing projects (which are not restricted to modules). 
+
+For example, we import
+Express itself as a module in our main application file:
+var express = require('express');
+`require` is a Node function for importing a module.
+----------------------------------------------------------------------------------------------------------
+14) URL params
+
+        Protocol - http,https etc
+        Host     - google.com, 192.12.3.1 etc
+        Port     - Each server has a collection of numbered ports. Some port numbers are “special,”
+                    like 80 and 443. If you omit the port, port 80 is assumed for HTTP and 443 for
+                    HTTPS. In general, if you aren’t using port 80 or 443, you should use a port number
+                    greater than 1023.1 It’s very common to use easy-to-remember port numbers like
+                    3000, 8080, and 8088.
+        Path     - /about in www.manju.com/about...This uniquely identifies pages
+    QueryString  - The querystring starts with a question mark (?), and name/value pairs are separated by ampersands
+                    (&).Both names and values should be URL encoded. JavaScript provides a built-in
+                    function to do that: encodeURIComponent. For example, spaces will be replaced with
+                    plus signs (+). Other special characters will be replaced with numeric character
+                    references.
+    Fragment     - The fragment (or hash) is not passed to the server at all: it is strictly for use by the
+                    browser. It is becoming increasingly common for single-page applications or AJAXheavy
+                    applications to use the fragment to control the application.
+                    www.manju.com/#info
+----------------------------------------------------------------------------------------------------------
+15) Request header
+
+        - Browser is sending a lot of “invisible” information every time you visit a website
+        - The browser will tell the server what language it prefers to receive the page in (for example, if you download Chrome in Spain, it will request the Spanish version of pages you visit, if they exist). 
+        - It will also send information about the “user agent” (the browser, operating system, and hardware) and other bits of information.
+        - All this information is sent as a request header, which is made available to you
+            through the request object’s headers property
+----------------------------------------------------------------------------------------------------------
+16) Response header
+
+        - Just as your browser sends hidden information to the server in the form of request
+            headers, when the server responds, it also sends information back that is not necessarily
+            rendered or displayed by the browser
+        - Content-Type
+            header, which tells the browser what kind of content is being transmitted (HTML, an
+            image, CSS, JavaScript, etc.)
+----------------------------------------------------------------------------------------------------------
+17) Request Object
+
+        - The request object which is normally passed to a callback
+        - app.get('/someURL', function (req, res) { }); where req is request object
+
+        req.params
+        An array containing the named route parameters. We’ll learn more about this in
+
+        req.param(name)
+        Returns the named route parameter, or GET or POST parameters. I recommend
+        avoiding this method.
+
+        req.query
+        An object containing querystring parameters (sometimes called GET parameters)
+        as name/value pairs.
+
+        req.body
+        An object containing POST parameters. It is so named because POST parameters are
+        passed in the body of the REQUEST, not in the URL like querystring parameters. To
+        make req.body available, you’ll need middleware that can parse the body content
+        Type
+
+        req.route
+
+        Information about the currently matched route. Primarily useful for route
+        debugging.
+        req.cookies/req.signedCookies
+        Objects containing containing cookie values passed from the client.
+        
+        req.headers
+        The request headers received from the client.
+
+        req.accepts([types])
+        A convenience method to determine whether the client accepts a given type or types
+        (optional types can be a single MIME type, such as application/json, a commadelimited
+        list, or an array). This method is of primary interest to those writing public
+        APIs; it is assumed that browsers will always accept HTML by default.
+
+        req.ip
+        The IP address of the client.
+
+        req.path
+        The request path (without protocol, host, port, or querystring).
+
+        req.host
+        A convenience method that returns the hostname reported by the client. This information
+        can be spoofed and should not be used for security purposes.
+
+        req.xhr
+        A convenience property that returns true if the request originated from an AJAX
+        call.
+
+        req.protocol
+        The protocol used in making this request (for our purposes, it will either be http
+        or https).
+
+        req.secure
+        A convenience property that returns true if the connection is secure. Equivalent
+        to req.protocol==='https'.
+
+        req.url/req.originalUrl
+        A bit of a misnomer, these properties return the path and querystring (they do not
+        include protocol, host, or port). req.url can be rewritten for internal routing
+        purposes, but req.originalUrl is designed to remain the original request and
+        querystring.
+
+        req.acceptedLanguages
+        A convenience method that returns an array of the (human) languages the client
+        prefers, in order. This information is parsed from the request header.
+
+----------------------------------------------------------------------------------------------------------
+18) The Response Object
+
+    - app.get('someURL',function(req,resp) {}); where resp is the response object
+
+    res.status(code)
+    Sets the HTTP status code. Express defaults to 200 (OK), so you will have to use
+    this method to return a status of 404 (Not Found) or 500 (Server Error), or any
+    other status code you wish to use. For redirects (status codes 301, 302, 303, and
+    307), there is a method redirect, which is preferable.
+
+    res.set(name, value)
+    Sets a response header. This is not something you will normally be doing manually.
+
+    res.cookie(name, value, [options]), res.clearCookie(name, [options])
+    Sets or clears cookies that will be stored on the client. This requires some middleware
+    support; see Chapter 9.
+
+    res.redirect([status], url)
+    Redirects the browser. The default redirect code is 302 (Found). In general, you
+    should minimize redirection unless you are permanently moving a page, in which
+    case you should use the code 301 (Moved Permanently).
+
+    res.send(body), res.send(status, body)
+    Sends a response to the client, with an optional status code. Express defaults to a
+    content type of text/html, so if you want to change it to text/plain (for example),
+    you’ll have to call res.set('Content-Type', 'text/plain\') before calling
+
+    res.send. If body is an object or an array, the response is sent as JSON instead (with
+    the content type being set appropriately), though if you want to send JSON, I recommend
+    doing so explicitly by calling res.json instead.
+
+    res.json(json), res.json(status, json)
+    Sends JSON to the client with an optional status code.
+
+    res.jsonp(json), res.jsonp(status, json)
+    Sends JSONP to the client with an optional status code.
+
+    res.type(type)
+    A convenience method to set the Content-Type header. Essentially equivalent to
+
+    res.set('Content-Type', type), except that it will also attempt to map file extensions
+    to an Internet media type if you provide a string without a slash in it. For
+    example, res.type('txt') will result in a Content-Type of text/plain. There are
+    areas where this functionality could be useful (for example, automatically serving
+    The Response Object | 59
+    disparate multimedia files), but in general, you should avoid it in favor of explicitly
+    setting the correct Internet media type.
+
+    res.format(object)
+    This method allows you to send different content depending on the Accept request
+    header. This is of primary use in APIs, and we will discuss this more in Chapter
+    15. Here’s a very simple example: res.format({'text/plain': 'hi there',
+    'text/html': '<b>hi there</b>'}).
+
+    res.attachment([filename]), res.download(path, [filename], [callback])
+    Both of these methods set a response header called Content-Disposition to at
+    tachment; this will prompt the browser to download the content instead of displaying
+    it in a browser. You may specify filename as a hint to the browser. With
+    res.download, you can specify the file to download, whereas res.attachment just
+    sets the header; you still have to send content to the client.
+
+    res.sendFile(path, [options], [callback])
+    This method will read a file specified by path and send its contents to the client.
+    There should be little need for this method; it’s easier to use the static middleware,
+    and put files you want available to the client in the public directory. However, if you
+    want to have a different resource served from the same URL depending on some
+    condition, this method could come in handy.
+
+    res.links(links)
+    Sets the Links response header. This is a specialized header that has little use in
+    most applications.
+    
+    res.locals, res.render(view, [locals], callback)
+    res.locals is an object containing default context for rendering views. res.ren
+    der will render a view using the configured templating engine (the locals parameter
+    to res.render shouldn’t be confused with res.locals: it will override the
+    context in res.locals, but context not overridden will still be available). Note that
+    res.render will default to a response code of 200; use res.status to specify a
+    different response code. Rendering views will be covered in depth in Chapter 7.
+
+----------------------------------------------------------------------------------------------------------
+20) Middlewares
+Middleware functions can perform the following tasks:
+
+Execute any code.
+Make changes to the request and the response objects.
+End the request-response cycle.
+Call the next middleware in the stack.
+
+var app = express();
+app.use(function () {}) //added to all paths or globally
+app.get('/someroute', function() {}) //added to a specific path
+
+In a nutshell, Its basically a function that has access to the request and response objects of your application. Middlewares would be a good fit to determine if the request is authenticated before it proceeds to the application and return the login page if the request is not authenticated or for logging each request.
+
+var app = require('express');
+
+app.use(function(req,res,next){
+    console.log('middle ware 1 called');
+    next();
+})
+
+app.get('/',function(req,res,next) {...})
+
+The above code the function(req,res,next) is the middleware
+
+The above code would be executed for each request that comes in and would log the request url, the next() method essentially allows the program to continue. If the next() function is not invoked, the program would not proceed further and would halt at the execution of the middleware.
+
+A couple of Middleware Gotchas:
+
+The order of middlewares in your application matters, as the request would go through each one in a sequential order.
+Forgetting to call the next() method in your middleware function can halt the processing of your request.
+Any change the req and res objects in the middleware function, would make the change available to other parts of the application that uses req and res
+
+----------------------------------------------------------------------------------------------------------
+21)There is a special routing method, app.all(), used to load middleware functions at a path for all HTTP request methods. For example, the following handler is executed for requests to the route “/secret” whether using GET, POST, PUT, DELETE, or any other HTTP request method supported in the http module.
+
+app.all('/secret', function (req, res, next) {
+  console.log('Accessing the secret section ...')
+  next() // pass control to the next handler
+})
+
+MUST READ *** http://expressjs.com/en/guide/routing.html MUST READ
+----------------------------------------------------------------------------------------------------------
+22) Node can be compared with Java,PHP and python. Node and Javascript run on exact same engine ie v8 run time engine which converts JS code quicky to machine code.
+
+23) Open command prompt > enter `node` > console.log('Hello');
+Open browser console > console.log('Hello');
+
+These both are slightly different even though both are running in v8 engine.
+
+Scenario 1 : node converts the js into machine code and v8 is running behind the scenes when you execute `node` cmd.
+Scenario 2 : Node has features like manipulating file system whereas the browser has features to manipulate things within the window. 
+
+"Window" is the global object in the browser.
+Incase of node, there is something similar to Window which is called as global.
+
+Incase of the browser, there something like document which is nothing but our html inside browser where one can manipulate. 
+Incase of node, there is something called as process.
+
+Ultimately node is JavaScript runtime which uses v8 engine which is used to javascriptengine which takes javascript code and compiles to machine code. It is used inside nodejs(by this `node` command in command prompt) or in the browser console
+
+24) Even python has some 3rd party libraries which will make it async but then those libs are actually written synchronously
+
+25)Lodash - Package has to be installed first and can be used for many utilities
+https://www.npmjs.com/package/lodash
+https://lodash.com/docs/
+
+26)Best example for callback is setTimeout...
+
+setTimeout(function(){
+
+},100)
+
+i.e
+
+setTimeout(callbackFn,10);
+---------------------------
+custom function -
+
+var some = function(callbackFn,delay){
+
+}
+
+some(function(){
+
+},10)
+
+PROMISES - https://www.udemy.com/the-complete-nodejs-developer-course-2/learn/v4/t/lecture/5525296?start=0

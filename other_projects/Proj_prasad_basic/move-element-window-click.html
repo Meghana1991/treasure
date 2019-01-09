@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Move Div on click</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="move"></div>
+</body>
+
+</html>
+
+<style>
+    .move {
+        border: 1px solid brown;
+        height: 10px;
+        width: 10px;
+        background-color: green;
+        margin: 10px;
+        position: relative;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $(window).click(function (e) {            
+            var relativeX = (e.pageX),
+                relativeY = (e.pageY);
+
+            $('.move').css('left', relativeX)
+            $('.move').css('top', relativeY)
+        });
+    });
+</script>
