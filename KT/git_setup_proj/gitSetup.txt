@@ -64,3 +64,9 @@ In the above link, core.sshCommand=ssh doesnot work and throws error. So manuall
 > git config -e
 INS mode
 add sshCommand thing there then enter ESC > :w
+
+---------------------------------------------------------------------------------------------------------------------
+Either single or multiple, ultimately you will create a repository there in github.com and come back here and clone that repository and start working.
+
+Incase of single, its damn simple by just generating ssh-keygen and adding it there in github thats it
+Incase of multiple, its quite cumbersome to generate new key with somename12 and then since github should consider the somename12 key file path right so we should add that to git config file, also add new generated key to the github.com. There wont be any confusion for the github with multiple keys because we would have created second key using username which is github user account name
