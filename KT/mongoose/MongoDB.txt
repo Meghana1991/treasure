@@ -72,3 +72,11 @@ A model is a class with which we construct documents. In this case, each documen
 17)Schema is a collection of documents. Model is the documents.Models are fancy constructors compiled from Schema definitions. An instance of a model is called a document. Models are responsible for creating and reading documents from the underlying MongoDB database.
 
 18)PROMISES and CALLBACK differences - https://www.udemy.com/the-complete-nodejs-developer-course-2/learn/v4/t/lecture/5525296?start=0
+
+19)Mongo is NoSQL Database.
+
+If you don't want to use any ORM for your data models then you can also use native driver mongo.js: https://github.com/mongodb/node-mongodb-native.
+
+Mongoose is one of the orm's who give us functionality to access the mongo data with easily understandable queries.
+
+Mongoose plays as a role of abstraction over your database model.
