@@ -1,0 +1,42 @@
+1) Angular has dependency with Node modules. For installing angular quickly we use angular-cli which is residing in node modules. Hence install angular-cli first
+
+2) Angular needs multiple other node dependencies which are used for transpiling the angular code which is in transcript to javascript
+
+3)If you want to use bootstrap in your application, then npm install bootstrap@3(version).To use this the angular should be aware of the bootstrap package which is added. Hence we need to mention it in configfiles angular.json in styles array. By default there is style.css which can be used to write css which applies for any module entire application. You can add bootstrap path to the angular.json config file
+
+4)index.html file is the file served by the server.This would have some html tag <app-root> which is a selector for some component @Component({selector:'app-root'})
+The app-root tag > app-root selector holding component gets loaded
+
+5)The angular bootstrap - The angular code will actually be bundled up on 'ng serve" whenever any changes are done to the application and these bundles will be injected to the index.html in the script tags at the end by angular-cli.
+You can cross check the bundles in view page source of index.html
+
+The first code to get executed is the index.html which will have several script bundles in it which will trigger main.ts which will trigger AppModule
+index.html > main.ts > AppModule's bootstrap array > AppComponent > then angular knows app-root resides here > <app-root> of index.html will be treated
+
+6)The app.module.ts file is registration book. This is like you have to register each n everything you do in the app. Be it components, routes etc. Angular cannot keep looking every file you create but it can check this register book inorder to know which file to consider n which not. Registration is mandatory thing.
+
+An NgModule is a class marked by the @NgModule decorator. @NgModule takes a metadata object that describes how to compile a component's template and how to create an injector at runtime. It identifies the module's own components, directives, and pipes, making some of them public, through the exports property, so that external components can use them. @NgModule can also add service providers to the application dependency injectors.
+
+Modules are a great way to organize an application and extend it with capabilities from external libraries.
+
+Angular libraries are NgModules, such as FormsModule, HttpClientModule, and RouterModule. Many third-party libraries are available as NgModules such as Material Design, Ionic, and AngularFire2.
+
+NgModules consolidate components, directives, and pipes into cohesive blocks of functionality, each focused on a feature area, application business domain, workflow, or common collection of utilities.
+
+Modules can also add services to the application. Such services might be internally developed, like something you'd develop yourself or come from outside sources, such as the Angular router and HTTP client.
+
+Angular apps are built with on complex relationship of view classes (i.e. components, directives, and pipes) and data providers (i.e. services). In the early days of Angular2, NgModule did not exist and you had to declare every relationship in every component. It was maintenance nightmare.
+
+7)Component's selectors can be written in different ways. 
+
+@Component({
+    selector : 'app-custom'
+    selector : '[app-custom]'
+    selector : '.app-custom'
+})
+
+and in html we should reference by -
+
+<app-custom></app-custom>
+<div app-custom></div>
+<div class="app-custom"></div>
