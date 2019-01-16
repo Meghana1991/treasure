@@ -40,3 +40,93 @@ and in html we should reference by -
 <app-custom></app-custom>
 <div app-custom></div>
 <div class="app-custom"></div>
+
+8)Data binding is communication between the HTML and TS file.
+
+9) The binding can happen as 1 way or 2 way. 1 way can happen in 2 methods.
+1 way types -
+1)String interpolation - This is strictly for String only and not for number and it can also be a function that returns a string {{ someFromTs }} {{ 'directString' }} {{ someStringReturnFn() }}
+
+but still if we give a number in {{}} it works because interpolation internally converts number to string. Ultimately you need to pass something which actually converts to string
+
+2)Property binding - Usually the HTML code we write gets parsed and converted to DOM. But if we mention any attribute with [] then this would be considered for binding from Angular and HTML wont be considering it in initial time.
+
+10) For Two-Way-Binding (covered in the next lecture) to work, you need to enable the ngModel  directive. This is done by adding the FormsModule  to the imports[]  array in the AppModule.
+
+You then also need to add the import from @angular/forms  in the app.module.ts file:
+
+import { FormsModule } from '@angular/forms'; 
+
+Check app.component.ts for 1way and 2way binding
+- In 1st input tag behaviour
+- - Data is empty by default because it is not 2way binding
+- - Enter any data and it updates the property and whereever we use the {{}} will be updated
+
+- In 2nd input tag behaviour
+- - Data is filled by default as it is 2way binding
+- - Change the data in this, will change the {{}} but doesn't change the 1st input tag as it just one way.
+- - We have removed the eventTriggered function as well as it is not required
+
+1 way binding can do only 1 side binding, HTML - TS
+2 way binding can do 2 side binding, HTML - TS and TS - HTML (TS-HTML can be seen in the initial value binding by 2nd input tag coming from ts)
+
+11)Components vs Directives
+- When we place Component's selector in HTML template, it means the template of component ie html should be placed there. Components are directives with template but Directives are the ones withou templates.
+
+12)*ngIf if true, only then it will have the conditional element in DOM else it wont even have it in DOM
+
+13)This ngMOdel will actually act like a keyup / keydown / input etc events because as soon as you keep entering every single key/alphabet the model gets updates on every keystok
+
+14)Angular CLI - 
+ng generate component component_name (or)
+ng g c component_name
+
+To prevent from creating spec files your can give - ng g c component_name --spec false
+
+ng g c parentFolder/component_name --spec false
+
+15)Model ie typescript model is something which defines how a object should look like and what all items it should have and also its like a blueprint.
+
+A model is a simple class with properties and constructor which is called when we instantiate the class with object. Usually we import this model and instantiate it by new ModelObj(with par) which will call constructor
+
+Here we are having a class below with properties defined and assigned to the class properties on instantiating class with new object.
+
+export class Ingredients {
+    public name: string;
+
+    constructor(name) {
+        this.name = name;
+    }
+
+}
+
+(or)
+
+/**
+ * The above and below are same
+ */
+export class Ingredients {
+    constructor(public name) { }
+}
+
+16)Generally the error message in the browser console will show the Component name and also the syntax and also the line number but the line number will be wrong because the file which it shows is the minified compiled form where line numer would obviously defined.
+
+17)In Chrome developer tools > Source tab > you will see many bundles > one such is main.bundle.js
+
+Also the webpack sub folders in the .ts file for debuggers and debugging
+
+18)When parent to child component communication is happening then the recieving end should recieve the data from sender as @Input in the .ts and sender should send in [] in .html file.
+
+When we are getting data INTO the component then INPUT
+When we are passing data OUTSIDE the component  then OUTPUT
+Think being in component shoes.
+
+In case of child to parent communication -
+The child component exposes an EventEmitter property with which it emits events when something happens. The parent binds to that event property and reacts to those events.
+Create a plain event with EventEmitter and then use that event where you want to send some information to parent el
+Then Output that event in .ts with @Output and also (eventname) = "reactTothisInParent($event)"
+The reactTothisInParent($event) is actually a function in parent comp which gets called once the child event is triggered.
+
+19)AThe applied to any component css, will apply only to them and not other components even if it is parent child . Even though it is expected behaviour of CSS to pick in 1 file and apply everywhere , still the angular actually stops it from doing it. Check the DOM for any element, it will have something like ng-content-ugo-1 something which makes it unique. So angular stops css to have global behaviour
+
+20)If we want the angular to stop the encapsulation by _ngcontent-c0 etc then we need to mention it in the @Component decorator with encapsulation: Viewencapsulation.None which will make that respective component css behave like default by considering CSS global level and to not encapsulate with _ngcontent-c0. Any CSS written in this component will apply globally unless the files have their local CSS which has more priority than global.

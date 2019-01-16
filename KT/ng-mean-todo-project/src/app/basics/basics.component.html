@@ -1,0 +1,39 @@
+<div style="text-align:center">
+    <h1>
+        Welcome to todo app my friend - {{ title }}!
+    </h1>
+    <div>
+        <h3>One way Binding</h3>
+        <input type="text" (input)="eventTriggered($event)" />
+        {{bindingVar}}
+
+        <h3>Two way Binding</h3>
+        <input type="text" [(ngModel)]="bindingVar" />
+        {{bindingVar}}
+    </div>
+    <div>
+        <button class="btn btn-primary" [disabled]="!allow" (click)="onClickFn()">Click</button>
+    </div>
+    <hr>
+    <h3>If and Else condition</h3>
+    <p *ngIf="bindingVar == 'if'; else Elseblock">If Block</p>
+    <ng-template #Elseblock>
+        <p>
+            Else Block
+        </p>
+    </ng-template>
+    <hr>
+
+    <h3>*ngFor</h3>
+    <p *ngFor="let name of nameArr">
+        {{name}}
+    </p>
+    <input type="text" *ngFor="let name of nameArr" innerText="{{name}}" value="{{name}}" />
+    <hr>
+    <hr>
+
+    <h3>Assignment Work</h3>
+    <button class="btn btn-primary" (click)="assignmentClick()">Display Details</button>
+    <p *ngIf="clicked">Some content goes here</p>
+    <p *ngFor="let click of logClicks; let i = index">{{click}}-{{i}}</p>
+</div>

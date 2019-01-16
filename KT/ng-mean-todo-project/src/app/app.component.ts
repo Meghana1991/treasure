@@ -6,5 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ng-mean-todo-project';
+  choice: string = 'app';
+  arr = [];
+  arrobj: Array<Object> = [{
+    'name': 'some',
+    'age': 24
+  }, {
+    'name': 'someone',
+    'age': 26
+  }, {
+    'name': 'sometwo',
+    'age': 28
+  }]
+
+  child2ArrPrint = function (event) {
+    this.arr.push(event)
+  }
 }

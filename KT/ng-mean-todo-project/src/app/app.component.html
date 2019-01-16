@@ -1,6 +1,34 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to todo app my friend - {{ title }}!
-  </h1>
+<div>
+  <h5>Enter "Basics" to see Basics</h5>
+  <h5>Enter "Shopping" to see Shopping</h5>
+  <h5>Enter "P2C" to see Parent to Child communication</h5>
+  <h5>Enter "C2P" to see Child to Parent communication</h5>
+  <input type="text" [(ngModel)]="choice">
+  <!-- This ngMOdel will actually act like a keyup / keydown / input etc events -->
+  <basics *ngIf="choice.toLowerCase() == 'basics'"></basics>
 </div>
-<router-outlet></router-outlet>
+<div *ngIf="choice.toLowerCase() == 'shopping'">
+  <header></header>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <app-recipes></app-recipes>
+      </div>
+      <div class="col-md-6">
+        <app-shopping-list></app-shopping-list>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="choice.toLowerCase() == 'p2c'">
+  <app-child *ngFor="let elem of arrobj" [element]="elem" [aliasParentEl]="elem"></app-child>
+</div>
+
+<div class="container">
+  <label>I am parent component</label>
+  <app-child2 (child2Ev)="child2ArrPrint($event)"></app-child2>
+  <p *ngFor="let el of arr">
+    {{el.name}}
+    {{el.age}}
+  </p>
+</div>
