@@ -1,0 +1,8 @@
+1)difference between element : {
+    name : string,
+    age : number
+  }
+  and model
+
+2) Maps debugging
+3)Passing functions between components
