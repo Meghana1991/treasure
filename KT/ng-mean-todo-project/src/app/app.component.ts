@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Child2Component } from './child2/child2.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   choice: string = 'app';
   arr = [];
   arrobj: Array<Object> = [{
@@ -19,7 +20,31 @@ export class AppComponent {
     'age': 28
   }]
 
+  /**
+   * View Child Example
+   */
+
+  @ViewChild('localRefUsingViewChild') localRefUsingViewChild: ElementRef;
+  @ViewChild(Child2Component) referenceToChild2: Child2Component;
+
+  public ngOnInit() {
+    /**
+     * Using the ViewChild - you get to see the reference element on load itself unlike local reference method where you can see only on some event
+     */
+    // console.log(this.localRefUsingViewChild.nativeElement.val)
+  }
+
+  public mypageLoadFunc() {
+    /**
+     * Make my current variable 'myPageLoad' to true which is false by default
+     */
+    this.referenceToChild2.makePageLoadChange();
+  }
   child2ArrPrint = function (event) {
     this.arr.push(event)
+  }
+
+  passData = function (dataFromTemplate) {
+    console.log(dataFromTemplate.innerText);
   }
 }

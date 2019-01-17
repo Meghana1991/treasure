@@ -130,3 +130,53 @@ The reactTothisInParent($event) is actually a function in parent comp which gets
 19)AThe applied to any component css, will apply only to them and not other components even if it is parent child . Even though it is expected behaviour of CSS to pick in 1 file and apply everywhere , still the angular actually stops it from doing it. Check the DOM for any element, it will have something like ng-content-ugo-1 something which makes it unique. So angular stops css to have global behaviour
 
 20)If we want the angular to stop the encapsulation by _ngcontent-c0 etc then we need to mention it in the @Component decorator with encapsulation: Viewencapsulation.None which will make that respective component css behave like default by considering CSS global level and to not encapsulate with _ngcontent-c0. Any CSS written in this component will apply globally unless the files have their local CSS which has more priority than global.
+
+21)Local references in template are one way where you can use for accessing the html element itself in to the ts file and also can be used for one way binding from html to ts only one side
+
+This is good but we can have the access for the element only after some events like click etc but what if we want access before click or any function call? Then in that case -
+
+22)View Child - This gives element reference of the element.
+The main difference between the local reference and the viewchild is that, the local reference will be triggered on some event but the Viewchild can be even got with ngoninit as well withot any clicks or events.
+
+These local ref and viewchild can be placed for any tags not just input. It can be for any div or anything
+
+23)Viewchild has one more beauty. It can actually even work for the components as a whole. You can take any component and reference it and use its functions.
+
+Viewchild in detail -
+1) I am in main component, on some event in main component i want to show some data which is default hidden in the child component. This case i will use Viewchild.
+
+I will take reference of the child component and then on parents component trigger i will call the child component's function which will show the data.
+
+Also incase if parent and child both have same variable name and viewchild variablechange of child will not affect parent variable and it remains same as in parent variable value only
+
+24)Something which is kept inside a component tags will not be present and is useless.   <app-child2>Hiiiiiii</app-child2>
+here the Hiiiiiii will not be even considered.
+But if i want my component to have some data inside beginning and ending tag then i can use ng-content.
+
+I will mark or place ng-content tag in app-child2 component in some place where angular can actually put data inside this ngcontent the data between app-child2 tags.
+
+25)Whenever a component is instantiated it goes through some phases
+We have some chances to hook into these phases and execute any code if needed and
+some of them are ngOnchanges ngOninit
+<THE ORDER OF LIFECYCLE HOOKS ARE AS BELOW ORDERED>
+1)The first phase is ngOnChanges - when new component is created and also wheneverour @Input properties change
+2)The second is ngOnInit - when a component is initialised ie after the constructor when basic DOM is created
+3)ngDoCheck - whenever change detection runs - whenever something changes in TEMPLATE either property value change or any change in render in the template. Example: when a button is clicked, a event is triggered, or on observable or timer etc are the cases where change detection runs and this ngDoCheck is triggered
+4)ngAfterContentInit - Whenever the ng-content is changed.
+5)ngAfterViewInit - Whenever the view of component has been finished initialising or rendered
+6)ngAfterViewChecked - Whenever we are sure that all changes are displayed/rendered in the view or that the change detection are all done.
+7)ngOnDestroy - whenever a component is about to be destroyed.
+
+26)ngOnChanges -
+* Triggered whenever there is change in the @Input which means
+* @Input is coming as input to the child component from parent componen
+* But ideally both of the child and parent variable which is communicated between them are pointing to same location in the memory
+* Hence, any change in the parent variable will trigger child's ngOnChanges because the variable is sent to the child component
+
+This arguement SimpleChanges will actually give us old value, current value which might be useful for us to perform any action if needed.
+
+27)ngDoCheck calls on every change detection be it promises returing some result or be it any timer or click events. It is not good practise to actually write something in this hook due to performance issue.
+
+28)Shadow DOM - is an internal DOM of your component that is defined by you (as a creator of the component) and hidden from an end-user. 
+Light DOM - is a DOM that an end-user of your component supply into your component.
+The difference between @ViewChildren and @ContentChildren is that @ViewChildren look for elements in Shadow DOM while @ContentChildren look for them in Light DOM.

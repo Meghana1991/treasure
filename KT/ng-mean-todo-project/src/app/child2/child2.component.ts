@@ -9,6 +9,8 @@ import { Child2Model } from './child2.model';
 })
 export class Child2Component implements OnInit {
   @Output('child2Ev') child2Event = new EventEmitter();
+  public myPageLoad = false;
+
   constructor() { }
 
   ngOnInit() {
@@ -16,5 +18,9 @@ export class Child2Component implements OnInit {
 
   createChild2 = function(){
     this.child2Event.emit(new Child2Model('Manju',23));
+  }
+
+  public makePageLoadChange = function(){
+    this.myPageLoad = true;
   }
 }

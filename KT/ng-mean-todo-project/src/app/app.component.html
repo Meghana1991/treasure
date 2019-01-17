@@ -3,10 +3,16 @@
   <h5>Enter "Shopping" to see Shopping</h5>
   <h5>Enter "P2C" to see Parent to Child communication</h5>
   <h5>Enter "C2P" to see Child to Parent communication</h5>
+  <h5>Enter "LR" to see local reference</h5>
+  <h5>Enter "vc1" to see local reference using View Child</h5>
+  <h5>Enter "vc2" to see local reference using View Child Advanced</h5>
+  <h5>Enter "ng1" to see ng-content</h5>
+  <h5>Enter "ng2" to see ng-content</h5>
   <input type="text" [(ngModel)]="choice">
   <!-- This ngMOdel will actually act like a keyup / keydown / input etc events -->
   <basics *ngIf="choice.toLowerCase() == 'basics'"></basics>
 </div>
+
 <div *ngIf="choice.toLowerCase() == 'shopping'">
   <header></header>
   <div class="container">
@@ -24,11 +30,43 @@
   <app-child *ngFor="let elem of arrobj" [element]="elem" [aliasParentEl]="elem"></app-child>
 </div>
 
-<div class="container">
+<div class="container" *ngIf="choice.toLowerCase() == 'c2p'">
   <label>I am parent component</label>
   <app-child2 (child2Ev)="child2ArrPrint($event)"></app-child2>
   <p *ngFor="let el of arr">
     {{el.name}}
     {{el.age}}
   </p>
+</div>
+
+<div class="container" *ngIf="choice.toLowerCase() == 'lr'">
+  <label>Local Reference</label>
+  <input type="text" #localRef />
+  <button class="btn btn-primary" (click)="passData(localRef)">Click</button>
+</div>
+
+<div class="container" *ngIf="choice.toLowerCase() == 'vc1'">
+  <label>View Child</label>
+  <input type="text" class="form-control" #localRefUsingViewChild>
+</div>
+
+<div class="container" *ngIf="choice.toLowerCase() == 'vc2'">
+  <app-child2>My Child2</app-child2>
+  <button class="btn btn-primary" (click)="mypageLoadFunc()">Click</button>
+</div>
+
+<div class="container" *ngIf="choice.toLowerCase() == 'ng1'">
+  <app-child2>Hey print me also pleaseee eventhough i am in between</app-child2>
+</div>
+
+<div class="container" *ngIf="choice.toLowerCase() == 'ng2'">
+  <app-child3>
+    <div class="basic-structure" *ngFor="let el of arrobj">{{el.name}}</div>
+  </app-child3>
+</div>
+
+<div class="container">
+  <app-child4 [choice]=choice>
+    <div #contentRef>Some Data</div>
+  </app-child4>
 </div>

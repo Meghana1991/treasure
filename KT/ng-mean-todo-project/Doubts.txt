@@ -6,3 +6,5 @@
 
 2) Maps debugging
 3)Passing functions between components
+
+4)difference between viewchild and inputoutpul

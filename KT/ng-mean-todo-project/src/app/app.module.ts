@@ -14,10 +14,12 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { ChildComponent } from './child/child.component';
 import { Child2Component } from './child2/child2.component';
+import { Child3Component } from './child3/child3.component';
+import { Child4Component } from './child4/child4.component';
 
 @NgModule({
   declarations: [
-    AppComponent,BasicComponent,HeaderComponent, RecipesComponent, RecipesListComponent, RecipesDetailComponent, RecipesItemComponent, ShoppingListComponent, ShoppingEditComponent, ChildComponent, Child2Component
+    AppComponent,BasicComponent,HeaderComponent, RecipesComponent, RecipesListComponent, RecipesDetailComponent, RecipesItemComponent, ShoppingListComponent, ShoppingEditComponent, ChildComponent, Child2Component, Child3Component, Child4Component
   ],
   imports: [
     BrowserModule,
