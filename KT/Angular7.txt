@@ -149,6 +149,8 @@ I will take reference of the child component and then on parents component trigg
 
 Also incase if parent and child both have same variable name and viewchild variablechange of child will not affect parent variable and it remains same as in parent variable value only
 
+Best example for viewchild is - Assume you have parents page and child page both having loading icons.Assume LHS as P and RHS as C(child). On initial load of page, the loading icons of both P and C runs. On finish getting response of Parents data, the loading should stop in both ideally. So once i get response from Parents page i will trigger stopLoadingIcon() in Child by Viewchild. On some action in parent i want to change something in child.
+
 24)Something which is kept inside a component tags will not be present and is useless.   <app-child2>Hiiiiiii</app-child2>
 here the Hiiiiiii will not be even considered.
 But if i want my component to have some data inside beginning and ending tag then i can use ng-content.
