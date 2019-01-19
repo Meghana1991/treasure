@@ -47,4 +47,12 @@ export class AppComponent implements OnInit {
   passData = function (dataFromTemplate) {
     console.log(dataFromTemplate.innerText);
   }
+
+  checkClickedPage = function(page){
+    if(page == 'recipe'){
+      this.clickedPage = 'recipe'
+    }else if(page == 'shopping'){
+      this.clickedPage = 'shopping'
+    }
+  }
 }

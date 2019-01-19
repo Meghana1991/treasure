@@ -1,14 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <div class="row">
-      <a href="#" *ngFor="let recipe of recipes">
-        <div style="border:1px solid gray;padding: 10px;margin:10px;align-content: center;border-radius: 6px">
-          <h4>{{recipe.name}}</h4>
-          <p>{{recipe.description}}</p>
-          <img [src]="recipe.imagePath" alt="recipe.name" class="image-responsive" style="max-height: 50px"> 
-        </div>
-      </a>
+        <app-recipes-item *ngFor="let recipe of recipes" [recipe] = "recipe" (itemClickedEvent) = recipeClicked(recipe)></app-recipes-item>
     </div>
-    <app-recipes-item></app-recipes-item>
   </div>
 </div>

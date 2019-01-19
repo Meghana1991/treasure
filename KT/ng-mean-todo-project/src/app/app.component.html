@@ -8,6 +8,7 @@
   <h5>Enter "vc2" to see local reference using View Child Advanced</h5>
   <h5>Enter "ng1" to see ng-content</h5>
   <h5>Enter "ng2" to see ng-content</h5>
+  <h5>Enter "ct" to see ng-content advanced</h5>
   <input type="text" [(ngModel)]="choice">
   <!-- This ngMOdel will actually act like a keyup / keydown / input etc events -->
   <basics *ngIf="choice.toLowerCase() == 'basics'"></basics>
@@ -65,8 +66,15 @@
   </app-child3>
 </div>
 
-<div class="container">
+<div class="container" *ngIf="choice.toLowerCase() == 'ct'">
   <app-child4 [choice]=choice>
     <div #contentRef>Some Data</div>
   </app-child4>
+</div>
+
+<div class="container">
+  <header (customEmitter)="checkClickedPage($event)"></header>
+
+  <app-recipes *ngIf="clickedPage == 'recipe'"></app-recipes>
+  <app-shopping-list *ngIf="clickedPage == 'shopping'"></app-shopping-list>
 </div>

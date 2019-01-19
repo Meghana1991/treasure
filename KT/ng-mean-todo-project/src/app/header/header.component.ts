@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Output,EventEmitter } from "@angular/core";
 
 @Component({
     selector: 'header',
@@ -7,4 +7,12 @@ import { Component } from "@angular/core";
 })
 
 export class HeaderComponent {
+    @Output() customEmitter = new EventEmitter;
+    public displayPage(page) {
+        if (page == 'recipe') {
+            this.customEmitter.emit('recipe')
+        }else if(page == 'shopping'){
+            this.customEmitter.emit('shopping')
+        }
+    }
 }

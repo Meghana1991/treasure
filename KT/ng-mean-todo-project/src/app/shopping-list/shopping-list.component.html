@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
-    <app-shopping-edit></app-shopping-edit>
+    <app-shopping-edit (emitShoppingCart) = "addIngrToList($event)"></app-shopping-edit>
     <a href="#" *ngFor="let ingr of ingredients">
-      <div style="border:1px solid gray;padding: 10px;margin:10px;align-content: center;border-radius: 6px">
+      <div class="basic-structure">
         <h4>{{ingr.name}}</h4>
+        <h4>{{ingr.amt}}</h4>
       </div>
     </a>
   </div>

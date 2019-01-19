@@ -5,6 +5,14 @@
   and model
 
 2) Maps debugging
+
 3)Passing functions between components
 
 4)difference between viewchild and inputoutpul
+
+5)debounce? how this editor works? how it autosaves after sometime?
+
+6)where is the converted javascript code?
+
+7)why use ng-template?
+8)Proxy

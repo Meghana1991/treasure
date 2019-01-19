@@ -12,5 +12,5 @@
  */
 
 export class Ingredients {
-    constructor(public name) { }
+    constructor(public name, public amt) { }
 }

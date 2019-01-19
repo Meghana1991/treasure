@@ -3,15 +3,16 @@
     <div class="row">
       <div class="form-group">
         <label>Name</label>
-        <input id="name" type="text" class="form-control">
+        <input #formName id="name" type="text" class="form-control">
       </div>
       <div class="form-group">
         <label>Amount</label>
-        <input id="amount" type="text" class="form-control">
+        <input #formAmt id="amount" type="text" class="form-control">
       </div>
     </div>
     <div class="row">
-      <button class="btn btn-success" type="submit">Add</button>
+      <!-- Here I am using both ways of references - One is local reference by passing the value to function on click and other is Viewchild reference -->
+      <button class="btn btn-success" type="submit" (click)="addData(formName)">Add</button>
       <button class="btn btn-danger" type="button">Delete</button>
       <button class="btn btn-primary" type="button">Clear</button>
     </div>
