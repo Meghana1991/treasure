@@ -1,0 +1,20 @@
+1)Test Driven Development / Behaviour Driven Development
+2)We write the test cases using Jasmine and jasmine provides an env for executing the test cases using KARMA
+3)Jasmine is a behavior-driven development framework for testing JavaScript code. It does not depend on any other JavaScript frameworks. It does not require a DOM. And it has a clean, obvious syntax so that you can easily write tests.
+4)`npm install karma karma-jasmine jasmine-core karma-cli` for jasmine karma installation
+5)`karma init` creates a conf file - karma.conf.js
+6)In conf file add the files to be considered
+7)To skip any suites or describe, we need to append the block with "x"
+8)Custom matches > customise the requirement and add to jasmine using standard func `compare`
+9)Set Up > Before Each and Before All
+10)Tear Down > After Each and After All
+
+---------------------------------------------------------------------------------------------------------------
+1)If we are using Angular, then cli will take care of karma task running
+2)Test bed is angular utility given to us which is specific to angular
+3)fixture.detectChanges are meant to detect changes. Assuming 2 funcions in .ts and 2 suits in specs. If one suit changes the initial value or something, we need to tell angular to pick latest values. 
+4)triggerEventHandler to trigger any events like click executing
+5)var btn = fixture.debugElement.query(By.css('.container'))
+btn.triggerEventHandler('click',<Event>{})
+6)we use async() in case where we are calling any async functions because we would have written expect statements which will call before the response is recieved in the ts file. 
+7)fakeAsync() does same thing as async() but delays using tickcd
