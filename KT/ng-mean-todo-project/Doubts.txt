@@ -18,3 +18,5 @@
 8)Proxy
 
 9)why inside construtor shoudl the vars be private?
+
+10)lazy loading and providein

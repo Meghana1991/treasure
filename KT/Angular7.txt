@@ -218,3 +218,39 @@ HostBinding binds to attributes of the HOST
 34)How the *ngIf is transformed to [ngIf] inside a ng-template behind the scenes here.
 
 35)The *some in either custom or standard directive gets transformed to [some] in the ng-template tag. Check C:\mySpace\treasure\treasure\treasure\KT\ng-mean-todo-project\src\app\directives\structural.directive.ts
+
+36)Services - These are the ones who are like central repositary / business unit which will be used in many places
+
+37)You can instantiate the service in in-appropriate manner by calling the new Object as in fetchData() of app.component.ts BUT angular doesnot encourage it
+
+38)There is something called Injectable which tells that our component has dependencies with the service and we need to inject it. The dependency injection injects the instance of the class(service) to our component automatically.
+
+39)We can inject the services inside providers array of component directly and also in app module (@NgModule). If in component level, then the service applies for that particular component and its children and its children and so on... but not for its parents.
+If you inject in the providers array of @NgModule, then it is applied globally.
+
+The problem is when we inject in the app component which is parents of all it will have a instance of the service. The child most might again declare again the providers service which will override the parent component instanc
+This is called heirarchical instances. Check example of example1 and example-child
+
+VERY importantly try to remove the providers array in example1 and example-child and declare it in the @NgModule and see if updation is happening as expected. It is happening as expected
+
+40)I want to inject service inside a service. How?
+@Injectable tells angular that something can be injected in this service. We write @Injectable in the service NOT if we want to inject it to component BUT if we want to inject some other service to that service.
+
+41)If you are using Angular 6+ then you can use a new syntax for adding the services to providers[].
+Instead of adding a service class to the providers[]  array in AppModule , you can set the following config in @Injectable() :
+
+@Injectable({providedIn: 'root'})
+export class MyService { ... }
+This is exactly the same as:
+
+export class MyService { ... }
+and
+import { MyService } from './path/to/my.service';
+ 
+@NgModule({
+    ...
+    providers: [MyService]
+})
+export class AppModule { ... }
+
+The "new syntax" does offer one advantage though: Services can be loaded lazily by Angular (behind the scenes) and redundant code can be removed automatically. This can lead to a better performance and loading speed - though this really only kicks in for bigger services and apps in general.

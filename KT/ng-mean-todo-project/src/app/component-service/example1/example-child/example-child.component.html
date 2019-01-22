@@ -1,0 +1,10 @@
+<div class="container">
+  <h3> Example - CHILD </h3>
+  <div class="row" *ngFor="let data of someArr">
+    <span>{{data}}</span>
+  </div>
+  <input type="text" [(ngModel)]="newItem" />
+  <button class="btn btn-primary" (click)="updateDataFromService()">
+    Add Data
+  </button>
+</div>

@@ -13,6 +13,10 @@
   <h5>Enter "bs" to see behind the scenes of structural directive</h5>
   <h5>Enter "sd" to see structural directive</h5>
   <h5>Enter "hbhl" to see Host binding and Host listening</h5>
+  <h5>Enter "is" to see Inappropriate way of invoking service</h5>
+  <h5>Enter "hs" to see Services and their hierarchical way</h5>
+  <h5>Enter "assignment" to see Assignment</h5>
+  <h5>Enter "assignment-solution" to see Assignment solution</h5>
   <input type="text" [(ngModel)]="choice">
   <!-- This ngMOdel will actually act like a keyup / keydown / input etc events -->
   <basics *ngIf="choice.toLowerCase() == 'basics'"></basics>
@@ -76,7 +80,7 @@
   </app-child4>
 </div>
 
-<div class="container" *ngIf="choice.toLowerCase() == 'data binding'">
+<div class="container">
   <header (customEmitter)="checkClickedPage($event)"></header>
   <app-recipes *ngIf="clickedPage == 'recipe'"></app-recipes>
   <app-shopping-list *ngIf="clickedPage == 'shopping'"></app-shopping-list>
@@ -116,10 +120,27 @@
     inside the ng-template
     Hence it is important that the appStructural should be same name in the @Input tag if used
     -->
+
     <h3>hi</h3>
   </div>
 </div>
 
 <div class="container" *ngIf="choice.toLowerCase() == 'hbhl'">
   <h3 appDropDown>Host Binding and Host Listening example</h3>
+</div>
+
+<div class="container" *ngIf="choice.toLowerCase() == 'is'">
+  <h3>Inappropriate way - Data coming from service is {{fetchData()}}</h3>
+</div>
+
+<div class="container" *ngIf="choice.toLowerCase() == 'hs'">
+  <app-example1></app-example1>
+</div>
+
+<div class="container"  *ngIf="choice.toLowerCase() == 'assignment'">
+  <app-assignment></app-assignment>
+</div>
+
+<div class="container"  *ngIf="choice.toLowerCase() == 'assignment-solution'">
+  <app-assignment-solution></app-assignment-solution>
 </div>

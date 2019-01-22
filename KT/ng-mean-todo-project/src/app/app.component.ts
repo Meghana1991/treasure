@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Child2Component } from './child2/child2.component';
+import { LoggerService } from './services/logger.service';
 
 @Component({
   selector: 'app-root',
@@ -48,11 +49,20 @@ export class AppComponent implements OnInit {
     console.log(dataFromTemplate.innerText);
   }
 
-  checkClickedPage = function(page){
-    if(page == 'recipe'){
+  checkClickedPage = function (page) {
+    if (page == 'recipe') {
       this.clickedPage = 'recipe'
-    }else if(page == 'shopping'){
+    } else if (page == 'shopping') {
       this.clickedPage = 'shopping'
     }
+  }
+
+  /**
+   * InApproproiate way of accessing the service
+   */
+
+  fetchData() {
+    var loggerService = new LoggerService();
+    loggerService.logData("Sai");
   }
 }
