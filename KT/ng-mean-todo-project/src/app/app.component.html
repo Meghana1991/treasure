@@ -80,7 +80,9 @@
   </app-child4>
 </div>
 
-<div class="container">
+<div class="container" *ngIf="choice.toLowerCase() == 'data binding'">
+  <!-- Data binding got converted to services 
+  Check old revisions in github for pure data binding -->
   <header (customEmitter)="checkClickedPage($event)"></header>
   <app-recipes *ngIf="clickedPage == 'recipe'"></app-recipes>
   <app-shopping-list *ngIf="clickedPage == 'shopping'"></app-shopping-list>
@@ -143,4 +145,8 @@
 
 <div class="container"  *ngIf="choice.toLowerCase() == 'assignment-solution'">
   <app-assignment-solution></app-assignment-solution>
+</div>
+
+<div class="container-fluid">
+    <routing-example></routing-example>
 </div>

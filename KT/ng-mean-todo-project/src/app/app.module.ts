@@ -32,17 +32,25 @@ import { InactiveUsersComponent } from './component-service/assignment/inactive-
 import { AssignmentSolutionComponent } from './component-service/assignment-solution/assignment-solution.component';
 import { InactiveUsersComponentOne } from './component-service/assignment-solution/inactive-users/inactive-users1.component';
 import { ActiveUsersComponentOne } from './component-service/assignment-solution/active-users/active-users1.component';
+import { RoutingExample } from './routing-example/routing-example.component';
+import { EditServerComponent } from './routing-example/servers/edit-server/edit-server.component';
+import { HomeComponent } from './routing-example/home/home.component';
+import { ServerComponent } from './routing-example/servers/server/server.component';
+import { ServersComponent } from './routing-example/servers/servers.component';
+import { UsersComponent } from './routing-example/users/users.component';
+import { UserComponent } from './routing-example/users/user/user.component';
+import { ServersService } from './routing-example/servers/servers.service';
 
 @NgModule({
   declarations: [
-    AppComponent, BasicComponent, HeaderComponent, RecipesComponent, RecipesListComponent, RecipesDetailComponent, RecipesItemComponent, ShoppingListComponent, ShoppingEditComponent, ChildComponent, Child2Component, Child3Component, Child4Component, BasicHighlightDirective, BetterHighlightDirective, BetterHighlightDirective2, BetterHighlightDirective3, StructuralDirective, DropDownDirective, Example1Component, ExampleChildComponent, AssignmentComponent, ActiveUsersComponent, InactiveUsersComponent, AssignmentSolutionComponent, InactiveUsersComponentOne, ActiveUsersComponentOne
+    AppComponent, BasicComponent, HeaderComponent, RecipesComponent, RecipesListComponent, RecipesDetailComponent, RecipesItemComponent, ShoppingListComponent, ShoppingEditComponent, ChildComponent, Child2Component, Child3Component, Child4Component, BasicHighlightDirective, BetterHighlightDirective, BetterHighlightDirective2, BetterHighlightDirective3, StructuralDirective, DropDownDirective, Example1Component, ExampleChildComponent, AssignmentComponent, ActiveUsersComponent, InactiveUsersComponent, AssignmentSolutionComponent, InactiveUsersComponentOne, ActiveUsersComponentOne, RoutingExample,HomeComponent,EditServerComponent,ServerComponent,ServersComponent,UsersComponent,UserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [LoggerService,/*ModifyService*/],
+  providers: [LoggerService,/*ModifyService*/,ServersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

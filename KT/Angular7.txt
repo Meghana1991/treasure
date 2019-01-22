@@ -254,3 +254,31 @@ import { MyService } from './path/to/my.service';
 export class AppModule { ... }
 
 The "new syntax" does offer one advantage though: Services can be loaded lazily by Angular (behind the scenes) and redundant code can be removed automatically. This can lead to a better performance and loading speed - though this really only kicks in for bigger services and apps in general.
+
+42) Shared services vs @Input @Output
+
+It so happens that you can manage the @Input and @Output using services. You can emit and subscribe using services instead of @Input@Output. 
+
+@Input API is used when you have parent-child-grandchild scenario. When you have routing and sibling components then the @Input API will not help you everywhere. You have to manage in parent and child, if you want two way communication. Later, over the time it becomes complex to manage.
+
+When you have routing and parent-child-grandchild / sibling components, you can go with shared service. If variables are changing in service, you can update component using RXjs library. You have to manage everything in one place and subscribe to observable in component where you plan to use service.
+
+So, I according to me shared service is a good solution with Rxjs library. You can make service singleton by injecting it into bootstrap function.
+
+43) Spread syntax ...
+var some = [1,2,3];
+function someone(a,b,c){
+    console.load(a,b,c) // 1 2 3
+}
+
+someone(...some)
+
+------------------------------------------------------------------------------------------------------
+var some = [1,2,3];
+function someone(a,b,c,d){
+    console.load(a,b,c,d) // 1 2 3 "phew"
+}
+
+someone(...some,"phew")
+
+44)Routing - This needs to be configured in the app.module.ts
