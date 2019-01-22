@@ -182,3 +182,39 @@ This arguement SimpleChanges will actually give us old value, current value whic
 28)Shadow DOM - is an internal DOM of your component that is defined by you (as a creator of the component) and hidden from an end-user. 
 Light DOM - is a DOM that an end-user of your component supply into your component.
 The difference between @ViewChildren and @ContentChildren is that @ViewChildren look for elements in Shadow DOM while @ContentChildren look for them in Light DOM.
+
+29)Directives are used for DOM manipulation by either adding elements or removing or attaching events or etc, Also used for adding styles etc. Basically HTML modification will be handled by the directives.
+
+Directives are of 2 types namely - Structural and Attribute Directives.
+The Structural directives will modify the structure of the DOM by adding removing elements. Example: If *ngIf is not matching the condition then it removes that el from DOM. The Structural directives are appended with * in the beginning like *ngIf and *ngFor
+The Attribute directives will modify that particular element alone by changing the properties of the element
+We cannot have more than 1 Structural directive on same element like *ngFor *ngIf - Structural.
+Examples for attribute are ngStyle ngClass
+
+30) @Directive({ selector : '[attributeOfEl]' })
+    @Directive({ selector : 'elementitself' })
+
+31) ElementRef which is used in basic-highlighter directive actually modifies the DOM which is not good practise. 
+Using ElementRef doesn't directly make your site less secure. The Angular team is just saying "Hey, you may use this,just be careful with it".If you are only using an ElementRef to get information, like in your example a certain width, there is no security risk involved at all. It's a different story when you use an ElementRef to modify the DOM. There, potential threats can arise. Such an example could be:
+@ViewChild('myIdentifier')
+myIdentifier: ElementRef
+
+ngAfterViewInit() {
+  this.myIdentifier.nativeElement.onclick = someFunctionDefinedBySomeUser;
+}
+
+The problem with this is that it gets inserted directly into the DOM, skipping the Angular sanitisation mechanisms. What are sanitisation mechanisms? Usually, if something in the DOM is changed via Angular, Angular makes sure it's nothing dangerous. However, when using ElementRef to insert something into the DOM, Angular can't guarantee this. So it becomes your responsibility that nothing bad enters the DOM when using ElementRef. An important keyword here is XSS (Cross-Site Scripting).
+
+To summarise: If you poll the DOM for information, you are safe. If you modify the DOM using ElementRef, make sure the modifications don't possibly contain malicious code.
+
+Hence use Renderer instead of ElementRef
+
+32)To react to the EVENTS performed on the ELEMENT on which the directive resides we need to use something called Hostlistener
+
+33)Hostlistener and HostBinding refers to HOST which means the element where we have attached the directive.
+HostListener listens to event that HOST sends
+HostBinding binds to attributes of the HOST
+
+34)How the *ngIf is transformed to [ngIf] inside a ng-template behind the scenes here.
+
+35)The *some in either custom or standard directive gets transformed to [some] in the ng-template tag. Check C:\mySpace\treasure\treasure\treasure\KT\ng-mean-todo-project\src\app\directives\structural.directive.ts

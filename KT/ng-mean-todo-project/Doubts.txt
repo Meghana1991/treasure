@@ -16,3 +16,5 @@
 
 7)why use ng-template?
 8)Proxy
+
+9)why inside construtor shoudl the vars be private?

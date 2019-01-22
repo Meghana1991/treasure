@@ -8,7 +8,11 @@
   <h5>Enter "vc2" to see local reference using View Child Advanced</h5>
   <h5>Enter "ng1" to see ng-content</h5>
   <h5>Enter "ng2" to see ng-content</h5>
-  <h5>Enter "ct" to see ng-content advanced</h5>
+  <h5>Enter "data binding" to see data binding</h5>
+  <h5>Enter "ad" to see attribute directive</h5>
+  <h5>Enter "bs" to see behind the scenes of structural directive</h5>
+  <h5>Enter "sd" to see structural directive</h5>
+  <h5>Enter "hbhl" to see Host binding and Host listening</h5>
   <input type="text" [(ngModel)]="choice">
   <!-- This ngMOdel will actually act like a keyup / keydown / input etc events -->
   <basics *ngIf="choice.toLowerCase() == 'basics'"></basics>
@@ -72,9 +76,50 @@
   </app-child4>
 </div>
 
-<div class="container">
+<div class="container" *ngIf="choice.toLowerCase() == 'data binding'">
   <header (customEmitter)="checkClickedPage($event)"></header>
-
   <app-recipes *ngIf="clickedPage == 'recipe'"></app-recipes>
   <app-shopping-list *ngIf="clickedPage == 'shopping'"></app-shopping-list>
+</div>
+
+<div class="container" *ngIf="choice.toLowerCase() == 'at'">
+  <h3 basicHighlight>Basic Directive Implementation</h3>
+  <h3 betterHighlight>Better Directive Implementation</h3>
+</div>
+
+<div class="container" *ngIf="choice.toLowerCase() == 'at'">
+  <h3 betterHighlightTwo>@HostBinding - Alterative for Renderer</h3>
+</div>
+
+<div class="container" *ngIf="choice.toLowerCase() == 'at'">
+  <h3 betterHighlightThree [defaultColor]="'yellow'" [mouseOver]="'orange'">@HostBinding - Advanced</h3>
+  <!-- Different way of writing the property binding - may be link to ngClass or ngStyle -->
+  <h3 betterHighlightThree defaultColor="yellow" mouseOver="orange">@HostBinding - Advanced</h3>
+</div>
+
+<div class="container" *ngIf="choice.toLowerCase() == 'bs'">
+  <h3>ngIf behind the scenes transformation happens</h3>
+  <div *ngIf="choice == 'a'">
+    <p>Choice is present</p>
+  </div>
+  <ng-template [ngIf]="choice == 'a'">
+    <div>
+      <p>Choice is present</p>
+    </div>
+  </ng-template>
+</div>
+
+<div class="container" *ngIf="choice.toLowerCase() == 'sd'">
+  <div *appStructural="choice">
+    <!-- Here the above line is transformed to  
+    <div [appStructural]="choice">
+    inside the ng-template
+    Hence it is important that the appStructural should be same name in the @Input tag if used
+    -->
+    <h3>hi</h3>
+  </div>
+</div>
+
+<div class="container" *ngIf="choice.toLowerCase() == 'hbhl'">
+  <h3 appDropDown>Host Binding and Host Listening example</h3>
 </div>
