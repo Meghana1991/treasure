@@ -1,0 +1,16 @@
+<p>User with ID {{user.id}} loaded.</p>
+<p>User name is {{user.name}}</p>
+
+<a [routerLink] = "['/user',10, 'Sai']" >Load Anna</a>
+
+<!-- Here what happens? 
+    You are already in some user info page
+    Then on click of that Load Anna, it will change the URL BUT
+    doesn't re-render the component. Why should it re render when you are already in there?
+    Yes true that data is changed but Angular doesn't that.
+    We have used router.snapshot which does these behaviours.
+-->
+
+<!--
+    As alternative we can subscribe to router.params observables
+-->

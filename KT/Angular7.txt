@@ -282,3 +282,29 @@ function someone(a,b,c,d){
 someone(...some,"phew")
 
 44)Routing - This needs to be configured in the app.module.ts
+
+45) const routes: Routes = [ { path : 'users', component : '' } ]
+
+Here the type Routes is important. It is a array of objects. path should not be given with /
+In the imports of app.module.ts you need to add RouterModule.forRoot(routes)
+Now we should tell angular where to display the component data on selecting routes. We should mark a place where we should load the data on routing using <router-outlet>
+
+46) Generally we use href of <a> tag to do navigations. But what happens if you do it inside angular?Will it be SPA? NOOO. It still obviously reloads the page as we are not using any angular given utility. 
+
+One should use routerLink inorder to make it SPA. Check C:\mySpace\treasure\treasure\treasure\KT\ng-mean-todo-project\src\app\routing-example\routing-example.component.html for details
+
+47)The router.navigate is used to navigate to different routes in the ts file check example home.component.ts. 
+
+48) For understanding in router.params and router.snapshot Check this C:\mySpace\treasure\treasure\treasure\KT\ng-mean-todo-project\src\app\routing-example\users\user\user.component.ts
+
+49)The standard subscriptions would be destroyed on destroying the component by angular. However you can do it manually by ngOnDestroy() by unsubscribing it. Angular already does it for us but if we add own observables then we might have to clean it well. Custom subscriptions should be erased because the components would be created on route and destroyed on changing route and created again on route but the custom subscription would stay in the memory always
+
+50)Check C:\mySpace\treasure\treasure\treasure\KT\ng-mean-todo-project\src\app\routing-example\servers\servers.component.html for understanding how we can write routing in HTML
+
+51)Handling routing in HTML - servers.component.html
+Handling routing in TS - home.component.ts
+
+52)To convert the string to number, add a + in the front,
+
+var some = "1"
+console.log(+some) //1

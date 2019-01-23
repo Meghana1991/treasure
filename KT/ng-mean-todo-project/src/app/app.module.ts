@@ -40,17 +40,27 @@ import { ServersComponent } from './routing-example/servers/servers.component';
 import { UsersComponent } from './routing-example/users/users.component';
 import { UserComponent } from './routing-example/users/user/user.component';
 import { ServersService } from './routing-example/servers/servers.service';
+import { RouterModule } from '@angular/router';
 
+const appRoutes = [
+  { path: '', component: HomeComponent },
+  { path: 'users', component: UsersComponent },
+  { path: 'user/:id/:name', component: UserComponent },
+  { path: 'servers', component: ServersComponent },
+  { path: 'server/:id', component: ServerComponent },
+  { path: 'server/:id/edit', component: EditServerComponent }
+]
 @NgModule({
   declarations: [
-    AppComponent, BasicComponent, HeaderComponent, RecipesComponent, RecipesListComponent, RecipesDetailComponent, RecipesItemComponent, ShoppingListComponent, ShoppingEditComponent, ChildComponent, Child2Component, Child3Component, Child4Component, BasicHighlightDirective, BetterHighlightDirective, BetterHighlightDirective2, BetterHighlightDirective3, StructuralDirective, DropDownDirective, Example1Component, ExampleChildComponent, AssignmentComponent, ActiveUsersComponent, InactiveUsersComponent, AssignmentSolutionComponent, InactiveUsersComponentOne, ActiveUsersComponentOne, RoutingExample,HomeComponent,EditServerComponent,ServerComponent,ServersComponent,UsersComponent,UserComponent
+    AppComponent, BasicComponent, HeaderComponent, RecipesComponent, RecipesListComponent, RecipesDetailComponent, RecipesItemComponent, ShoppingListComponent, ShoppingEditComponent, ChildComponent, Child2Component, Child3Component, Child4Component, BasicHighlightDirective, BetterHighlightDirective, BetterHighlightDirective2, BetterHighlightDirective3, StructuralDirective, DropDownDirective, Example1Component, ExampleChildComponent, AssignmentComponent, ActiveUsersComponent, InactiveUsersComponent, AssignmentSolutionComponent, InactiveUsersComponentOne, ActiveUsersComponentOne, RoutingExample, HomeComponent, EditServerComponent, ServerComponent, ServersComponent, UsersComponent, UserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [LoggerService,/*ModifyService*/,ServersService],
+  providers: [LoggerService,/*ModifyService*/, ServersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
