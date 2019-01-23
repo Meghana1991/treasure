@@ -308,3 +308,11 @@ Handling routing in TS - home.component.ts
 
 var some = "1"
 console.log(+some) //1
+
+53)Children routes can be added by adding children : [] to the route object.
+Like how there is a single outlet for the entire app in the app.component.html, now for sub server or children of the server component should also be having a outlet considering the servers.html as the parent or root for the children. Hence we need to be adding a router-outlet for the children 
+
+54){ path : 'not-found', component : PageNotFoundComponent},
+  { path : '**', redirectTo : '/not-found'},
+This ** is used for any junk routes. This ** basically means anything which is not defined in here
+The angular parses the routes as it appears in the order. If you place the ** wild card in the beginning then it always goes to not-found. 

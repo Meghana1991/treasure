@@ -41,18 +41,28 @@ import { UsersComponent } from './routing-example/users/users.component';
 import { UserComponent } from './routing-example/users/user/user.component';
 import { ServersService } from './routing-example/servers/servers.service';
 import { RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes = [
   { path: '', component: HomeComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'user/:id/:name', component: UserComponent },
-  { path: 'servers', component: ServersComponent },
-  { path: 'server/:id', component: ServerComponent },
-  { path: 'server/:id/edit', component: EditServerComponent }
+  { path: 'users', component: UsersComponent ,children: [
+    { path: ':id/:name', component: UserComponent },
+  ]},
+  // { path: 'users', component: UsersComponent },
+  // { path: 'users/:id/:name', component: UserComponent },
+  {
+    path: 'servers', component: ServersComponent, children: [
+      { path: ':id', component: ServerComponent },
+      { path: ':id/edit', component: EditServerComponent }
+    ]
+  },
+  { path : 'not-found', component : PageNotFoundComponent},
+  { path : '**', redirectTo : '/not-found'},
+  
 ]
 @NgModule({
   declarations: [
-    AppComponent, BasicComponent, HeaderComponent, RecipesComponent, RecipesListComponent, RecipesDetailComponent, RecipesItemComponent, ShoppingListComponent, ShoppingEditComponent, ChildComponent, Child2Component, Child3Component, Child4Component, BasicHighlightDirective, BetterHighlightDirective, BetterHighlightDirective2, BetterHighlightDirective3, StructuralDirective, DropDownDirective, Example1Component, ExampleChildComponent, AssignmentComponent, ActiveUsersComponent, InactiveUsersComponent, AssignmentSolutionComponent, InactiveUsersComponentOne, ActiveUsersComponentOne, RoutingExample, HomeComponent, EditServerComponent, ServerComponent, ServersComponent, UsersComponent, UserComponent
+    AppComponent, BasicComponent, HeaderComponent, RecipesComponent, RecipesListComponent, RecipesDetailComponent, RecipesItemComponent, ShoppingListComponent, ShoppingEditComponent, ChildComponent, Child2Component, Child3Component, Child4Component, BasicHighlightDirective, BetterHighlightDirective, BetterHighlightDirective2, BetterHighlightDirective3, StructuralDirective, DropDownDirective, Example1Component, ExampleChildComponent, AssignmentComponent, ActiveUsersComponent, InactiveUsersComponent, AssignmentSolutionComponent, InactiveUsersComponentOne, ActiveUsersComponentOne, RoutingExample, HomeComponent, EditServerComponent, ServerComponent, ServersComponent, UsersComponent, UserComponent, PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
