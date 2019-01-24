@@ -20,3 +20,5 @@
 9)why inside construtor shoudl the vars be private?
 
 10)lazy loading and providein
+
+11)Implements and extends

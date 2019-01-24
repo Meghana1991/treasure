@@ -139,14 +139,19 @@
   <app-example1></app-example1>
 </div>
 
-<div class="container"  *ngIf="choice.toLowerCase() == 'assignment'">
+<div class="container" *ngIf="choice.toLowerCase() == 'assignment'">
   <app-assignment></app-assignment>
 </div>
 
-<div class="container"  *ngIf="choice.toLowerCase() == 'assignment-solution'">
+<div class="container" *ngIf="choice.toLowerCase() == 'assignment-solution'">
   <app-assignment-solution></app-assignment-solution>
 </div>
 
 <div class="container-fluid">
     <routing-example></routing-example>
 </div>
+
+<!-- <div class="basic-structure">
+  Test Var from TestVar file - {{testVarComp.testVar}}
+  <app-testvariables></app-testvariables>
+</div> -->

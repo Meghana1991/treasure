@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Child2Component } from './child2/child2.component';
 import { LoggerService } from './services/logger.service';
+import { TestvariablesComponent } from './testvariables/testvariables.component';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
 
   @ViewChild('localRefUsingViewChild') localRefUsingViewChild: ElementRef;
   @ViewChild(Child2Component) referenceToChild2: Child2Component;
+  @ViewChild(TestvariablesComponent) testVarComp: TestvariablesComponent;
 
   public ngOnInit() {
     /**
@@ -64,5 +66,10 @@ export class AppComponent implements OnInit {
   fetchData() {
     var loggerService = new LoggerService();
     loggerService.logData("Sai");
+  }
+
+  clicked = false;
+  public updateBtn(){
+    this.clicked = true;
   }
 }

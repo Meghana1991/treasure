@@ -316,3 +316,17 @@ Like how there is a single outlet for the entire app in the app.component.html, 
   { path : '**', redirectTo : '/not-found'},
 This ** is used for any junk routes. This ** basically means anything which is not defined in here
 The angular parses the routes as it appears in the order. If you place the ** wild card in the beginning then it always goes to not-found. 
+
+55)I have a scenario where i need to load the servers users or edit them only if user is logged in. I can do it by checking each component for user logged in or not but i cannot do it as it is cumbersome and lengthy method. We can make use of angular guards like canActivate
+
+We can run some code at our defined time using guards.
+
+Guards can be placed in the app.route.ts with canActivate with [guardnames] inside the route object. It eventually applies to all the children 
+
+For example, The servers is the root path and has children as editServer updateServer routes below. On canActivate on the root server, it will eventually adds guard to the children
+
+If you want only certain children or to ONLY children to have the guard then use canActivateChild. Check home.component.html for details
+
+56)If you want the user to prevent accidently navigating to back or navigating without clicking SAVE or UPDATE etc scenarios then use canDeActivate
+
+57)interface is the one which makes a class to have the defined functions and properties upon importing or implementing it.
