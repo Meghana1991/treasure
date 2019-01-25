@@ -22,3 +22,9 @@
 10)lazy loading and providein
 
 11)Implements and extends
+
+12)CanDeactivate
+
+13)Resolver in angular 2
+
+14)whats loadchildren D:\sprint_2019\crspng-fe-angular6\container\ui\app\core\core.routes.ts ?

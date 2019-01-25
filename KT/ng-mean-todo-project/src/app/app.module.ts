@@ -46,9 +46,18 @@ import { TestvariablesComponent } from './testvariables/testvariables.component'
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 
 const appRoutes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+  {
+    path: 'recipes', component: RecipesComponent, children: [
+      // { path: 'recipe-item/:id', component: RecipesItemComponent },
+      { path: '', component: RecipeStartComponent },
+      { path: ':id', component: RecipesDetailComponent }
+    ]
+  },
+  { path: 'shopping-list', component: ShoppingListComponent },
   {
     path: 'users', component: UsersComponent, children: [
       { path: ':id/:name', component: UserComponent },
@@ -57,7 +66,7 @@ const appRoutes = [
   // { path: 'users', component: UsersComponent },
   // { path: 'users/:id/:name', component: UserComponent },
   {
-    path: 'servers', 
+    path: 'servers',
     // canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
     component: ServersComponent,
@@ -67,21 +76,21 @@ const appRoutes = [
     ]
   },
   // { path: 'not-found', component: PageNotFoundComponent },
-  { path: 'not-found', component: ErrorPageComponent , data : {message : 'Page not found !!'}},
+  { path: 'not-found', component: ErrorPageComponent, data: { message: 'Page not found !!' } },
   { path: '**', redirectTo: '/not-found' },
 
 ]
 @NgModule({
   declarations: [
-    AppComponent, BasicComponent, HeaderComponent, RecipesComponent, RecipesListComponent, RecipesDetailComponent, RecipesItemComponent, ShoppingListComponent, ShoppingEditComponent, ChildComponent, Child2Component, Child3Component, Child4Component, BasicHighlightDirective, BetterHighlightDirective, BetterHighlightDirective2, BetterHighlightDirective3, StructuralDirective, DropDownDirective, Example1Component, ExampleChildComponent, AssignmentComponent, ActiveUsersComponent, InactiveUsersComponent, AssignmentSolutionComponent, InactiveUsersComponentOne, ActiveUsersComponentOne, RoutingExample, HomeComponent, EditServerComponent, ServerComponent, ServersComponent, UsersComponent, UserComponent, PageNotFoundComponent, TestvariablesComponent, ErrorPageComponent
+    AppComponent, BasicComponent, HeaderComponent, RecipesComponent, RecipesListComponent, RecipesDetailComponent, RecipesItemComponent, ShoppingListComponent, ShoppingEditComponent, ChildComponent, Child2Component, Child3Component, Child4Component, BasicHighlightDirective, BetterHighlightDirective, BetterHighlightDirective2, BetterHighlightDirective3, StructuralDirective, DropDownDirective, Example1Component, ExampleChildComponent, AssignmentComponent, ActiveUsersComponent, InactiveUsersComponent, AssignmentSolutionComponent, InactiveUsersComponentOne, ActiveUsersComponentOne, RoutingExample, HomeComponent, EditServerComponent, ServerComponent, ServersComponent, UsersComponent, UserComponent, PageNotFoundComponent, TestvariablesComponent, ErrorPageComponent, RecipeStartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, { useHash: true })
   ],
-  providers: [LoggerService,/*ModifyService*/, ServersService,AuthService,AuthGuard],
+  providers: [LoggerService,/*ModifyService*/, ServersService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -330,3 +330,23 @@ If you want only certain children or to ONLY children to have the guard then use
 56)If you want the user to prevent accidently navigating to back or navigating without clicking SAVE or UPDATE etc scenarios then use canDeActivate
 
 57)interface is the one which makes a class to have the defined functions and properties upon importing or implementing it.
+
+58)We can fetch static and dynamic data from the routes. For static data we need to configure the route path with data object. Check example : error-page.component.ts
+
+Incase of dynamic data, we need to fetch data before the routing is done. Resolver is a guard which does something for us before the component is loaded or routing has occured. The canActivate will also do something before the component is loaded BUT this case is different where it fetches some data and not deciding like to show or not the compoentn like canActivate. Resolver will execute some code befoer the component is loaded
+
+59)Generally what happens if you host your app in the server? localhost:4200/servers, this should ideally take you to the /servers route of angular like how it happens in the local but in the production, the /servers will be seen by the web server and it searches for /servers file and throws NOT FOUND. We should just serve the index.html to the webserver and let the angular handle the routing for us, to do this we need to enable useHash:true in forRoot()
+
+We just have 1 file, index.html containing the angular app here. After making it as useHash:true then we get a #, so whatever comes after the # will not be considered by the webserver
+
+60)  { path: '', redirectTo : '/recipes' , pathMatch: 'full'},
+Every path would have prefix of ''(not empty) so we need to explicitly tell "full" otherwise it gets confused/
+
+61) { path: ':id' , component: Somecomponent}
+    { path: 'new' , component: Nomecomponent}
+Here if the user hits /new it takes to Somecomponent because the order matters. Hence
+ { path: 'new' , component: Nomecomponent}
+ { path: ':id' , component: Somecomponent}
+
+62)relativeTo inside the navigate method of route -  This is used when we are in the child route and want to pick the path from the parents route and then append it to where you want to navigate
+this.router.navigate()

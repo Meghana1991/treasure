@@ -17,6 +17,7 @@
   <h5>Enter "hs" to see Services and their hierarchical way</h5>
   <h5>Enter "assignment" to see Assignment</h5>
   <h5>Enter "assignment-solution" to see Assignment solution</h5>
+  <h5>Enter "routing" to see Routing</h5>
   <input type="text" [(ngModel)]="choice">
   <!-- This ngMOdel will actually act like a keyup / keydown / input etc events -->
   <basics *ngIf="choice.toLowerCase() == 'basics'"></basics>
@@ -147,11 +148,18 @@
   <app-assignment-solution></app-assignment-solution>
 </div>
 
-<div class="container-fluid">
-    <routing-example></routing-example>
+<div class="container-fluid" *ngIf="choice.toLowerCase() == 'routing'">
+  <routing-example></routing-example>
 </div>
 
 <!-- <div class="basic-structure">
   Test Var from TestVar file - {{testVarComp.testVar}}
   <app-testvariables></app-testvariables>
 </div> -->
+
+<div class="container">
+  <header (customEmitter)="checkClickedPage($event)"></header>
+  <router-outlet></router-outlet>
+  <!-- <app-recipes *ngIf="clickedPage == 'recipe'"></app-recipes>
+  <app-shopping-list *ngIf="clickedPage == 'shopping'"></app-shopping-list> -->
+</div>
