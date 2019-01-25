@@ -350,3 +350,43 @@ Here if the user hits /new it takes to Somecomponent because the order matters. 
 
 62)relativeTo inside the navigate method of route -  This is used when we are in the child route and want to pick the path from the parents route and then append it to where you want to navigate
 this.router.navigate()
+
+63)Promises and callbacks can be used to handle a request but somehow angular suggests to use observable from Rxjs. Just another approach
+
+64)Rxjs version will be in package.json. The Rxjs-compat installation will unlock all the older version of the rxjs syntax but rxjs 6 onwards will no longer use older syntaxes. Still if you want to see then install Rxjs.compat
+
+64)Observables C:\mySpace\treasure\treasure\treasure\KT\observables - 
+There are Angular standard observables and we can create custom observables also
+Standard includes the this.route.params.subscribe() which keeps giving us new data on any event instead of refreshing the page.
+
+Any observable handles response and error and complete. We can catch it if needed
+
+Observer - Observable is as good as Sender -  Reciever
+this.router.params.subscribe() is observer and in our custom code we write code which should react to change in params which is observable
+
+As in the homecomponent, i have a observer which keeps sending or observer.nexting the data, then if i switch the component to user1 or user2 leaing the homecomponent still the observable is listening without getting destroyed. In case of angular observers, the angular unsubscribes them for us but custom observable should be handled by us
+If we dont handle the custom observable withou unsubscribing then it leads to memory leak.
+
+https://rxjs-dev.firebaseapp.com/api
+
+Subject of rxjs is also like observable but it is much more better than it and allows us to CONVINIENTLY push data/ emit data on our requirement in the code.
+Subject is observer and observable both together.
+
+Example :  In observer we use observer.next(somedata) and in recieving end we just do observable.subscribe().
+But incase of the subject, it can do both being either observer or observable
+
+65) Usually we compare the Subject to EventEmitter but it is always good to use Subject over EventEmitter
+
+66)There are some operators which will help us to transform the data into something else but still remain in observable world like .map
+
+67).map - It takes the response object and modifies it as per our requirement and importantly it returns the modfied part as observable only like initial state to which we can subscribe and use it
+
+68)to uninstall certain package - npm uninstall --save rxjs-compat
+
+69)In case of rxjs > 6, imports would change, any operators usege like .map etc would go inside a pipe() which actually can take multiple operators
+
+EventEmitter and Subject behaves almost same but Subject is better than that.
+In EventEmitter we use .emit() but in subject we use .next()
+The observable or subject can be unsubscribed and check if EventEmitter can be too?
+
+70)Angular Forms -
