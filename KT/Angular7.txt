@@ -390,3 +390,43 @@ In EventEmitter we use .emit() but in subject we use .next()
 The observable or subject can be unsubscribed and check if EventEmitter can be too?
 
 70)Angular Forms -
+Import FormsModule in the app.module.ts
+Whichever whatever feilds you want to have control on or whatever fields you want to use in the javascript, only those you need to bind with name and ngModel properties. Angular converts the <form> into a javascript object. We can have access to that object by using a local reference to the form tag with ngForm. Example: C:\mySpace\treasure\treasure\treasure\KT\forms-td-start\forms-td-start\src\app\app.component.html
+
+Approach 1 - Local Reference      
+
+<form (ngSubmit)="onSubmit(f)" #f = "ngForm">
+where the #f is the local reference method of sending data
+
+Approach 2 - View child
+
+<form (ngSubmit)="onSubmit()" #f = "ngForm">
+in .ts, @Viewchild('f') signUpFormhere : ngForm
+
+As discussed earlier, the local reference is good only when you want data on EVENT like submit or click
+But the Viewchild method is better because we get to access the form even before any event trigger, any point of time we can access the form.
+
+Usually we add required to the intpu tag meaning that required is a directive builtin angular. Likewise one can add email also.
+<input type="email" name="some" required email/>
+
+Angular dynamically adds the classes to the input tag whenever form gets valid or invalid Also there are other ways to know the validity like referencing the form on chnage or click or viewchild etc
+
+Which Validators do ship with Angular? 
+
+Check out the Validators class: https://angular.io/api/forms/Validators - these are all built-in validators, though that are the methods which actually get executed (and which you later can add when using the reactive approach).
+
+For the template-driven approach, you need the directives. You can find out their names, by searching for "validator" in the official docs: https://angular.io/api?type=directive - everything marked with "D" is a directive and can be added to your template.
+
+Additionally, you might also want to enable HTML5 validation (by default, Angular disables it). You can do so by adding the ngNativeValidate  to a control in your template.
+
+When a form is defined in HTML, the angular converts it into a object and its upto me to keep which all fields in the object on submit or any event. So whichever field i want to keep in the object will be and mustbe having ngModel.
+If i dont add ngmodel to a field then that field you cannot access in the .ts , in other words you cant see it in the NgForm object as in app.component.html (remove the ngModel for any field and console the form on submit)
+
+71)
+ngModel - No event or property binding ie withou any binding
+[ngModel] - Property binding and no event binding and no 2way binding but only 1 way binding
+([ngModel]) - 2 way
+
+72)ngModelGroup - Groups the data fields into one and validation messages can be put based on ngModelGroup
+
+73)You can access the form in the .ts file using the Viewchild reference like this.myform.setvalue()

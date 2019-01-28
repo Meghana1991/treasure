@@ -28,3 +28,7 @@
 13)Resolver in angular 2
 
 14)whats loadchildren D:\sprint_2019\crspng-fe-angular6\container\ui\app\core\core.routes.ts ?
+
+15)            #usernameRef = "ngModel">
+            <span *ngIf="!usernameRef.valid">Please enter a valid user name -{{usernameRef.value}}</span>
+C:\mySpace\treasure\treasure\treasure\KT\forms-td-start\forms-td-start\src\app\app.component.html
