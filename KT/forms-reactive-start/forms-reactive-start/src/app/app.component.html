@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup] = "reactiveForm" (ngSubmit)="onSubmit()">
+        <div formGroupName = "groupFieldsTogether">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <!--
+              We should tell angular that this form should be connected to the one mentioned in the [formGroup] above
+              Also, we should also mentioned formControlName saying in the form connected, also connect the fields
+            -->
+            <input
+              type="text"
+              id="username"
+              formControlName = "username"
+              class="form-control">
+              <!-- You can get the form control directly 
+                by using the .get() method-->
+              <span *ngIf="!reactiveForm.get('groupFieldsTogether.username').valid && reactiveForm.get('groupFieldsTogether.username').touched">Username is invalid</span>
+
+              <!-- UNCOMMENT THESE -->
+              <!-- <h4 *ngIf="reactiveForm.get('groupFieldsTogether.username').errors['nameIsForbidden'] && reactiveForm.get('groupFieldsTogether.username').touched">This name is Invalid</h4> -->
+
+              <!-- <h4 *ngIf="reactiveForm.get('groupFieldsTogether.username').errors['required'] && reactiveForm.get('groupFieldsTogether.username').touched">Is required</h4> -->
+          </div>
+          <div class="form-group">
+            <label for="email">email</label>
+            <input
+              type="text"
+              id="email"
+              class="form-control"
+              formControlName = "email"
+              >
+          </div>
+        </div>
+        <div class="radio" *ngFor="let gender of genders">
+          <label>
+            <input
+              type="radio"
+              formControlName = "gender"
+              [value]="gender">{{ gender }}
+          </label>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

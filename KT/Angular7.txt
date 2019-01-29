@@ -430,3 +430,35 @@ ngModel - No event or property binding ie withou any binding
 72)ngModelGroup - Groups the data fields into one and validation messages can be put based on ngModelGroup
 
 73)You can access the form in the .ts file using the Viewchild reference like this.myform.setvalue()
+
+74)Now it is time for reactive driven approach of forms. In templat driven approach the Angular infers the Form object from the DOM. In Reactive approach, the form is created automatically and is synchronized with DOM
+
+75) We need to import ReactiveFormsModule instead of FormsModule in Reactive forms. The reactive approach will programatically build the form
+
+76)In reactive approach we don't use the local refernce or viewchild reference because we already have access to it in the ts and we have created the controls hence
+
+77)Any validations etc should be given in the ts file not in html in case of reactive
+
+78)Incase of templat driven or reactive approach, inorder to group fields in form one should group them in HTML also under same div
+
+79)Generally any angular property can be either -
+<input formControlName = "string_name">
+<input [formControlName] = "'binding_var'">
+
+80)Generally in class object mechanism, we refer to the properties of class with `this` operator. But in some cases `this` wouldnt be accessible yet by angular. For instance
+    this.reactiveForm = new FormGroup({
+      ...
+        'username': new FormControl(null, [Validators.required, this.forbiddenNames]),
+    })
+Here we are using custom validator this.forbiddenNames. Here in the Valdiation array of FormControl, we are passing only references to function and not calling them like below - 
+        'username': new FormControl(null, [Validators.required(), this.forbiddenNames()]),
+We are not calling as Angular calls it as and when required when change occurs. In case of custom validators the angular would not refer this validator to our clas. Hence we should bind with this -
+this.forbiddenNames.bind(this)
+
+81)There is something called valueChanges and statusChanges
+
+82)Things to remember in template driven form -
+    - ngModel must be tagged to the input in HTML so that it considers as formcontrol
+    - name attribute is a must in the form whenever we add ngModel
+    - we can assign the fields to localreference like #email #username and assign it to ngModel inorder for angular to consider it as control. Example: #email = "ngModel"
+    - to the <form add the reference and assign it to the ngForm. Example: #customForm = "ngForm"

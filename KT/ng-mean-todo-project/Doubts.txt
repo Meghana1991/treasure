@@ -32,3 +32,5 @@
 15)            #usernameRef = "ngModel">
             <span *ngIf="!usernameRef.valid">Please enter a valid user name -{{usernameRef.value}}</span>
 C:\mySpace\treasure\treasure\treasure\KT\forms-td-start\forms-td-start\src\app\app.component.html
+
+16).bind() in javascript and when
