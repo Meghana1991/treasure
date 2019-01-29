@@ -375,7 +375,8 @@ Subject is observer and observable both together.
 Example :  In observer we use observer.next(somedata) and in recieving end we just do observable.subscribe().
 But incase of the subject, it can do both being either observer or observable
 
-65) Usually we compare the Subject to EventEmitter but it is always good to use Subject over EventEmitter
+65) Usually we compare the Subject to EventEmitter but it is always good to use Subject over EventEmitter.
+It is very simple. Define a subject in the service. Use it in component-a to emit some value to some other component using .next. On other hand use componen-b to .subscribe() it for changes
 
 66)There are some operators which will help us to transform the data into something else but still remain in observable world like .map
 
@@ -458,7 +459,24 @@ this.forbiddenNames.bind(this)
 81)There is something called valueChanges and statusChanges
 
 82)Things to remember in template driven form -
+
     - ngModel must be tagged to the input in HTML so that it considers as formcontrol
     - name attribute is a must in the form whenever we add ngModel
     - we can assign the fields to localreference like #email #username and assign it to ngModel inorder for angular to consider it as control. Example: #email = "ngModel"
     - to the <form add the reference and assign it to the ngForm. Example: #customForm = "ngForm"
+
+83) In templat approach, one does maximum in HTML and tries to get control of it in the ts file by just either using local reference or view child reference or by simply passing the local reference to the ngSubmit but in case of the reactive approach one does least in HTML may be vanilla HTML and controls it in the TS just by adding FormGroup and Formcontrolname in the HTML to connect to ts
+
+84) remember in Forms, in create mode we use setValue() but on update mode we use patchValue(). If you want to know about FormArray then https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/12579508?start=0
+
+85)Pipes - Is used to transform the output(from BE) in the template using |
+There are custom and standard pipes
+https://angular.io/api?query=pipe
+Multiple pipes can be applied separated with | (Chaining Pipes)
+The order of the pipes matter. Angular parses it from L to R.
+
+86)Custom Pipes - C:\mySpace\treasure\treasure\treasure\KT\pipes-start\src\app\app.component.html
+
+87)Pure Pipes - https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6656586?start=0
+
+88)The async pipe is used to transform the response object which comes after sometime from BE

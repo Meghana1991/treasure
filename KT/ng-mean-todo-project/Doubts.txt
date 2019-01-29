@@ -34,3 +34,5 @@
 C:\mySpace\treasure\treasure\treasure\KT\forms-td-start\forms-td-start\src\app\app.component.html
 
 16).bind() in javascript and when
+
+17)Angular udemy courses advanced, Javascript 2 days, Node jenson
