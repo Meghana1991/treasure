@@ -480,3 +480,27 @@ The order of the pipes matter. Angular parses it from L to R.
 87)Pure Pipes - https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6656586?start=0
 
 88)The async pipe is used to transform the response object which comes after sometime from BE
+
+89) The HTTP calls fetches result using AJAX -
+Import http in the service and use it. This http is a observable and hence we need to subscribe else request to BE doesnot go.
+this.http.post('https://udemy-cous',data) IN THE SERVICE
+In ts file, call the above method from service and then subscribe to it
+
+90)We can however add headers before placing the call which can be Content-type="json"
+this.http.post(URL,data,options?)
+this.http.post("www.some.com/", data, {headers: headers})
+where headers = new Headers({'Content-type':'application/json})
+
+91) we can use pipe(map()) inorder to convert the response object to another form which is also a observable
+You can catch errors - https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6656622?start=0
+
+92) Generally when we send call to BE using http.get post put etc we get observable object to which we should subscribe in the ts file. This is general scenario, however we can still get data without subscribing to the observable using async pipe in the html file - https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6656624?start=0
+ The async pipe is subscribing to the observable.
+
+ LEARN THE PIPES MAPS IN THE CURRENT PROJECT
+
+ 93).map() is not used in the Angualr 6 onwards instead we use pipe
+
+ 94)The http.get() etc will just give you a observable. However if you want the observable data to be modified slightly then modify using pipes, catcherror and maps. On the other hand the .ts file , we need to subscribe to the observable. So until to subscribe to the observable or modified observable in the service, the call wont be happening.
+
+ 95)The http get observable and subscribing can be however be split. Like having observable(may be modifying it using map pipe) in the service and calling that service function and then subscribing it in the ts file. Or on other hand use the observable and subscribe together.
