@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BasicComponent } from './basics/basics.component';
-import { HeaderComponent } from './header/header.component';
 import { ChildComponent } from './child/child.component';
 import { Child2Component } from './child2/child2.component';
 import { Child3Component } from './child3/child3.component';
@@ -27,7 +26,6 @@ import { InactiveUsersComponentOne } from './component-service/assignment-soluti
 import { ActiveUsersComponentOne } from './component-service/assignment-solution/active-users/active-users1.component';
 import { RoutingExample } from './routing-example/routing-example.component';
 import { EditServerComponent } from './routing-example/servers/edit-server/edit-server.component';
-import { HomeComponent } from './routing-example/home/home.component';
 import { ServerComponent } from './routing-example/servers/server/server.component';
 import { ServersComponent } from './routing-example/servers/servers.component';
 import { UsersComponent } from './routing-example/users/users.component';
@@ -42,11 +40,12 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { RecipesModule } from './recipes/recipe.module';
 import { SharedModule } from './shared.module';
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent, BasicComponent, HeaderComponent, ChildComponent, Child2Component, Child3Component, Child4Component, BasicHighlightDirective, BetterHighlightDirective, BetterHighlightDirective2, BetterHighlightDirective3, StructuralDirective, Example1Component, ExampleChildComponent, AssignmentComponent, ActiveUsersComponent, InactiveUsersComponent, AssignmentSolutionComponent, InactiveUsersComponentOne, ActiveUsersComponentOne, RoutingExample, HomeComponent, EditServerComponent, ServerComponent, ServersComponent, UsersComponent, UserComponent, PageNotFoundComponent, TestvariablesComponent, ErrorPageComponent
+    AppComponent, BasicComponent, ChildComponent, Child2Component, Child3Component, Child4Component, BasicHighlightDirective, BetterHighlightDirective, BetterHighlightDirective2, BetterHighlightDirective3, StructuralDirective, Example1Component, ExampleChildComponent, AssignmentComponent, ActiveUsersComponent, InactiveUsersComponent, AssignmentSolutionComponent, InactiveUsersComponentOne, ActiveUsersComponentOne, RoutingExample, EditServerComponent, ServerComponent, ServersComponent, UsersComponent, UserComponent, PageNotFoundComponent, TestvariablesComponent, ErrorPageComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +53,12 @@ import { SharedModule } from './shared.module';
     RecipesModule,
     AppRoutingModule,
     ShoppingListModule,
-    SharedModule
+    SharedModule,
+    CoreModule
   ],
-  providers: [LoggerService,/*ModifyService*/, ServersService, AuthService, AuthGuard],
+  // move all the providers to the core module
+  // providers: [LoggerService,/*ModifyService*/, ServersService, AuthService, AuthGuard],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

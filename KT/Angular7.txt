@@ -545,6 +545,8 @@ Here we need to pass the query params auth like this.
 
 107)Directives or Services cannot be used in multiple feature modules, You can either place it in the parent most module or create a shared module and put the directive in it.This is how we can share directives among. C:\mySpace\treasure\treasure\treasure\KT\ng-mean-todo-project\src\app\shared.module.ts
 
+Don't put SERVICES in shared module.
+
 108) If you have something like <router-outlet> in your app then the Modularisation will work but in case if you have <selector> like <app-shopping-list> then the root module ie AppModule will not understand the <app-shopping-list> element and will throw error. In case where selectors are used then you should declare the components in the declarations in the root module AppModule
 
 109) Lazy Loading to improve the app performance
@@ -552,6 +554,8 @@ Here we need to pass the query params auth like this.
 110) the javascript webpack bundle which contains our whole app will get downloaded at the beginning when user visits the page which means lot of code is never used because the user may not visit all the pages of the app. Hence most of the code in the bundle becomes useless at that point. Hence making use of lazy load will load the respective feature module on visit the route
 
 Whatever is listed in the app.module.ts imports will be bundled by webpack. Hence remove those which are not visited when initial page loads and the ones removed should be added lazily using loadChildren : 'path + # + class name'
+
+You can cross check the lazyloading by seeing the Network calls where 0_chunk.js will be added on loading the modules using lazyloading
 
 111) Login Types -
 
@@ -566,3 +570,17 @@ Option 2 : jwt
 Once user login, then a jwt object token will be sent to the FE, the FE need to store it and send this token on each call to the BE may be by using interceptors or something
 
 This is stateless because the client state is not preserved which is why we need to keep always sending the token to the backend.
+
+112) Imagine you have main app.module and feature module feature.module, in both you have providers:[LogService] then the angular will keep a instance of it in the root level and will use in feature module also. Logservice will act as singleton. Then you will lazy load a module and there you have INJECT the Logservice(NOT IN PROVIDERS). In this case it still considers the root injector ie app module injector and will take from there. 
+
+https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6656720?start=0
+
+Assume now that root module and child module and also the lazy loaded module all three has providers:[Logservice] in them. In this case the root and child shares the service but the lazy loaded uses a separate instance of the Logservice. Hence keep in mind that the lazy loaded module uses separate instance of the service which is not commonly used across the application. Other way of making the service private for that particular component is by making providers[] inside @Component
+
+Dont provide services in the shared modules, esp when you are planning to lazy load the module.
+
+113) Compilation - 
+The angular cli compiles the code from typescript to javascript
+The angular compiles the HTML code of templates into javascript(creating html element in the js).This is done because accessing the javascript is easier than accessing the DOM for performance reasons.
+
+114)preloading modules - https://vsavkin.com/angular-router-preloading-modules-ba3c75e424cb
