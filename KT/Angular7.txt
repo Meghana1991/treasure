@@ -504,3 +504,51 @@ You can catch errors - https://www.udemy.com/the-complete-guide-to-angular-2/lea
  94)The http.get() etc will just give you a observable. However if you want the observable data to be modified slightly then modify using pipes, catcherror and maps. On the other hand the .ts file , we need to subscribe to the observable. So until to subscribe to the observable or modified observable in the service, the call wont be happening.
 
  95)The http get observable and subscribing can be however be split. Like having observable(may be modifying it using map pipe) in the service and calling that service function and then subscribing it in the ts file. Or on other hand use the observable and subscribe together.
+
+ 96)In traditional web apps like php html, we should keep on interacting with BE for any HTML rendering.
+ Process > 
+ The login form data is sent to BE > The BE will check if login info is present in DB > If yes, send the session id > The client and BE now uses this to communicate
+
+ 97)In SPA > Here reaching BE is not so much compared to the traditional type. Also in SPA the HTML is changed by Angular and not like traditional scenario.
+The login form data is sent to BE > The BE will check if login info is present in DB > If yes, sends a JSON web token to the Client telling that user is logged in, which encodes some sensible information by hashing with algorithm > The client and BE now uses this to communicate
+
+98) Login process
+
+I am sending a POST request to a back end REST API, via a login component. I get an x-auth token back in the response headers. I should store this token so I can use it for all other API requests for the duration of the users logged in session
+localStorage.setItem('token', response.access_token);
+
+The entire process is -
+
+https://stackoverflow.com/questions/48960671/web-tokens-in-angular-2/48962144
+
+99) Login giving the username, password > the login happens successfully by sending back response with auth token and userinformation. We need to save it somewhere, and send that every time we send request to BE.
+For any BE call > http.get("https://something.com?auth" + getToken())
+Here we need to pass the query params auth like this.
+
+100)Module ngModule - Tells whats required by the app, what services are used, what directives are used, what we need to include and what to exclude etc
+
+101)in the ngModule 
+> the declarations [] consists of components used, pipes and directives
+> the imports [] consists of which other modules this module uses
+> the providers [] consists of the services used in the app
+> the bootstrap [] consists of the root component
+
+102)Modularisation can be performed where a group of components,directives can be grouped together in a module based on feature, by doing this, if issue comes, we can debug module based
+
+103)For any feature module, we should add CommonModule which gives access to ngif ngfor common directives. But in main app.module.ts we are not using the CommonModule but we have BrowserModule where BrowserModule will have all the features of CommonModule and also many more features which are required to bootstrap the application and show in the browser
+
+104)We should not declare a module in more than one place.
+
+105)in the app.module.ts we are defining the feature modules. The routes are placed in appRoutingModule which is placed in app.module.ts. On separating or Modularising the feature module, it is hard for Angular to determine and gets confused, hence good practise to keep the feature module specific routes separately
+
+106)RouterModule.forRoot() only in the main route definition and RouterModule.forChild() will be only for every other child
+
+107)Directives or Services cannot be used in multiple feature modules, You can either place it in the parent most module or create a shared module and put the directive in it.This is how we can share directives among. C:\mySpace\treasure\treasure\treasure\KT\ng-mean-todo-project\src\app\shared.module.ts
+
+108) If you have something like <router-outlet> in your app then the Modularisation will work but in case if you have <selector> like <app-shopping-list> then the root module ie AppModule will not understand the <app-shopping-list> element and will throw error. In case where selectors are used then you should declare the components in the declarations in the root module AppModule
+
+109) Lazy Loading to improve the app performance
+
+110) the javascript webpack bundle which contains our whole app will get downloaded at the beginning when user visits the page which means lot of code is never used because the user may not visit all the pages of the app. Hence most of the code in the bundle becomes useless at that point. Hence making use of lazy load will load the respective feature module on visit the route
+
+Whatever is listed in the app.module.ts imports will be bundled by webpack

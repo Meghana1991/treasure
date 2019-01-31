@@ -36,3 +36,7 @@ C:\mySpace\treasure\treasure\treasure\KT\forms-td-start\forms-td-start\src\app\a
 16).bind() in javascript and when
 
 17)Angular udemy courses advanced, Javascript 2 days, Node jenson
+
+18)Proxy and why? Angular Proxy?
+
+19)Stateful and Stateless protocol
