@@ -51,9 +51,9 @@ import { SharedModule } from './shared.module';
   imports: [
     BrowserModule,
     FormsModule,
+    RecipesModule,
     AppRoutingModule,
     ShoppingListModule,
-    RecipesModule,
     SharedModule
   ],
   providers: [LoggerService,/*ModifyService*/, ServersService, AuthService, AuthGuard],

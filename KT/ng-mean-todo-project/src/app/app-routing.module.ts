@@ -14,13 +14,6 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
-  {
-    path: 'recipes', component: RecipesComponent, children: [
-      // { path: 'recipe-item/:id', component: RecipesItemComponent },
-      { path: '', component: RecipeStartComponent },
-      { path: ':id', component: RecipesDetailComponent }
-    ]
-  },
   { path: 'shopping-list', component: ShoppingListComponent },
   {
     path: 'users', component: UsersComponent, children: [

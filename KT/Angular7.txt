@@ -551,4 +551,4 @@ Here we need to pass the query params auth like this.
 
 110) the javascript webpack bundle which contains our whole app will get downloaded at the beginning when user visits the page which means lot of code is never used because the user may not visit all the pages of the app. Hence most of the code in the bundle becomes useless at that point. Hence making use of lazy load will load the respective feature module on visit the route
 
-Whatever is listed in the app.module.ts imports will be bundled by webpack
+Whatever is listed in the app.module.ts imports will be bundled by webpack. Hence remove those which are not visited when initial page loads and the ones removed should be added lazily using loadChildren : 'path + # + class name'
