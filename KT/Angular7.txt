@@ -552,3 +552,17 @@ Here we need to pass the query params auth like this.
 110) the javascript webpack bundle which contains our whole app will get downloaded at the beginning when user visits the page which means lot of code is never used because the user may not visit all the pages of the app. Hence most of the code in the bundle becomes useless at that point. Hence making use of lazy load will load the respective feature module on visit the route
 
 Whatever is listed in the app.module.ts imports will be bundled by webpack. Hence remove those which are not visited when initial page loads and the ones removed should be added lazily using loadChildren : 'path + # + class name'
+
+111) Login Types -
+
+Option 1 : jsession
+
+Once user login, then a jsession ID will be sent to the FE and browser takes care to send this session on each call to the backend. We need not do anything in the frontend
+
+This is stateful where there is a connection available and active for multiple calls to the be.
+
+Option 2 : jwt
+
+Once user login, then a jwt object token will be sent to the FE, the FE need to store it and send this token on each call to the BE may be by using interceptors or something
+
+This is stateless because the client state is not preserved which is why we need to keep always sending the token to the backend.
