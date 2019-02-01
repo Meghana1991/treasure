@@ -584,3 +584,57 @@ The angular cli compiles the code from typescript to javascript
 The angular compiles the HTML code of templates into javascript(creating html element in the js).This is done because accessing the javascript is easier than accessing the DOM for performance reasons.
 
 114)preloading modules - https://vsavkin.com/angular-router-preloading-modules-ba3c75e424cb
+
+115)HttpClient and Http is almost same module but HttpClient has many features like -
+-   It automatically extracts the _body from the response.
+-   It fetches us the data in JSON
+
+116)One can manually change or add headers for every call if needed by using new HttpHeaders() and also set new HttpParams() for every or specific call
+
+this.headers = new HttpHeaders({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Origin': '*',
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache',
+            'Expires': 'Sat, 01 Jan 2000 00:00:00 GMT'
+        });
+        this.params = new HttpParams();
+        this.options ={ headers: this.headers, params: this.params };
+-------------------------------------------------------------------------
+if (id) {
+    params = new HttpParams().set('deviceType', id);
+}
+if (params) {
+    this.options.params = params;
+}
+-------------------------------------------------------------------------
+serviceCall(){ ....
+return this.http.get(obj.url).pipe(
+tap(() => this.timerReset()),
+catchError(this.handleError.bind(this.self))); }
+
+117)Imagine you have to send token for every call or may be you have to set headers for every call to the BE.
+Instead of manually sending the data to each call, we can do it using interceptors
+https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/7789386?start=0
+
+118) typescript is used because it is understandable easily for the user to code and also that it is strict unlike javascript. Example:
+
+myStr : String;
+myStr = 4 // gives error as it is expecting string
+
+The above will get converted to javascript and if you see the code in javascript it will be
+
+var myStr;
+myStr = 4 // this is correct as javascript is not strict but typescript is, which is good in a way so that we wont get any logical errors
+
+Static methods can be instantiated directly without having to create a object.
+
+119)Interfaces - these are set of properties with their types, when implementing this interface, the object will be forced to have those properties defined in them
+
+check for .ts and .js for each of the types in C:\mySpace\treasure\treasure\treasure\KT\typescript
+
+To compile > tsc file_name > this converts the ts to js and have a check of the js
+
+120).map files help in debugging the code.

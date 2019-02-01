@@ -1,14 +1,6 @@
-1)difference between element : {
-    name : string,
-    age : number
-  }
-  and model
-
 2) Maps debugging
 
 3)Passing functions between components
-
-4)difference between viewchild and inputoutpul
 
 5)debounce? how this editor works? how it autosaves after sometime?
 
@@ -40,3 +32,7 @@ C:\mySpace\treasure\treasure\treasure\KT\forms-td-start\forms-td-start\src\app\a
 18)Proxy and why? Angular Proxy?
 
 19)Stateful and Stateless protocol
+
+20)Interceptor videos and Reducers in angular
+
+21)Angular compilation JIT and AOT 
