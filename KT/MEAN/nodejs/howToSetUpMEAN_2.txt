@@ -1,0 +1,31 @@
+(Source https://www.c-sharpcorner.com/article/angular-5-crud-opration-using-nodeexpressmongo/
+https://blog.angular-university.io/angular-http/)
+
+Angular 2+ can be installed either manually or by angular-cli.
+
+1)Create a new folder 'ng-customAngNode'
+2)Enter your folder
+3)Open command prompt inside that and enter 
+    npm install -g @angular/cli
+4)Enter the command (This creates a new Angular project inside the customAngNode. However you can still name it the same or something else)
+    ng new ng-customAngNode
+    (the folder name is ng- because the angular cli demands that way and should match html selector socd)
+5)Enter to your folder
+6)You can run your application using `ng serve -o`(-o opens application in default browser)
+-----------------------------------------------------------------------------------------
+
+7) Install Express and Mongoose body parser using this command.
+npm install express --save
+npm install mongoose -- save
+npm install body-parser --save
+-----------------------------------------------------------------------------------------
+8) Now inject the HttpClient module inorder to perform all the API backend calls in app module
+9) Add a new service file using 'ng -g service custom_service'
+10) Include the new servce in the app modules file
+-----------------------------------------------------------------------------------------
+11) Create one file in the project root called server.js and add port and start server (Express js).
+12) create folder in a root called expressRoutes.In the expressRouter folder, create one file called coinRoutes.js.
+13) Include this file in the server.js
+14) When the click or action event happens in the UI side then the routing of UI takes place first. Then based on the route, component will load. In that component, if any call is there for fetch of data then that API will be called like http:localhost:4000/getCall/coins. Now the route of the server.js ie backend will be triggered.
+15) In the server.js we need to define 'res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');' inorder to tell from where the URL and port can be allowed
+16) Parallely run the nodemon server.js (representing BE) and ng serve -o (representing FE) and 2 different ports for each and link them in server.js and use the server port from angular services like 'http:localhost:4000/getCall/coins' where angular runs in 'http://localhost:4200'z
