@@ -412,3 +412,19 @@ some(function(){
 },10)
 
 PROMISES - https://www.udemy.com/the-complete-nodejs-developer-course-2/learn/v4/t/lecture/5525296?start=0
+----------------------------------------------------------------------------------------------------------
+27) npm init --yes or npm init -y is for creating package.json skipping the questions
+
+28)body parser - 
+
+Let’s say you are sending a html form data to node-js server i.e. you made a request to the server. The server file would receive your request under a request object. Now by logic, if you console log this request object in your server file you should see your form data some where in it, which could be extracted then, but whoa ! you actually don’t !
+
+So, where is our data ? How will we extract it if its not only present in my request.
+
+Simple explanation to this is http sends your form data in bits and pieces which are intended to get assembled as they reach their destination. So how would you extract your data.
+
+But, why take this pain of every-time manually parsing your data for chunks and assembling it. Use something called “body-parser” which would do this for you.
+
+body-parser parses your request and converts it into a format from which you can easily extract relevant information that you may need.
+In short; body-parser extracts the entire body portion of an incoming request stream and exposes it on req.body as something easier to interface with
+----------------------------------------------------------------------------------------------------------
