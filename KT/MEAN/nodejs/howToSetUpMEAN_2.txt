@@ -7,3 +7,6 @@
 
 3)Setup the Mongoose now
 > npm install mongoose --save
+
+4)Setup Angular
+> ng new ngApp --routing

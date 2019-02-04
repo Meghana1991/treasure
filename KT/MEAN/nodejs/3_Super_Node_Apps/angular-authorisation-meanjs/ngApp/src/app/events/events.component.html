@@ -1,0 +1,6 @@
+<div class="row" 
+*ngFor="let event of events">
+  <p>{{event.name}}</p>
+  <p>{{event.description}}</p>
+  <p>{{event.date | date : 'shortDate'}}</p>
+</div>

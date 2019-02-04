@@ -428,3 +428,7 @@ But, why take this pain of every-time manually parsing your data for chunks and 
 body-parser parses your request and converts it into a format from which you can easily extract relevant information that you may need.
 In short; body-parser extracts the entire body portion of an incoming request stream and exposes it on req.body as something easier to interface with
 ----------------------------------------------------------------------------------------------------------
+
+29)When frontend and backend are running on different ports we get CORS error, to fix it we need to add cors middleware. 
+
+> npm install --save cors

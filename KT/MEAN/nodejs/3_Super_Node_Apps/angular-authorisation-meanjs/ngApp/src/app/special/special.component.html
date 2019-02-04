@@ -1,0 +1,6 @@
+<div class="row" 
+*ngFor="let spl of specials">
+  <p>{{spl.name}}</p>
+  <p>{{spl.description}}</p>
+  <p>{{spl.date | date : 'shortDate'}}</p>
+</div>

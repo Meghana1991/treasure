@@ -84,3 +84,26 @@ Mongoose plays as a role of abstraction over your database model.
 20)Mongoose - Whenever we hit GET PUT POST any call to the DB, the node has to interact with the MongoDB with the help of Mongoose. Mongoose translates the data in the DB to javascript object in our application.
 
 We can create a schema/model for the data in our DB using Mongoose.
+
+21)From the front-end there is a request coming for GET call asking to search the data in DB, so here we should prepare the query to achieve it. However, I can take the request which is GET and use it for POST, PUT or DELETE as well. It is up to the node. Also, GET comes with different params, so is POST etc but just telling that what request we get from front end can be used for any other purpose as well.
+
+22)To connect to MongoDb,
+Navigate to MongoDB folder > click mongo.exe > copy the url from string "connecting to mongodb://local...." and paste it in the mongoose.connect()
+
+23)The json web tokens are used for communication between the FE and the BE.
+The JWT(jot) are the ones which contains json data and so is the name.
+It is composed of HEADER, PAYLOAD and SIGNATURE format is 
+header.payload.signature -
+header > typeOfToken(jwt) + hashing alg
+payload > data stored in json web token (may be like user ID)
+signature > signature is to verify the token
+
+https://jwt.io/introduction/
+
+24)Install JSON web token doing - npm install jsonwebtoken --save
+For complete fe and be example - C:\mySpace\treasure\treasure\treasure\KT\MEAN\nodejs\3_Super_Node_Apps\angular-authorisation-meanjs\server\routes.js
+
+COMMANDS - 
+
+1)Create database using > use db <db_name>
+2)db.<table_name>.find() //displays all rows in the table
