@@ -432,3 +432,9 @@ In short; body-parser extracts the entire body portion of an incoming request st
 29)When frontend and backend are running on different ports we get CORS error, to fix it we need to add cors middleware. 
 
 > npm install --save cors
+
+30) When the register or login happens, the node will send some token to the FE inorder to authenticate and this token should be sent by FE to BE for every service call. The BE will verify every time the call comes from FE whether the token which it sent initally is same as it is recieving by the FE side. For this Node uses middleware
+
+31)In this application, > angular-authorisation-meanjs > we are preventing the user to navigate to other tabs IF HE IS NOT LOGGED IN by 2 ways. 
+One is from BE using middleware which checks if token is present in the headers for each call received from the FE side
+Second is that from FE using guards where it checks for user logged in status

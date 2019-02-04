@@ -21,6 +21,21 @@ mongoose.connect(db, err => {
     }
 })
 
+function verifyTokenFromFE(req, res, next) {
+    if (!req.headers.authorization) {
+        return res.status(401).send('Unauthorized!')
+    }
+    let token = req.headers.authorization.split(' ')[1];
+    if (token == 'null') {
+        return res.status(401).send('Unauthorized!')
+    }
+    let payload = jwt.verify(token, 'secretKey')
+    if (!payload) {
+        return res.status(401).send('Unauthorized!')
+    }
+    req.userId = payload.subject;
+    next();
+}
 /** Here the parents route for all these is /inside */
 router.get('/', (req, res) => {
     res.send("Hello from inside Server");
@@ -46,7 +61,7 @@ router.post('/register', (req, res) => {
                 subject: registeredUser._id
             }
             let token = jwt.sign(payload, "secretKey")
-            res.status(200).send({token})
+            res.status(200).send({ token })
         }
     });
 });
@@ -67,8 +82,8 @@ router.post('/login', (req, res) => {
                     let payload = {
                         subject: user._id
                     }
-                    let token = jwt.sign(payload, "mySecretKey")
-                    res.status(200).send(token)
+                    let token = jwt.sign(payload, "secretKey")
+                    res.status(200).send({token})
                 }
             }
         }
@@ -101,8 +116,11 @@ router.get('/events', (req, res) => {
     ]
     res.json(events)
 });
-
-router.get('/special', (req, res) => {
+/**
+ * The verifyTokenFromFE checks first
+ * and if passed then it enters function
+ */
+router.get('/special', verifyTokenFromFE, (req, res) => {
     var events = [
         {
             "_id": "1",
