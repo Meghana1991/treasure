@@ -107,3 +107,6 @@ COMMANDS -
 
 1)Create database using > use db <db_name>
 2)db.<table_name>.find() //displays all rows in the table
+https://resources.mongodb.com/node-js
+https://mongoosejs.com/docs/documents.html
+https://docs.mongodb.com/manual/mongo/

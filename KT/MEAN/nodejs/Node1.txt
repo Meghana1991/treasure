@@ -438,3 +438,7 @@ In short; body-parser extracts the entire body portion of an incoming request st
 31)In this application, > angular-authorisation-meanjs > we are preventing the user to navigate to other tabs IF HE IS NOT LOGGED IN by 2 ways. 
 One is from BE using middleware which checks if token is present in the headers for each call received from the FE side
 Second is that from FE using guards where it checks for user logged in status
+
+https://resources.mongodb.com/node-js
+https://mongoosejs.com/docs/documents.html
+https://docs.mongodb.com/manual/mongo/
