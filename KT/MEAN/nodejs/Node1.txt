@@ -442,3 +442,5 @@ Second is that from FE using guards where it checks for user logged in status
 https://resources.mongodb.com/node-js
 https://mongoosejs.com/docs/documents.html
 https://docs.mongodb.com/manual/mongo/
+
+32)Socket.io refer socket.txt
