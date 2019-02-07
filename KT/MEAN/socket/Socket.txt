@@ -14,3 +14,25 @@ npm install --save socket.io
 3)Socket.IO consists of Node.js server and Node.js client.
 
 4)The main idea behind Socket.IO is that you can send and receive any events you want, with any data you want. Any objects that can be encoded as JSON will do, and binary data is supported too.
+
+5)Err: You can't attach socket.io to an express request handler function. Please pass a http.Server instance
+This will come when you try to 
+
+var app1 = require('express')();
+var io = require('socket.io').listen(app1);
+
+Instead you should do
+
+Approach 1- 
+
+var app = http.createServer(function (req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(index);
+});
+
+var io = require('socket.io').listen(app);
+
+Approach 2-
+
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
