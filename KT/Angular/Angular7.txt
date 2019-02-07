@@ -4,6 +4,20 @@
 
 3)If you want to use bootstrap in your application, then npm install bootstrap@3(version).To use this the angular should be aware of the bootstrap package which is added. Hence we need to mention it in configfiles angular.json in styles array. By default there is style.css which can be used to write css which applies for any module entire application. You can add bootstrap path to the angular.json config file
 
+The old version of angular-cli is replaced with angular.json
+
+All builds make use of bundling, and using the --prod flag in ng build --prod or ng serve --prod will also make use of uglifying and tree-shaking functionality.
+The Angular CLI is a tool to initialize, develop, scaffold and maintain Angular applications
+Bundling is a simple feature that makes it easier to combine multiple files into one
+
+The Goal of Angular CLI
+The Angular CLI creates, manages, builds and test your Angular projects. It's built on top of the Angular DevKit.
+
+The Goal of DevKit
+DevKit's goal is to provide a large set of libraries that can be used to manage, develop, deploy and analyze your code.
+
+angular.json - CLI configuration defaults for all projects in the workspace, including configuration options for build, serve, and test tools that the CLI uses, such as TSLint, Karma, and Protractor. 
+
 4)index.html file is the file served by the server.This would have some html tag <app-root> which is a selector for some component @Component({selector:'app-root'})
 The app-root tag > app-root selector holding component gets loaded
 
@@ -650,3 +664,37 @@ To compile > tsc file_name > this converts the ts to js and have a check of the 
 return !!this.myArr
 
 123)When we have to send the BE with jwt token for every http service calls then in that case we need to send token back to BE for each call. Its cumbersome to handle it that way. Hence we are using interceptors where we need not send manually everytime the token, the interceptor will intercept the request and modify the call and attach the token which we want to pass
+
+124)Webpack is used for -
+bundle
+minify
+transpile
+hash 
+
+125)In case of Multi Page Application the server sends back the HTML files to be rendered in the FE and which leads to page refresh everytime.
+
+Single Page Application is the one which interacts with the user by dynamically writing to current page rather than loading html pages from the server
+
+126) Web pack is used for building the application, managing the application. We want to use web pack because
+Assume i have 2 .css files and 2 .js files present.
+
+In this scenario imagine The order of the above 2.js is important, first first.js should load and after which the second.js should. Incase the order is interchaged the application breaks.
+Another scenario where i have plenty of css classes in multiple files, and also multiple js files, i can put them all in single file but it confuses us. Hence we modulirise it generally. When we modulirise the problem is with the order of importing the scripts. Rescue is the webpack
+
+Webpack accepts 2 parts > In package.json, give a command as 
+"build": "webpack whereToStart whereToStoreTheBundledAppDatas"
+"build": "webpack src/js/app.js dist/bundle.js"
+
+The web pack sees this app.js and import all the dependencies it has and further imports and so on and bundles them in the bundle.js file. 
+Now in the index.html > remove all the script files included 
+Add the bundle.js file alone in place of the scripts
+
+The above actions can happen in the production also with more security like this -
+"build:prod": "webpack whereToStart whereToStoreTheBundledAppDatas -p"
+"build:prod": "webpack src/js/app.js dist/bundle.js -p"
+
+Where -p is the command for minification. Go back and run this command in terminal and check for the bundle.js file where minification of the bundle has happened
+
+127)When we hit the 'ng serve' command, the angular-cli internally uses webpack as module builder
+Angular-CLI uses webpack internally
+https://hackernoon.com/webpack-for-angular-developers-c8584a60e627

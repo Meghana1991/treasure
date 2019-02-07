@@ -1,19 +1,14 @@
 2) Maps debugging
 
-3)Passing functions between components
-
 5)debounce? how this editor works? how it autosaves after sometime?
 
 6)where is the converted javascript code?
 
 7)why use ng-template?
+
 8)Proxy
 
 9)why inside construtor shoudl the vars be private?
-
-10)lazy loading and providein
-
-11)Implements and extends
 
 12)CanDeactivate
 
@@ -36,3 +31,8 @@ C:\mySpace\treasure\treasure\treasure\KT\forms-td-start\forms-td-start\src\app\a
 20)Interceptor videos and Reducers in angular
 
 21)Angular compilation JIT and AOT 
+
+22)SPA ? https://www.udemy.com/webpack-4-made-simple-for-beginners/learn/v4/t/lecture/12358298?start=0
+
+23)Webpack?
+24) Angular.json uses?
