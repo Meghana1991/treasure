@@ -1,0 +1,38 @@
+<!-- Data binding
+  <div style="padding:10px;margin:5px;">
+  <label>Field</label>
+  <input type="text" value={{title}} />
+
+  <p>{{title}}</p>
+</div>
+
+<div style="padding:10px;margin:5px;">
+  <label>Field</label>
+  <input type="text" [ngModel]="title1" />
+
+  <p>{{title1}}</p>
+</div>
+
+<div style="padding:10px;margin:5px;">
+  <label>Field</label>
+  <input type="text" [(ngModel)]="title2" />
+
+  <p>{{title2}}</p>
+</div>
+-->
+
+<!-- @INPUT @OUTPUT
+<div style="margin:10px;padding:10px;border:1px solid brown">
+  Parents Component
+  <div style="margin:10px;padding:10px;border:1px solid brown">
+    {{childVal}}
+  </div>
+  <app-child (childVal)="childEventCollection($event)" [title]="title"></app-child>
+</div>
+-->
+
+<!--Local Ref and View Child-->
+<div>
+  <input type="text" #localRefOnThis />
+  <button (click)="sendLocalRef(localRefOnThis)">ClickToLocalRef</button>
+</div>

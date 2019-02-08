@@ -69,6 +69,7 @@ export class AppComponent implements OnInit {
   }
 
   clicked = false;
+  
   public updateBtn(){
     this.clicked = true;
   }

@@ -154,6 +154,8 @@ The main difference between the local reference and the viewchild is that, the l
 
 These local ref and viewchild can be placed for any tags not just input. It can be for any div or anything
 
+Viewchild is used for even directives.
+
 23)Viewchild has one more beauty. It can actually even work for the components as a whole. You can take any component and reference it and use its functions.
 
 Viewchild in detail -
@@ -223,11 +225,18 @@ To summarise: If you poll the DOM for information, you are safe. If you modify t
 
 Hence use Renderer instead of ElementRef
 
+If you want to observe the events happening in the element where directive is placed then use hostlistener
+
 32)To react to the EVENTS performed on the ELEMENT on which the directive resides we need to use something called Hostlistener
 
 33)Hostlistener and HostBinding refers to HOST which means the element where we have attached the directive.
 HostListener listens to event that HOST sends
 HostBinding binds to attributes of the HOST
+
+Host Listener is the one which listens to its host's(El where directive is placed) events
+Host Binding is the one which binds its host's(el where directive is placed) attributes
+ElementRef can be used alternatively to get the access to element
+Renderer can be used to changing the looks may be styles colors
 
 34)How the *ngIf is transformed to [ngIf] inside a ng-template behind the scenes here.
 
@@ -308,6 +317,18 @@ Now we should tell angular where to display the component data on selecting rout
 One should use routerLink inorder to make it SPA. Check C:\mySpace\treasure\treasure\treasure\KT\ng-mean-todo-project\src\app\routing-example\routing-example.component.html for details
 
 47)The router.navigate is used to navigate to different routes in the ts file check example home.component.ts. 
+
+To get the changes of the URL params(:id/:name in the app module ts file) we are using 
+this.route.params.subscribe()
+
+To get the changes of the queryParams
+this.route.queryParams.subscribe()
+
+To get the changes of the fragments
+this.route.fragment.subscribe()
+
+To get the data from the routes
+this.route.data.subscribe()
 
 48) For understanding in router.params and router.snapshot Check this C:\mySpace\treasure\treasure\treasure\KT\ng-mean-todo-project\src\app\routing-example\users\user\user.component.ts
 
@@ -698,3 +719,18 @@ Where -p is the command for minification. Go back and run this command in termin
 127)When we hit the 'ng serve' command, the angular-cli internally uses webpack as module builder
 Angular-CLI uses webpack internally
 https://hackernoon.com/webpack-for-angular-developers-c8584a60e627
+
+They did this by embedding webpack in the Angular CLI. Now, as an Angular developer you don’t need to know anything about webpack. The Angular CLI hides all that webpack complexity. However, that simplicity comes at the price of flexibility. By using the Angular CLI you lose the ability to configure and customize webpack.
+
+The Angular CLI supports running a live browser reload experience to users by running ng serve. This will compile the application upon file saves and reload the browser with the newly compiled application. This is done by hosting the application in memory and serving it via webpack-dev-server.
+
+128)If you develop angular locally with ng serve, there will be websocket connection being setup automatically between browser and local dev server, so when your code change, browser can automatically refresh.
+
+Serve the application-
+Angular includes a server, so that you can easily build and serve your app locally.
+
+Launch the server by using the CLI command ng serve, with the --open option.
+
+ng serve --open
+
+The ng serve command launches the server, watches your files, and rebuilds the app as you make changes to those files.
