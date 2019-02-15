@@ -519,6 +519,17 @@ The order of the pipes matter. Angular parses it from L to R.
 87)Pure Pipes - https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6656586?start=0
 
 88)The async pipe is used to transform the response object which comes after sometime from BE
+Example - 
+ngOnInit() {
+        this.rowData = this.http.get('https://api.myjson.com/bins/15psn9');
+    }
+<ag-grid-angular 
+    style="width: 500px; height: 500px;" 
+    [rowData]="rowData | async"
+    >
+</ag-grid-angular>
+
+Here the this.rowData is observable where we are not subscribing to it instead it is handled in the HTML using the pipe called async
 
 89) The HTTP calls fetches result using AJAX -
 Import http in the service and use it. This http is a observable and hence we need to subscribe else request to BE doesnot go.
@@ -734,3 +745,24 @@ Launch the server by using the CLI command ng serve, with the --open option.
 ng serve --open
 
 The ng serve command launches the server, watches your files, and rebuilds the app as you make changes to those files.
+
+--------------------------------
+ng serve is for local reference only, it creates locally the bundles
+ng - angular cli
+ng build --aot will have ahead of time compilation with tree shaking feature which picks only which function is used ignoring rest (pick a node module npm where you dont use all functions)
+
+in the builded code, check index.html which has the main.js file
+
+When we are doing ng serve - locally then the build folder in the cache is created but not physically like the ng build --aot
+
+The ng serve or ng build takes params from angular.json (webpack.json config file) and creates a index.html file which will be in the bundles. This file will be pointing to the <script main.js> then main.js loads
+
+development server web serveer app server
+
+polyfills does specific jobs for specific tools like chrome version, etc. The thing which works everywhere but not in the IE can be handled by writing polyfills for that particular IE version.
+
+map files will be created in the bundles along with the other encrypted minified files in the production level. One can use it for debugging as everything will be NOT minified or NOT encrypted.
+
+s3 bucket is like nginx, in our proj we use s3 bucket
+
+129)Imagine you have a component somewhere and other components would like to instantiate the component by the tag <crspng-mega-table> but the problem is that the other components are not parents child with this mega component. Hence what one can do is whichever such components used by multiple other components will be all placed together in the @NgModule(widgets module) and would be loaded in the initial app.module.ts file. By doing this the angular loads those commonly used components initially only.

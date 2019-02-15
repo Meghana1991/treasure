@@ -1,0 +1,7 @@
+1)Create a new ng new angular app
+2)npm install --save ag-grid-community ag-grid-angular
+
+One needs to use the css and js part of the ag-grid, For css, we need to put it in the style.css and for the js use it in the app.module.ts
+
+3)Add AgGridModule in ngModule
+4)Add styles to the style.css global file.
