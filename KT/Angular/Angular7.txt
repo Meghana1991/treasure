@@ -766,3 +766,5 @@ map files will be created in the bundles along with the other encrypted minified
 s3 bucket is like nginx, in our proj we use s3 bucket
 
 129)Imagine you have a component somewhere and other components would like to instantiate the component by the tag <crspng-mega-table> but the problem is that the other components are not parents child with this mega component. Hence what one can do is whichever such components used by multiple other components will be all placed together in the @NgModule(widgets module) and would be loaded in the initial app.module.ts file. By doing this the angular loads those commonly used components initially only.
+
+130)https://angular.io/guide/file-structure

@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script>
+        function dupCheck(arr) {
+            var dupsArr = [];
+debugger
+            for (var i = 0; i <= arr.length - 1; i++) {
+                var cnt = 0;
+                for (var j = 0; j <= arr.length - 1; j++) {
+                    if (arr[i] === arr[j]) {
+                        cnt++;
+                        dupsArr[i] = ({ dupVal: arr[i], occurance: cnt })
+                    }
+                }
+                console.log(dupsArr)
+            }
+        }
+
+        var x = dupCheck([3, "some", "3", "hi", "some", "some", 8, 2, "phew", 3, 9, 9]);
+        console.log(x);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+1) Why use `this`?
+function createNewPerson(name) {
+  var obj = {};
+  obj.name = name;
+  obj.greeting = function() {
+    alert('Hi! I\'m ' + obj.name + '.');
+  };
+  return obj;
+}
+
+var salva = createNewPerson('Salva');
+salva.name;
+
+function createNewPerson(name) {
+  this.name = name;
+  this.greeting = function() {
+    alert('Hi! I\'m ' + obj.name + '.');
+  };
+}
+
+var p = new Person('Bob');
+p.name
+
+Here if you see both the functions, the first approach is creating empty object, filling values and functions to it and then returning that object. So much to do?
+
+In second approach, you directly use `this` where you dont have to create empty object and return it. Everything is taken care when you instantiate function with `new` where the object is created and returned by `new` internally. If you check typeof(p) then it is object.
+
+2)Prototype -
+---------------------------------------------------------------
+function simple(name){ 
+    this.name = name; 
+    this.myFn = function(name) { 
+        return this.name + "inner" 
+    } 
+} 
+
+var s = new simple("som")
+
+s.myFn()
+//"sominner"
+
+---------------------------------------------------------------
+function porota(name) { 
+    this.name = name 
+}
+
+porota.prototype.myFunc = function() { 
+    return this.name 
+};
+
+var p = new porota("samm")
+
+p.myFunc()
+//"samm"
+---------------------------------------------------------------
+
+Both the above functions achieve same thing. But function is defined within the simple function and in case of the porota function the function is added in the prototype. 
+All objects created by the first function will have different name and myFn properties. However, all objects created by the second function will share the myFunc property.
+In JavaScript, a link is made between the object instance and its prototype (its __proto__ property, which is derived from the prototype property on the constructor), and the properties and methods are found by walking up the chain of prototypes.
+By doing this - 
+
+Advantages -
+1)Every time you invoke the simple function with object, then every time the myFn of simple also gets created. Incase of porota function, it doesnot get recreated every time rather one single copy is shared by all objects.
+2)The memory can be saved in case of porota function as single place it is there and is shared
+3)Using the second method you can also modify or add methods to a class in a way that also affects instances that were already created.
+
+Disadvantages -
+1)Private vars can be accessed in myFn of Simple function but in case of porota you can access private vars
+
+3)An object can be created like 
+{} or new Object();
+https://stackoverflow.com/questions/2709612/using-object-create-instead-of-new
+
+By using new keyword, it internally creates a JavaScript Object which would obviously have Object.prototype in it. Hence the JavaScript Object would be inherited from the Object.
+
+function some() {  return "hi" }
+
+var s = new some() //On this, a new obj is created which is of the Object
+
+some.prototype
+//{constructor: ƒ}
+
+s.__proto__
+//{constructor: ƒ}
+
+---------------------------------------------------------------------------------------------------
+4) Arrow function 
+() => {}
+
+let someFunction = (name) => {}
+//someFunction("Meg")
+
+---------------------------------------------------------------------------------------------------
+5)For modularity the nextGen JS uses export and imports
+Scenario 1
+const person = {
+  'name' : 'Max'
+}
+
+export default person;
+
+The above has default keyword indicating that any other module imports the above will by default get Person. Example:
+
+import person from './person.js'
+or
+import ps from './person.js'
+will return the same.
+
+Scenario 2
+export const clean = () => {...}
+export const baseData = 10;
+
+Here since there are 2 different named expots one should explicitly mention theEXACT name
+import {baseData} from '/utility.js'
+import {clean} from '/utility.js'
+
+---------------------------------------------------------------------------------------------------
+6)In classes we use super() in constructor because Assume you have class ABC and class EFG, the class EFG inherits or extends from ABC and EFG will have its own constructor then in that scenario one needs to call the super() function and by doing this, one can even call the ABC function and variables in the EFG class directly and hence it is important to call super() inside the constructor
+
+---------------------------------------------------------------------------------------------------
+7) In ES6 plus the
+
+class Human {
+  constructor(){
+    this.name = "Max";
+
+    printMe = () => {
+      console.log(this.name)
+    }
+  }
+}
+
+can be written as
+
+class Human {
+  name = "Max";
+
+   printMe = () => {
+      console.log(this.name)
+   }
+}
+Both the above are the same. You can still make use of this.someVal even if not in constructor

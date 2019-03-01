@@ -1,0 +1,60 @@
+1)Facebook developed Reactjs and was developed using Reactjs. Reactjs is a library not framework like angular. Angular is complete solution but React worries only about rendering data in the VIEW. React doesnot have inbuilt routers or https instead we should use them from external. (unlike angular which has everything built by its team)
+
+2)React is also component based which can be reused
+
+React directly talks to the HTML DOM. In other frameworks we get reference to DOM, manipulate and so on but in React it is direct
+
+3)React component comprises of state and render method
+state refers for the data to be seen in the view
+render method is responsible for the data rendering.
+
+4)React keeps a copy of the DOM and manipulates that copy called as Virtual DOM
+
+5)Install reactjs using -
+
+npm i -g create-react-app@1.5.2
+(npm install -global create-react-app)
+
+create-react-app react-app-name
+
+6)react concentrates on only View
+
+7)Whenevr the data changes then the View has to be changed for sync and react handles it differently. Whenever the data changes, the Virtual DOM is created and whenever we change the data then virtual dom is updated not the Whole html dom(which is costly). It will perform diff check with virtual dom and html actual dom and updates only THOSE CHANGED areas in the real DOM. By this only certain portions is changed in the DOM instead of re rendering the entire dom.
+
+(Does ANGULAR rerender the entire view or does it render only the part of the changed)
+
+8)Babel is used to compile javascript code
+
+9)
+npm start - Starts the development server
+npm run build - Bundles the app into static files for production
+npm test - Starts the test runner.
+npm run eject - Removes this tool and copies build dependencies, configuration files
+and scripts into the app directory. If you do this, you can’t go back!
+
+We suggest that you begin by typing:
+
+  cd react-app-start
+  npm start
+
+10) The react application resides in the container     <div id="root"></div>
+11) the component in the React will have render() which will have JSX which is javascript XML
+The JSX code needs to be passed to the BABEL which is javascript compiler
+
+JSX => B A B E L => Javascript code which browsers understand
+
+Example : 
+const element = <h1>Hey There</h1>
+
+to
+var element = React.createElement(
+  "h1",
+  null,
+  "Hey There"
+)
+
+12)index.js is the start of the application where one can define all the initial load docs
+
+13)Single page application - index.html comes from Server once, and then every other page is rendered in the client side only. This file comes the first time user visits the page
+
+Multi page application - we keep getting pages from the server for every call. for example and for example/some every scenario returns new page
