@@ -23,7 +23,7 @@ create-react-app react-app-name
 
 (Does ANGULAR rerender the entire view or does it render only the part of the changed)
 
-8)Babel is used to compile javascript code
+8)Babel is used to compile javascript code and which supports the JSX.
 
 9)
 npm start - Starts the development server
@@ -39,7 +39,7 @@ We suggest that you begin by typing:
 
 10) The react application resides in the container     <div id="root"></div>
 11) the component in the React will have render() which will have JSX which is javascript XML
-The JSX code needs to be passed to the BABEL which is javascript compiler
+The JSX code needs to be passed to the BABEL which is javascript compiler. Babel compiles the code in browser understanding syntax
 
 JSX => B A B E L => Javascript code which browsers understand
 
@@ -58,3 +58,9 @@ var element = React.createElement(
 13)Single page application - index.html comes from Server once, and then every other page is rendered in the client side only. This file comes the first time user visits the page
 
 Multi page application - we keep getting pages from the server for every call. for example and for example/some every scenario returns new page
+
+14)Development Server -
+
+We can actually open the .html file by dbl clicking it but somehow it doesn't work the way it is supposed to work as in web server because dbl click would run on file protocol. So if you locally want to set up web server then it is called development server
+
+15)React has lot of dependencies involved. Inorder to handle all of them and reduce the headache to developer by installing each of dependency, one can install tool called create-react-app

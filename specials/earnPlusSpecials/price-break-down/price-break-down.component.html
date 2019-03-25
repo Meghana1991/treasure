@@ -1,0 +1,20 @@
+<div class="container-class" *ngIf="materialResult.length">
+    <app-material-related-portion #materialPortionGrid [materialResult]="materialResult"></app-material-related-portion>
+</div>
+<div *ngIf="otherCostResult.length">
+    <div class="container-class" *ngFor="let grid of rowData;">
+        <app-price-break-down-list [rowData]="grid" #children></app-price-break-down-list>
+    </div>
+</div>
+<div class="container-fluid pt-3">
+    <div class="d-flex flex-row-reverse">
+        <div class="p-2">
+            <button (click)="savePriceData()" type="button" class="e-button e-btn-primary">Save Data
+            </button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="noDataMessage" class="blank-space">
+    <label>{{noDataMessage}}</label>
+</div>

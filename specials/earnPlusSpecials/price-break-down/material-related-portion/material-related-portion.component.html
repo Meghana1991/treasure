@@ -1,0 +1,13 @@
+<div class="heading-container">
+  <div class="holder row col-md-12 col-xs-12">
+    <h5>{{firstRowParams.heading}}</h5>
+    <input type="text" class="section-heading" style="width:30%;font-size:16px;margin-top:-8px;margin-left: 10px;font-weight: bold" [(ngModel)]="firstRowParams.name" />
+  </div>
+  <div class="row col-md-12 col-xs-12">
+    <input class="simple-heading" style="width:100%;text-align:center;;border: none" type="text"
+      [(ngModel)]="firstRowParams.remark" />
+  </div>
+</div>
+<ag-grid-angular class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs" (gridReady)="onGridReady($event)"
+  [gridOptions]="gridOptions">
+</ag-grid-angular>

@@ -1,3 +1,5 @@
+Running the JS ES6 in https://jsbin.com/
+
 1) Why use `this`?
 function createNewPerson(name) {
   var obj = {};
@@ -115,7 +117,7 @@ import {baseData} from '/utility.js'
 import {clean} from '/utility.js'
 
 ---------------------------------------------------------------------------------------------------
-6)In classes we use super() in constructor because Assume you have class ABC and class EFG, the class EFG inherits or extends from ABC and EFG will have its own constructor then in that scenario one needs to call the super() function and by doing this, one can even call the ABC function and variables in the EFG class directly and hence it is important to call super() inside the constructor
+6)In classes we use super() in constructor because Assume you have class ABC and class EFG, the class EFG inherits or extends from ABC and EFG will have its own constructor then in that scenario one needs to call the super() inside the EFG constructor inorder to initialise the parents constructor first and by doing this, one can even call the ABC function and variables in the EFG class directly and hence it is important to call super() inside the constructor
 
 ---------------------------------------------------------------------------------------------------
 7) In ES6 plus the
@@ -140,3 +142,75 @@ class Human {
    }
 }
 Both the above are the same. You can still make use of this.someVal even if not in constructor
+---------------------------------------------------------------------------------------------------
+8)let num1 = [1,2,3,4];
+let num2 = [num1,5,6]; 
+//[[1,2,3,4],5,6]
+
+let num2 = [...num1,5,6]
+//[1,2,3,4,5,6]
+This is spread operators
+
+const person = {
+  name : 'Sai'
+}
+
+const personNew = {
+  ...person,
+  rank : 1
+}
+
+// { name : 'Sai', rank : 1}
+---------------------------------------------------------------------------------------------------
+9)Rest operators are ... but does different thing
+
+const fil = (...args) => {
+  return args.filter(el => el == 1)
+}
+
+To execute -
+let some = (...args) => { return args.filter(el => el == 1)}
+some(1,2,3,4)
+
+Internally 1,2,3,4 are converted to array and then array has filter method inbuilt
+---------------------------------------------------------------------------------------------------
+10) Array destructuring
+
+const numbers = [1,2,3,4];
+[num1,num2] = numbers;
+console.log(num1); //1
+[num1, ,num3] = numbers;
+---------------------------------------------------------------------------------------------------
+11) Primitive types like number string etc would be copied when we try to assign them
+
+let n1 = 1;
+n2 = n1
+console.log(n2) // 1
+
+Lets go to Object and Array
+
+let p1 = { name : 'Some'}
+p2 = p1;
+console.log(p2)// Prints same object but in reality it wouldn't have copied.
+
+The p1 will be stored in some memory location and assigning it to p1 will make a pointer point to the p2 but not the exact copy
+
+So any change in p1 will change p2 and p2 will change p1 vice versa because they are pointing to same memory location and it is not COPY of object but copy of the pointer
+
+To overcome this we can use spread operator
+
+let s1 = { name : 'sa' }
+let s2 = {...s1}
+s1.name = 'change'
+console.log(s2.name) // sa
+This is object copy and not pointer copy
+---------------------------------------------------------------------------------------------------
+12)https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+map()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+find()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+findIndex()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
+filter()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+reduce()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce?v=b
+concat()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat?v=b
+slice()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+splice()  => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
