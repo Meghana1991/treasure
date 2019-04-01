@@ -1,0 +1,41 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+<ngx-charts-bar-horizontal-stacked [view]="view" [scheme]="colorScheme" [results]="multi" [gradient]="gradient"
+  [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel" (select)="open(content,$event,$this,this)">
+</ngx-charts-bar-horizontal-stacked>
+
+<!--
+  Popup Data
+-->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>Risk Name - {{ plotObj.name}}</div>
+    <div>Unit Name - {{ plotObj.series}}</div>
+    <div>Count - {{ plotObj.value}}</div>
+    <div class="row">
+      <ngx-charts-advanced-pie-chart [view]="pieView" [scheme]="colorScheme" [results]="pieSingle" [gradient]="gradient"
+        (select)="onSelect($event)">
+      </ngx-charts-advanced-pie-chart>
+    </div>
+    <div class="row">
+      <ngx-charts-pie-grid [view]="pieView" [scheme]="colorScheme" [results]="pieSingle" (select)="onSelect($event)">
+      </ngx-charts-pie-grid>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+<router-outlet></router-outlet>
