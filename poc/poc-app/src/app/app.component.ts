@@ -9,7 +9,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class AppComponent {
   title = 'Fleet Charts POC';
   view: any[] = [1000, 150];
-  pieView: any[] = [400, 200];
+  pieView: any[] = [900, 400];
   plotObj = {
     name: '',
     series: '',
@@ -114,10 +114,10 @@ export class AppComponent {
     }
   ];
 
-  showXAxis = true;
-  showYAxis = true;
+  showXAxis = false;
+  showYAxis = false;
   gradient = false;
-  showLegend = true;
+  showLegend = false;
   showXAxisLabel = false;
   showYAxisLabel = false;
 

@@ -23,15 +23,15 @@
     <div>Risk Name - {{ plotObj.name}}</div>
     <div>Unit Name - {{ plotObj.series}}</div>
     <div>Count - {{ plotObj.value}}</div>
-    <div class="row">
+    <div class="row some">
       <ngx-charts-advanced-pie-chart [view]="pieView" [scheme]="colorScheme" [results]="pieSingle" [gradient]="gradient"
         (select)="onSelect($event)">
       </ngx-charts-advanced-pie-chart>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <ngx-charts-pie-grid [view]="pieView" [scheme]="colorScheme" [results]="pieSingle" (select)="onSelect($event)">
       </ngx-charts-pie-grid>
-    </div>
+    </div> -->
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
