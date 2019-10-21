@@ -1,0 +1,6 @@
+1) Refer the files for details
+2) There are 2 types of Action. If you directly use it in the constructor then only type will be present and not payload. If you want to use payload then use implements.
+3) When you dispatch being inside the component, the reducer gets triggered.
+4) Effects are used to make the functions PURE.
+5) In Angular Subject also we emit and listen in components and in Redux also we dispatch and listen in components as store.select() which is a observable again. What makes the Redux so popular? It is good to maintain things if our application gets bigger. Rather than having service which holds Subjects in Angular it is good to use state management for better structure.
+https://stackoverflow.com/questions/51274343/angular-6-why-use-ngrx-store-rather-than-service-injection

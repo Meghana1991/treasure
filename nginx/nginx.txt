@@ -1,0 +1,20 @@
+1) nginx > html should have index.html file
+2) Build the application and copy the dist folder into the html folder of the nginx folder
+3) nginx conf file will have which port the server should listen
+
+----------------------------------------------------------------------------------------------
+In GIT
+
+Install the nginx in the Remote server or may be copy and paste the installed nginx
+In the conf file you need to mention the location of the build code
+
+The gitlab runner should be configured in the remote machine which will actually link the code.siemens with the remote machine
+The git runner will be usually placed in the dev machine with the key folder
+
+During dev to master merge >
+    - the git runner will pick the code from code.siemens and put it in the local key folder and then goes through the .yml
+    - the .yml file in the project repository in the code.siemens will be refered where we insert all the commands like npm install
+    - the .yml will be read and then it will exec all commands and push in the nginx html folder.
+
+The nginx and the gitlab runner's folder should both be in the same machine. The gitlab runner will pick from the code.siemens repo and then put it in the nginx folder dist html
+----------------------------------------------------------------------------------------------

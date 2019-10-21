@@ -1,0 +1,6 @@
+Popup will come or not? * 
+each block width should be different *
+positioning of Popup (X)
+chart in popup *
+height of the bars*
+Gradient to give background effect or labels

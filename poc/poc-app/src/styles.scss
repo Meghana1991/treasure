@@ -1,10 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-.advanced-pie-legend .legend-items-container .legend-items {
+ngx-charts-advanced-pie-chart .advanced-pie-legend .legend-items-container .legend-items {
     display: none;
 }
 
-.advanced-pie-legend-wrapper {
+ngx-charts-advanced-pie-chart .advanced-pie-legend-wrapper {
     display: none !important;
     height: 0px !important;
     width: 0px !important;
+}
+
+ngx-charts-advanced-pie-chart .ngx-charts-outer.ng-trigger.ng-trigger-animationState svg {
+    width: 250px !important;
+}
+
+ngx-charts-advanced-pie-chart > div {
+    width: 250px !important;
 }

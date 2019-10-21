@@ -1,0 +1,78 @@
+1) JWT Stands for JSON Web Tokens - https://www.youtube.com/watch?v=926mknSW9Lo
+
+2) The user enters email and password and clicks on Login
+        The information is sent to BE Database
+            The BE DB verifies it and then sends a JWT token(signed with SECRET)
+                The FE simply stores it mostly in Local Storage and then on every request it sends that token in the HEADERS
+                    If any Intruder tries to modify the JWT, he can do but the server doesnot take it and rejects because of following reasons
+
+3) JWT is combination of -
+A JWT is easy to identify. It is three strings separated by .
+aaaaaaaaaa.bbbbbbbbbbb.cccccccccccc
+header
+payload
+signature
+
+4)Header > 2 Parts
+    declaring the type, which is JWT
+    the hashing algorithm to use (HMAC SHA256 in this case)
+
+{
+  "typ": "JWT",
+  "alg": "HS256"
+}
+
+Now once this is base64encode, we have the first part of our JSON web token!
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
+5)Payload - The payload will carry the bulk of our JWT, also called the JWT Claims. This is where we will put the information that we want to transmit and other information about our token.
+
+Our example payload has two registered claims (iss, and exp) and two public claims (name, admin).
+
+{
+  "iss": "scotch.io",
+  "exp": 1300819380,
+  "name": "Chris Sevilleja",
+  "admin": true
+}
+
+This will encode to:
+
+eyJpc3MiOiJzY290Y2guaW8iLCJleHAiOjEzMDA4MTkzODAsIm5hbWUiOiJDaHJpcyBTZXZpbGxlamEiLCJhZG1pbi
+
+6) Signature - The third and final part of our JSON Web Token is going to be the signature. This signature is made up of a hash of the following components:
+
+the header
+the payload
+secret
+
+This is how we get the third part of the JWT:
+
+var encodedString = base64UrlEncode(header) + "." + base64UrlEncode(payload);
+HMACSHA256(encodedString, 'secret');
+
+The secret is the signature held by the server. This is the way that our server will be able to verify existing tokens and sign new ones.
+
+Finally,
+
+03f329983b86f7d9a9f5fef85305880101d5e302afafa20154d094b229f75773
+
+Now we have our full JSON Web Token:
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzY290Y2guaW8iLCJleHAiOjEzMDA4MTkzODAsIm5hbWUiOiJDaHJpcyBTZXZpbGxlamEiLCJhZG1pbiI6dHJ1ZX0.03f329983b86f7d9a9f5fef85305880101d5e302afafa20154d094b229f75773
+
+You can use the token in a URL, POST parameter, or an HTTP header. The versatility of the JSON Web Token let's us authenticate an API quickly and easily by passing information through the token.
+
+7)JWTs can be either signed, encrypted or both. If a token is signed, but not encrypted, everyone can read the contents of the token, but when you don't know the private key, you can't change it. Otherwise, the receiver will notice that the signature won't match anymore.
+
+Example - 
+Let's assume Alice wants to send a JWT to Bob. They both know some shared secret. Mallory doesn't know that secret, but wants to interfere and change the JWT. To prevent that, Alice calculates Hash(payload + secret) and appends this as signature.
+
+When receiving the message, Bob can also calculate Hash(payload + secret) to check whether the signature matches. If however, Mallory changes something in the content, she isn't able to calculate the matching signature (which would be Hash(newContent + secret)). She doesn't know the secret and has no way of finding it out. This means if she changes something, the signature won't match anymore, and Bob will simply not accept the JWT anymore.
+
+8) Header = base64 of header
+   Payload = base64 of payload
+   Signature = base64 of header + base64 of payload + SECRET
+
+Any change if Intruder will do for header or payload and tries to HIT the server, the call fails AS SIGNATURE will mismatch as its combination of header+payload+SECRET

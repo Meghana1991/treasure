@@ -9,7 +9,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class AppComponent {
   title = 'Fleet Charts POC';
   view: any[] = [1000, 150];
-  pieView: any[] = [900, 400];
+  pieView: any[] = [800, 400];
   plotObj = {
     name: '',
     series: '',

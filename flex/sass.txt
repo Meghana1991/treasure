@@ -1,0 +1,16 @@
+1) each in sass
+
+
+$catalog: solution-summary-agt-1 solution-summary-agt-2 solution-summary-agt-3 solution-summary-agt-4 solution-impl-agt-1 solution-impl-agt-2 solution-impl-agt-3 solution-impl-agt-4;
+
+@each $prod in $catalog {
+    ##{$prod} {
+        max-width: 100% !important;
+    }
+}
+
+> 
+#solution-summary-agt-1,
+#solution-summary-agt-2{
+    max-width: 100% !important;
+}
