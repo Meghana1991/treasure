@@ -2,6 +2,17 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form (ngSubmit)="onSubmit(f)" #f = "ngForm">
+        <div class="form-group">
+          <label for="ownfield">Own Field</label>
+          <input type="text" 
+          id="ownfield" 
+          class="form-control"
+          [ngModel]="'Own Value'"
+          name="ownfield"
+          required
+          #ownfieldRef = "ngModel">
+          <span *ngIf="!ownfieldRef.valid">Please enter a valid own field -{{ownfieldRef.value}}</span>
+        </div>
         <div id="user-data" ngModelGroup = "groupingDataFields" #groupingDataFields = "ngModelGroup">
           <div class="form-group">
             <label for="username">Username</label>
@@ -58,6 +69,7 @@
   </div>
   <div *ngIf="submitted" class="basic structure">
     <h2>Your Data</h2>
+    <h3>ownfield - {{ownfield}}</h3>
     <h3>User name - {{user.username}}</h3>
     <h3>Email - {{user.email}}</h3>
     <h3>Secret question - {{user.secretQues}}</h3>

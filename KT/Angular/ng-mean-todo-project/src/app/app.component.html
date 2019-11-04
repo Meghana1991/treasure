@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="isShow">
   <h5>Enter "Basics" to see Basics</h5>
   <h5>Enter "Shopping" to see Shopping</h5>
   <h5>Enter "P2C" to see Parent to Child communication</h5>
@@ -22,6 +22,7 @@
   <!-- This ngMOdel will actually act like a keyup / keydown / input etc events -->
   <basics *ngIf="choice.toLowerCase() == 'basics'"></basics>
 </div>
+<button class="btn btn-primary" (click)="isShow = !isShow">Hide/Show Topics</button>
 <!-- COMMENTED FOR MODULARISATION
 <div *ngIf="choice.toLowerCase() == 'shopping'">
   <header></header>
@@ -38,7 +39,7 @@
 </div>
 <div class="container" *ngIf="choice.toLowerCase() == 'p2c'">
   <app-child *ngFor="let elem of arrobj" [element]="elem" [aliasParentEl]="elem"></app-child>
-</div>
+</div>  
 
 <div class="container" *ngIf="choice.toLowerCase() == 'c2p'">
   <label>I am parent component</label>
@@ -83,7 +84,8 @@
 
 <div class="container" *ngIf="choice.toLowerCase() == 'data binding'">
   <!-- Data binding got converted to services 
-  Check old revisions in github for pure data binding --><!--
+  Check old revisions in github for pure data binding -->
+<!--
   <header (customEmitter)="checkClickedPage($event)"></header>
   <app-recipes *ngIf="clickedPage == 'recipe'"></app-recipes>
   <app-shopping-list *ngIf="clickedPage == 'shopping'"></app-shopping-list>
@@ -100,7 +102,8 @@
 
 <div class="container" *ngIf="choice.toLowerCase() == 'at'">
   <h3 betterHighlightThree [defaultColor]="'yellow'" [mouseOver]="'orange'">@HostBinding - Advanced</h3>
-  <!-- Different way of writing the property binding - may be link to ngClass or ngStyle --><!--
+  <!-- Different way of writing the property binding - may be link to ngClass or ngStyle -->
+<!--
   <h3 betterHighlightThree defaultColor="yellow" mouseOver="orange">@HostBinding - Advanced</h3>
 </div>
 
@@ -122,7 +125,8 @@
     <div [appStructural]="choice">
     inside the ng-template
     Hence it is important that the appStructural should be same name in the @Input tag if used
-    --><!--
+    -->
+<!--
 
     <h3>hi</h3>
   </div>

@@ -20,8 +20,9 @@ angular.json - CLI configuration defaults for all projects in the workspace, inc
 
 4)index.html file is the file served by the server.This would have some html tag <app-root> which is a selector for some component @Component({selector:'app-root'})
 The app-root tag > app-root selector holding component gets loaded
+In index.html, the scripts required are dynamically added on ng serve. The scripts include maain.ts as well.
 
-5)The angular bootstrap - The angular code will actually be bundled up on 'ng serve" whenever any changes are done to the application and these bundles will be injected to the index.html in the script tags at the end by angular-cli.
+5)The angular bootstrap mechanism - The angular code will actually be bundled up on 'ng serve" whenever any changes are done to the application and these bundles will be injected to the index.html in the script tags at the end by angular-cli.
 You can cross check the bundles in view page source of index.html
 
 The first code to get executed is the index.html which will have several script bundles in it which will trigger main.ts which will trigger AppModule
@@ -40,6 +41,7 @@ NgModules consolidate components, directives, and pipes into cohesive blocks of 
 Modules can also add services to the application. Such services might be internally developed, like something you'd develop yourself or come from outside sources, such as the Angular router and HTTP client.
 
 Angular apps are built with on complex relationship of view classes (i.e. components, directives, and pipes) and data providers (i.e. services). In the early days of Angular2, NgModule did not exist and you had to declare every relationship in every component. It was maintenance nightmare.
+transform accepts valueinput and args separated with :
 
 7)Component's selectors can be written in different ways. 
 
@@ -65,7 +67,7 @@ but still if we give a number in {{}} it works because interpolation internally 
 
 2)Property binding - Usually the HTML code we write gets parsed and converted to DOM. But if we mention any attribute with [] then this would be considered for binding from Angular and HTML wont be considering it in initial time.
 
-10) For Two-Way-Binding (covered in the next lecture) to work, you need to enable the ngModel  directive. This is done by adding the FormsModule  to the imports[]  array in the AppModule.
+10) For Two-Way-Binding to work, you need to enable the ngModel  directive. This is done by adding the FormsModule  to the imports[]  array in the AppModule.
 
 You then also need to add the import from @angular/forms  in the app.module.ts file:
 
@@ -122,6 +124,18 @@ export class Ingredients {
 export class Ingredients {
     constructor(public name) { }
 }
+The above example is like new ColumnGrid
+
+The below example is like interface
+
+export interface USERCOUNT {
+    allUsers: number;
+    centralTeam: number;
+    regionalOperation: number;
+    technicalSupport: number;
+    others: number;
+    administrator: number;
+}
 
 16)Generally the error message in the browser console will show the Component name and also the syntax and also the line number but the line number will be wrong because the file which it shows is the minified compiled form where line numer would obviously defined.
 
@@ -144,8 +158,14 @@ The reactTothisInParent($event) is actually a function in parent comp which gets
 19)AThe applied to any component css, will apply only to them and not other components even if it is parent child . Even though it is expected behaviour of CSS to pick in 1 file and apply everywhere , still the angular actually stops it from doing it. Check the DOM for any element, it will have something like ng-content-ugo-1 something which makes it unique. So angular stops css to have global behaviour
 
 20)If we want the angular to stop the encapsulation by _ngcontent-c0 etc then we need to mention it in the @Component decorator with encapsulation: Viewencapsulation.None which will make that respective component css behave like default by considering CSS global level and to not encapsulate with _ngcontent-c0. Any CSS written in this component will apply globally unless the files have their local CSS which has more priority than global.
+By default the Viewencapsulation will be Viewencapsulation.Emulated, If we make it Viewencapsulation.None then shadowDom is removed from it.
 
 21)Local references in template are one way where you can use for accessing the html element itself in to the ts file and also can be used for one way binding from html to ts only one side
+
+<input type="text" #inputRef.../>
+<button...  (click)="btnClicked(inputRef)></button>
+
+in .ts - inputRef.value //value entered
 
 This is good but we can have the access for the element only after some events like click etc but what if we want access before click or any function call? Then in that case -
 
@@ -157,6 +177,8 @@ These local ref and viewchild can be placed for any tags not just input. It can 
 Viewchild is used for even directives.
 
 23)Viewchild has one more beauty. It can actually even work for the components as a whole. You can take any component and reference it and use its functions.
+
+Viewchild works only for parent-child or child-parent as in case of the component.
 
 Viewchild in detail -
 1) I am in main component, on some event in main component i want to show some data which is default hidden in the child component. This case i will use Viewchild.
@@ -173,6 +195,9 @@ But if i want my component to have some data inside beginning and ending tag the
 
 I will mark or place ng-content tag in app-child2 component in some place where angular can actually put data inside this ngcontent the data between app-child2 tags.
 
+Incase of ts file - 
+@ContentChild(...) element: any;
+
 25)Whenever a component is instantiated it goes through some phases
 We have some chances to hook into these phases and execute any code if needed and
 some of them are ngOnchanges ngOninit
@@ -185,6 +210,7 @@ some of them are ngOnchanges ngOninit
 6)ngAfterViewChecked - Whenever we are sure that all changes are displayed/rendered in the view or that the change detection are all done.
 7)ngOnDestroy - whenever a component is about to be destroyed.
 
+Only lifecycle hook which has params is ngOnChanges(changes: SimpleChanges)
 26)ngOnChanges -
 * Triggered whenever there is change in the @Input which means
 * @Input is coming as input to the child component from parent componen
@@ -233,10 +259,16 @@ If you want to observe the events happening in the element where directive is pl
 HostListener listens to event that HOST sends
 HostBinding binds to attributes of the HOST
 
+Events can be anything as simple as hover. For hover we need mouseenter and mouseleave events
+
 Host Listener is the one which listens to its host's(El where directive is placed) events
 Host Binding is the one which binds its host's(el where directive is placed) attributes
 ElementRef can be used alternatively to get the access to element
 Renderer can be used to changing the looks may be styles colors
+
+Renderer and HostBinding are same but HostBinding is much better as in coding is easily done
+
+Renderer offers us many functions and one needs to pass the elementreference using elementref along with other params like color height etc
 
 34)How the *ngIf is transformed to [ngIf] inside a ng-template behind the scenes here.
 
@@ -245,8 +277,6 @@ Renderer can be used to changing the looks may be styles colors
 36)Services - These are the ones who are like central repositary / business unit which will be used in many places
 
 37)You can instantiate the service in in-appropriate manner by calling the new Object as in fetchData() of app.component.ts BUT angular doesnot encourage it
-
-38)There is something called Injectable which tells that our component has dependencies with the service and we need to inject it. The dependency injection injects the instance of the class(service) to our component automatically.
 
 39)We can inject the services inside providers array of component directly and also in app module (@NgModule). If in component level, then the service applies for that particular component and its children and its children and so on... but not for its parents.
 If you inject in the providers array of @NgModule, then it is applied globally.
@@ -374,6 +404,32 @@ C:\mySpace\treasure\treasure\treasure\KT\MEAN\nodejs\3_Super_Node_Apps\angular-a
 
 Incase of dynamic data, we need to fetch data before the routing is done. Resolver is a guard which does something for us before the component is loaded or routing has occured. The canActivate will also do something before the component is loaded BUT this case is different where it fetches some data and not deciding like to show or not the compoentn like canActivate. Resolver will execute some code befoer the component is loaded
 
+You need to import SomeResolver in providers array in app.module.ts.
+In service - 
+
+pass the resolver we created to resolve property of the corresponding route in the Routes array of your Angular routing module:
+
+{
+  path: 'items/:date',
+  component: ItemsComponent,
+  resolve: { items: APIResolver }
+}
+
+@Injectable()
+export class APIResolver implements Resolve<any> {
+  constructor(private apiService: APIService) {}
+
+  resolve(route: ActivatedRouteSnapshot) {
+    return this.apiService.getItems(route.params.date);
+  }
+}
+
+//Accessing it
+constructor(private route: ActivatedRoute) {}
+ngOnInit() {
+    this.data = this.route.snapshot.data;
+}
+
 59)Generally what happens if you host your app in the server? localhost:4200/servers, this should ideally take you to the /servers route of angular like how it happens in the local but in the production, the /servers will be seen by the web server and it searches for /servers file and throws NOT FOUND. We should just serve the index.html to the webserver and let the angular handle the routing for us, to do this we need to enable useHash:true in forRoot()
 
 We just have 1 file, index.html containing the angular app here. After making it as useHash:true then we get a #, so whatever comes after the # will not be considered by the webserver
@@ -413,6 +469,8 @@ Subject is observer and observable both together.
 
 Example :  In observer we use observer.next(somedata) and in recieving end we just do observable.subscribe().
 But incase of the subject, it can do both being either observer or observable
+
+angular observables like route.params.subscribe etc will be handled by the angular itself.
 
 65) Usually we compare the Subject to EventEmitter but it is always good to use Subject over EventEmitter.
 It is very simple. Define a subject in the service. Use it in component-a to emit some value to some other component using .next. On other hand use componen-b to .subscribe() it for changes
@@ -474,6 +532,8 @@ ngModel - No event or property binding ie withou any binding
 74)Now it is time for reactive driven approach of forms. In templat driven approach the Angular infers the Form object from the DOM. In Reactive approach, the form is created automatically and is synchronized with DOM
 
 75) We need to import ReactiveFormsModule instead of FormsModule in Reactive forms. The reactive approach will programatically build the form
+
+In template driven form we need to mention ngModel and also the name attribute
 
 76)In reactive approach we don't use the local refernce or viewchild reference because we already have access to it in the ts and we have created the controls hence
 
@@ -550,8 +610,11 @@ You can catch errors - https://www.udemy.com/the-complete-guide-to-angular-2/lea
  LEARN THE PIPES MAPS IN THE CURRENT PROJECT
 
  93).map() is not used in the Angualr 6 onwards instead we use pipe
-
+LEARN HTTP HEADERS AND .get and .post details
  94)The http.get() etc will just give you a observable. However if you want the observable data to be modified slightly then modify using pipes, catcherror and maps. On the other hand the .ts file , we need to subscribe to the observable. So until to subscribe to the observable or modified observable in the service, the call wont be happening.
+
+this.http.get(this.getPlantsURL).pipe(catchError(error => throwError(error)))
+this.http.post(url, requestBody).pipe(catchError(err => throwError(err)))
 
  95)The http get observable and subscribing can be however be split. Like having observable(may be modifying it using map pipe) in the service and calling that service function and then subscribing it in the ts file. Or on other hand use the observable and subscribe together.
 
@@ -580,8 +643,14 @@ Here we need to pass the query params auth like this.
 101)in the ngModule 
 > the declarations [] consists of components used, pipes and directives
 > the imports [] consists of which other modules this module uses
+> the exports [] consists of which other modules which would like to be exposed
 > the providers [] consists of the services used in the app
 > the bootstrap [] consists of the root component
+> entryComponents
+
+This is for dynamically added components that are added using ViewContainerRef.createComponent(). Adding them to entryComponents tells the offline template compiler to compile them and create factories for them.
+
+The components registered in route configurations are added automatically to entryComponents as well because router-outlet also uses ViewContainerRef.createComponent() to add routed components to the DOM.
 
 102)Modularisation can be performed where a group of components,directives can be grouped together in a module based on feature, by doing this, if issue comes, we can debug module based
 
@@ -590,6 +659,8 @@ Here we need to pass the query params auth like this.
 104)We should not declare a module in more than one place.
 
 105)in the app.module.ts we are defining the feature modules. The routes are placed in appRoutingModule which is placed in app.module.ts. On separating or Modularising the feature module, it is hard for Angular to determine and gets confused, hence good practise to keep the feature module specific routes separately
+
+in routerLink => If we give withou "/" then it appends whatever we have entered + current path. If we specify with / then it picks up
 
 106)RouterModule.forRoot() only in the main route definition and RouterModule.forChild() will be only for every other child
 
@@ -634,6 +705,15 @@ The angular cli compiles the code from typescript to javascript
 The angular compiles the HTML code of templates into javascript(creating html element in the js).This is done because accessing the javascript is easier than accessing the DOM for performance reasons.
 
 114)preloading modules - https://vsavkin.com/angular-router-preloading-modules-ba3c75e424cb
+Preloading is an important feature of Angular Router's lazy loading. This is available since 2.1.0. By default, when the application uses lazy loading with loadChildren , chunked lazy modules will be loaded on-demand. ... By preloading, the application will start loading chunked modules before needed.
+
+Assume - 
+
+/one  > load one.module.ts
+/two  > load two.module.ts
+/three  > load three.module.ts
+
+On demand these will be loaded as per the lazy loading way. Sometimes what happens is when we are in /one and trying to nav to /two then a slight minor delay will be observed as the chunk for two.module is loaded ondemand so inorder to overcome that we use preloading. We will preload the next module even when we are in the previous route so that the slight delay is also avoided, Example -  Router.forRoot(routes,{preloadingStrategy : PreLoadAllModules})
 
 115)HttpClient and Http is almost same module but HttpClient has many features like -
 -   It automatically extracts the _body from the response.
@@ -669,6 +749,8 @@ catchError(this.handleError.bind(this.self))); }
 Instead of manually sending the data to each call, we can do it using interceptors
 https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/7789386?start=0
 
+In app.module.ts - providers [] - add { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
+
 118) typescript is used because it is understandable easily for the user to code and also that it is strict unlike javascript. Example:
 
 myStr : String;
@@ -691,6 +773,8 @@ To compile > tsc file_name > this converts the ts to js and have a check of the 
 
 121)Proxy is redirect. If you have to mention a proxy path or redirect path on hit of APIs then mention it in the proxy.json
 
+In package.json - "start-prod": "ng serve --configuration=production --proxy-config proxy.config.json",
+
 122)When we want the return statement to give us some boolean value but the value returing is object or string something then -
 
 return !!this.myArr
@@ -706,6 +790,8 @@ hash
 125)In case of Multi Page Application the server sends back the HTML files to be rendered in the FE and which leads to page refresh everytime.
 
 Single Page Application is the one which interacts with the user by dynamically writing to current page rather than loading html pages from the server
+
+125) You can use pipes to link operators together. Pipes let you combine multiple functions into a single function. The pipe() function takes as its arguments the functions you want to combine, and returns a new function that, when executed, runs the composed functions in sequence.
 
 126) Web pack is used for building the application, managing the application. We want to use web pack because
 Assume i have 2 .css files and 2 .js files present.
@@ -768,3 +854,155 @@ s3 bucket is like nginx, in our proj we use s3 bucket
 129)Imagine you have a component somewhere and other components would like to instantiate the component by the tag <crspng-mega-table> but the problem is that the other components are not parents child with this mega component. Hence what one can do is whichever such components used by multiple other components will be all placed together in the @NgModule(widgets module) and would be loaded in the initial app.module.ts file. By doing this the angular loads those commonly used components initially only.
 
 130)https://angular.io/guide/file-structure
+
+131)Angular selectors can be made as attribute selectors by []. Example : 
+<app-header></app-header>
+
+In .ts file > @Component({selector: '[app-header]', ...}); or
+In .ts file > @Component({selector: '.app-header', ...});
+
+in HTML,
+<div app-header></div>
+<div class="app-header"></div>
+
+132)Specify the module using the --module parameter. For example, if the main module is app.module.ts, run this:
+
+ng g c new-component --module app
+
+133) TS to HTML -
+String interpolation - {{data.name}}
+Property binding     - [property]="data.name"
+
+HTML to TS
+(event)="handleEvent"
+
+Combining both - [(ngModel)]="data.name"
+
+133)Whenever we want to dynamically bind the property then use []. Example: [disabled]
+[innerText] = "isTrue" same as {{isTrue}}
+
+134)Dynamic adding of the inline styles using [ngStyle]="{backgroundColor: getColor()}"
+
+135)for...of - Use for…of to iterate over the values in an iterable, like an array for example:
+let names = ['Gertrude', 'Henry', 'Melvin', 'Billy Bob'];
+
+for(let e of names){
+    console.log(e)
+}
+
+//Gertrude, Henry...
+
+for(let e in name){
+    console.log(e)
+}
+
+//0 1 2 3
+
+136)for…in - used to iterate over the properties of an object (the object keys):
+
+let oldCar = {
+  make: 'Toyota',
+  model: 'Tercel',
+  year: '1996'
+};
+
+for (let key in oldCar) {
+  console.log(`${key} --> ${oldCar[key]}`);
+}
+
+You can also use for…in to iterate over the index values of an iterable like an array or a string:
+
+let str = 'Turn the page';
+
+for (let index in str) {
+  console.log(`Index of ${str[index]}: ${index}`);
+}
+
+for (let key of oldCar) {
+  console.log(key);
+}
+VM1432:1 Uncaught TypeError: oldCar is not iterable
+
+137)for...in can be used for keys
+    for...of can be used for iterating strings and arrays values
+
+138)Angular bootstrap can be installed using npm install bootstrap@3 --save. And then in the angular.json file, under the styles array,before the style.css you need to add the node_modules..../bootstrap.min.css
+
+139)Input and Output both are used inorder to communicate. Input when we need to pass some data from the parent component to child component. Output when we want to use the data from the child component in parent component.The handler of the output from the child component should be in the parent component
+
+When the components are siblings then Input Output is not possible.
+
+140) We can send only data to the child components and recieve data but not like (click)="something" etc. If this is done, then the something resides in the parent component.
+
+141)Navigating programatically - this.router.navigate(['servers'],{relativeTo: this.activatedRoute}). We need to explicitly mention the current route else it will not know from where to start
+
+142) To fetch the current activated route along with params, we need not subscribe to it unnecessarily but we can directly access its snapshot. Use below only if you are sure that you dont want dynamic click url change data
+this.user.id = this.route.snapshot.params['id'];
+
+143)queryParams can be passed by using [queryParams]="{'key':'value'}" in html
+this.router.navigate(['/servers', id, 'edit'], { queryParams: { allowEdit: 1 } })
+
+Fetch the query params
+this.route.queryParams.subscribe((route) => {
+    //fetch queryParams
+})
+
+144)redirecting to not found page - make the last route as **(which catches all routes) and redirectTo PageNotFoundComponent and since the ** is in the last item, it will match only those not mentioned in the routes
+
+145)Routes can hold statis data like
+
+path: 'users', component: UsersComponent, data: {myData : 'Hey'}
+
+and retrieve it using route.snapshot.data['myData']
+
+146)CanDeactivate INTERFACE
+Interface that a class can implement to be a guard deciding if a route can be deactivated. If all guards return true, navigation will continue. If any guard returns false, navigation will be cancelled. If any guard returns a UrlTree, current navigation will be cancelled and a new navigation will be kicked off to the UrlTree returned from the guard.
+
+interface CanDeactivate<T> {
+  canDeactivate(component: T, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
+}
+
+147)Hierarchical Injector - The Services are singleton but we can create multiple instances of it. The providers given for one component will share the same instance of service with its children. If provideIn given in child again then the parent instance will be overriden by the child instance. Sometimes we want different instances of the services but sometimes not. I am not talking about constructor(private someService) this. But talking about the providers []
+
+148) Injecting service inside service can be achieved by @Injectable. If a service is having depeendency with other service then use @Injectable
+
+149) TTD forms > if you want to bind form then simply use ngModel. If you want to set default value then use one way binding like [ngModel]
+
+150) Angular Template Driven Form - 
+    <form (ngSubmit)="onSubmit(f)" #f = "ngForm">
+    <input type="text" 
+        id="ownfield" 
+        class="form-control"
+        [ngModel]="'Own Value'"
+        name="ownfield"
+        required
+        #ownfieldRef = "ngModel">
+    <span *ngIf="!ownfieldRef.valid">Please enter a valid own field -{{ownfieldRef.value}}</span>
+
+Approach 1 - Without Reference
+onSubmit(f) -> this.f.value.ownfield
+
+Approach 2 - With ViewChild
+@ViewChild('f') signupForm: NgForm;
+this.ownfield = this.signupForm.value.ownfield;
+
+In both the cases you have patchValue
+this.signupForm.form.patchValue({....})
+
+151)Just in Time Compilation (JIT) - Whenever we write angular code which is angular specific like *ngIf *ngFor then the browser doesnot understand it by default as its first of all typescript and on top of it, it is angular specific. Hence the code is transpiled and converted to javascript from transcript and then the angular compiler will then compile the code such that the browser understands it. In case of JIT on the command ng serve the angular compiler will run in the browser at run time itself. JIT is during the development
+
+152)Ahead of Time (AOT) - Before the deployment of the app to the server, we will keep the angular app build ready where the angular compiler does its work and bundles it and doesnot run in the browser.Here the file sizes would be too small than imagined.
+
+153)environment.ts and environment.prod.ts are both switched as and when the environment changes and these are the deployment files used. These environment files imported in the interceptor and used for checking for flags before navigating
+
+if (environment && environment.name == 'prod') {
+            request = request.clone({ url: 'https://myfleetrisk-api.mosaic-dev.siemens.cloud' + request.url });
+        }
+        return next.handle(request).pipe(
+            map((event: HttpEvent<any>) => {
+                ...
+            }
+
+154)Difference between ng-container and ng-template tags - ng-template is used for the structural directive like ng-if, ng-for and ng-switch. If you use it without the structural directive, nothing happens and it will render.
+
+ng-container is used when you don't have a suitable wrapper or parent container. In most cases, we are using div or span as a container but in such cases when we want to use multiple structural directives. But we can't use more than one structural directive on an element, in that case, ng-container can be used as a container

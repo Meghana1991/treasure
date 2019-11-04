@@ -1,0 +1,21 @@
+<ng-content></ng-content>
+
+<div style="border: 1px solid #e2e2e2;margin:10px;padding:10px">
+  <p>2 Way Binding Multiple</p>
+  <input type="text" placeholder="Enter Text" *ngFor="let each of successMessages;let i = index"
+    [innerText]="each.message" [(ngModel)]="each.message" (input)="fieldEdited($event,i)" />
+</div>
+
+<div class="container-fluid">
+  <div style="border: 1px solid #e2e2e2" class="row">
+    <div class="col-md-6">
+      <app-message-details (messSel)="messageHandler($event)" *ngFor="let each of successMessages" [data]="each">
+      </app-message-details>
+    </div>
+    <div class="col-md-6">
+      Description
+      <!-- messageSelected - {{messageSelected.message}} -->
+      <app-message-description [desc]="messageSel"></app-message-description>
+    </div>
+  </div>
+</div>

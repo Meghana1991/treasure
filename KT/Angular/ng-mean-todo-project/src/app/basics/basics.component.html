@@ -29,6 +29,11 @@
         {{name}}
     </p>
     <input type="text" *ngFor="let name of nameArr" innerText="{{name}}" value="{{name}}" />
+    <ul>
+        <li *ngFor="let name of nameArr">
+            <p>{{name}}</p>
+        </li>
+    </ul>
     <hr>
     <hr>
 

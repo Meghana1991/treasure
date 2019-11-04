@@ -10,10 +10,11 @@ export class AppComponent {
   submitted = false;
   @ViewChild('f') signupForm: NgForm;
   user = {
-    username : '',
-    email : '',
-    secretQues : ''
+    username: '',
+    email: '',
+    secretQues: ''
   }
+  ownfield: any;
   suggestUserName() {
     const suggestedName = 'Superuser';
   }
@@ -39,14 +40,16 @@ export class AppComponent {
         username: 'View Child'
       }
     })
-    
     /**
      * The RHS side are the form control names NOT ngmodel
      */
     this.user.username = this.signupForm.value.groupingDataFields.username;
     this.user.email = this.signupForm.value.groupingDataFields.email;
     this.user.secretQues = this.signupForm.value.secret;
+    this.ownfield = this.signupForm.value.ownfield;
 
+    console.log('signupForm', this.signupForm)
+    console.log('formdata', formdata.form)
     /**
      * resets the form
      * including the values and also the classes to pristine untouched etc

@@ -1,0 +1,20 @@
+<head>
+    <title>Left Rotation</title>
+</head>
+
+<body>
+    <script>
+        /**
+        https://www.hackerrank.com/challenges/ctci-array-left-rotation/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrays
+        **/
+        function leftRotation(arr, howManyTimes) {
+            while (howManyTimes !== 0) {
+                arr.push(arr[0])
+                arr.shift(arr[0]) //removing element at the beginning of the array
+                --howManyTimes
+            }
+            console.log(arr)
+        }
+        leftRotation([1, 2, 3, 4, 5], 4);
+    </script>
+</body>

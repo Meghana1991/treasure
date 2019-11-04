@@ -1,0 +1,54 @@
+A binary tree is a linked data structure where each node points to two child nodes (at most). The child nodes are called the left child and right child.
+
+Each node can point to two children at most.
+The top most element in the tree is called root.
+Two Children are usually referred as Left Child and Right Child.
+The nodes which don't point to any children are called leaf nodes.
+Non-leaf nodes are called internal nodes. Root is also an internal node if it's not a leaf node.
+--------------------------------------------------------------------------------------------------------
+The Depth of the node is the number of nodes on the path from the root to the node. Root has depth 0.
+The Height of the node is the number of nodes on the path from the node to the root. All leaf nodes have height 0.
+
+The Height of the tree is the maximum height of any node in the tree. 
+The Depth of the tree is the maximum depth of any node in the tree. 
+
+A subtree of the node is the tree formed by its left and right children. Each node in a binary tree has a left subtree and a right subtree.
+
+See all the images except BST-*
+--------------------------------------------------------------------------------------------------------
+WHY BINARY TREE REQUIRED?
+binary tree that helps in searching the data in the tree
+
+A binary tree is a BST if the key of the node is greater than all the nodes in its left subtree and is smaller than all the nodes in its right subtree. Let's look at a binary search tree. See image BST-1, BST-2
+--------------------------------------------------------------------------------------------------------
+STEPS to search in BST
+Now that we know what a BST looks like, let's see how can it help with lookups. It's pretty simple actually. Suppose you are looking for key X. Here's what you do at each step starting at the root.
+
+1)Compare root node's key with X. If it's equal, we've found the key. All done.
+2) If X is less than node's key, we start looking at node's left subtree. It's because we know that right subtree cannot contain anything greater than X.
+3) If X is greater than node's key, we start looking in the right subtree.
+4) We repeat this process until we find the key or we reach the leaf node. If we reach the leaf node and haven't found the key as yet, we return not found.
+
+--------------------------------------------------------------------------------------------------------
+STEPS to insert in BST
+1) Compare current node's key with K.
+    If K is less than the current node,
+        If left child of current node is Null, we insert K as the left child of current node and return.
+        If the left child is not Null, the left child becomes the new current node, and we repeat the process from step 1.
+    If K is greater than the current node,
+        If right child of current node is Null, we insert K as the right child of the current node and return.
+        If the right child is not Null, the right child becomes the new current node, and we repeat the process from step 1.
+--------------------------------------------------------------------------------------------------------
+STEPS to delete a node in BST
+When deleting a node in BST, there are three cases.
+
+It's a leaf node and has no children.
+The node has one child (either left or right).
+The node has both left and right children.
+
+When deleting a node with 1 child, we connect the node's parent with node's child node. In other words, grand parent connects directly with grand child.
+
+When we have to delete a node with two children, we have two options. Let's say that the node to be deleted has key X.
+
+Replace the current node's key with its predecessor and then trigger delete for predecessor in node's left subtree.
+Replace the current node's key with its successor and then trigger delete for successor in node's right subtree.

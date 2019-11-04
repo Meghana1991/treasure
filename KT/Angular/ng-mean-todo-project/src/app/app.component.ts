@@ -10,6 +10,7 @@ import { TestvariablesComponent } from './testvariables/testvariables.component'
 })
 export class AppComponent implements OnInit {
   choice: string = 'app';
+  isShow = true;
   arr = [];
   arrobj: Array<Object> = [{
     'name': 'some',

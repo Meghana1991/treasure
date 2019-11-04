@@ -1,0 +1,14 @@
+<div style="border: 1px solid #e2e2e2;margin:10px;padding:10px">
+  2 Way Data Binding - <br /><br />
+  <input type="text" [(ngModel)]="name" /><br /><br />
+  <button [disabled]="!name" (click)="resetData()">Reset</button><br /><br />
+  <div *ngIf="!name;else noName">
+    The data is empty
+  </div>
+  <!-- ng-template acts like marker -->
+  <ng-template #noName>
+    <div>
+      The text entered is - {{name}}
+    </div>
+  </ng-template>
+</div>
