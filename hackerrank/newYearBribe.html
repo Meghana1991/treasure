@@ -1,0 +1,27 @@
+<head>
+    <title>New Year Bribe</title>
+</head>
+
+<body>
+    <script>
+        /**
+            https://www.hackerrank.com/challenges/new-year-chaos/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrays
+        **/
+        function newYearBribe(arr) {
+            //Math.max expects numbers with comma separation. Hence we need to spread the contents of the array to it and pass to Math.max not directly
+            let lastOne = Math.max(...arr);
+            let bribeCnt = 0;
+            for (let i = 0; i <= lastOne - 1; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    ++bribeCnt
+                    //swap them
+                    let temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                }
+                console.log(arr, bribeCnt)
+            }
+        }
+        newYearBribe([2, 1, 5, 3, 4]);
+    </script>
+</body>
