@@ -1,0 +1,18 @@
+1)npm install --save react-redux
+2)npm install --save redux
+
+3)import { createStore } from 'redux'
+import Provider from 'react-redux'
+
+4)Link the store and reducer
+const store = createStore(ReducerOne)
+
+5)Instantiate the app with store
+
+const app = (
+    <Provider store={store}>
+        <App />
+    </Provider>
+)
+
+ReactDOM.render(app, document.getElementById('root'));
